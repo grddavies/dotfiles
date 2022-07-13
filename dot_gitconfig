@@ -1,0 +1,5 @@
+[user]
+	name = Gethin Davies
+	email = grd.davies@gmail.com
+[core]
+	editor = nvim
