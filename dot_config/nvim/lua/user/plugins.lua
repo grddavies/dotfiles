@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
     use "hrsh7th/cmp-path" -- Path completions
     use "hrsh7th/cmp-cmdline" -- cmdline completions
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+    use {'hrsh7th/cmp-nvim-lua', ft = 'lua'} -- Completions for Lua nvim api
     use "saadparwaiz1/cmp_luasnip" -- Snippet completions
 
     -- Snippets

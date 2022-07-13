@@ -11,3 +11,4 @@ require "user.keymaps" -- Custom keybindings
 require "user.theme" -- Editor Theme
 require "user.cmp" -- Code completion
 require "user.lsp" -- LSP setup
+
