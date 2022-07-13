@@ -137,6 +137,11 @@ _G.packer_plugins = {
     path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -148,10 +153,14 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["telescope-emoji.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/gethin/.local/share/nvim/site/pack/packer/opt/telescope-emoji.nvim",
+    loaded = true,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/telescope-emoji.nvim",
     url = "https://github.com/xiyaowong/telescope-emoji.nvim"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

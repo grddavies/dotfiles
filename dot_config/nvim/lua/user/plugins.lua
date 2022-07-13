@@ -75,7 +75,9 @@ return require('packer').startup(function(use)
 
     -- Telescope Fuzzyfinder
     use {"nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim"}
-    use {"xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim", opt = true}
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' } use {"xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim"}
+    -- TreeSitter Source Code Parsing
+    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
