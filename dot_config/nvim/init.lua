@@ -13,4 +13,5 @@ require "user.cmp" -- Code completion
 require "user.lsp" -- LSP setup
 require "user.telescope" -- Telescope fuzzyfinding
 require "user.treesitter" -- Treesitter source code parsing
+require "user.autopairs" -- Auto pair brackets etc
 

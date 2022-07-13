@@ -47,6 +47,10 @@ require'nvim-treesitter.configs'.setup {
   },
 
   -- PLUGINS --
+  -- Automatically pair parentheses etc via 'windwp/nvim-autopairs'
+  autopairs = {
+		enable = true,
+	},
   -- Rainbow parentheses via 'p00f/nvim-ts-rainbow'
   rainbow = {
     enable = true,

@@ -84,6 +84,8 @@ return require('packer').startup(function(use)
     use  {"nvim-treesitter/nvim-treesitter-context", requires = "nvim-treesitter/nvim-treesitter"}
     -- Rainbow paretheses
     use {"p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter"}
+    -- Autopair
+    use "windwp/nvim-autopairs"
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
