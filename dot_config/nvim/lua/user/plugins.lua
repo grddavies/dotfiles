@@ -78,14 +78,19 @@ return require('packer').startup(function(use)
     use {"nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim"}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' } use {"xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim"}
 
+    -- Easy Block Comment
+    use "numToStr/comment.nvim"
+
     -- TreeSitter Source Code Parsing
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
     -- highlight current function context
     use  {"nvim-treesitter/nvim-treesitter-context", requires = "nvim-treesitter/nvim-treesitter"}
     -- Rainbow paretheses
     use {"p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter"}
-    -- Autopair
+    -- Autopair paretheses etc
     use "windwp/nvim-autopairs"
+    -- Context-aware 'commentstring' setting
+    use "JoosepAlviste/nvim-ts-context-commentstring"
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
