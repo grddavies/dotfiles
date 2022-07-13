@@ -4,9 +4,11 @@ if not status_ok then
 end
 
 comment.setup {
+  ---@param ctx CommentCtx
   pre_hook = function(ctx)
     local U = require "Comment.utils"
 
+    -- Determine the location to calculate commentstring from
     local location = nil
     if ctx.ctype == U.ctype.block then
       location = require("ts_context_commentstring.utils").get_cursor_location()
@@ -14,8 +16,10 @@ comment.setup {
       location = require("ts_context_commentstring.utils").get_visual_start_location()
     end
 
+    -- Determine whether to use linewise or blockwise commentstring
+    local type = ctx.ctype == U.ctype.line and '__default' or '__multiline'
     return require("ts_context_commentstring.internal").calculate_commentstring {
-      key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
+      key = type,
       location = location,
     }
   end,
