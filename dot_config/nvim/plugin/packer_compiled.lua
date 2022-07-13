@@ -90,8 +90,11 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-nvim-lua"] = {
-    loaded = true,
-    path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    after_files = { "/Users/gethin/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lua/after/plugin/cmp_nvim_lua.lua" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lua",
     url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
@@ -139,6 +142,22 @@ _G.packer_plugins = {
     path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["telescope-emoji.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/opt/telescope-emoji.nvim",
+    url = "https://github.com/xiyaowong/telescope-emoji.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
   ["vim-abolish"] = {
     loaded = true,
     path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/vim-abolish",
@@ -167,6 +186,13 @@ time([[Defining packer_plugins]], false)
 time([[Config for vim-illuminate]], true)
 try_loadstring("\27LJ\2\nÙ\3\0\0\6\0\14\0 6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0016\0\0\0009\0\1\0009\0\2\0'\2\4\0B\0\2\0016\0\0\0009\0\1\0009\0\2\0'\2\5\0B\0\2\0016\0\0\0009\0\1\0009\0\6\0'\2\a\0'\3\b\0'\4\t\0005\5\n\0B\0\5\0016\0\0\0009\0\1\0009\0\6\0'\2\a\0'\3\v\0'\4\f\0005\5\r\0B\0\5\1K\0\1\0\1\0\1\fnoremap\2L<cmd>lua require\"illuminate\".next_reference{reverse=true,wrap=true}<cr>\f<A-S-n>\1\0\1\fnoremap\2?<cmd>lua require\"illuminate\".next_reference{wrap=true}<cr>\n<A-n>\6n\20nvim_set_keymap/ hi! def link LspReferenceRead CursorLine 0 hi! def link LspReferenceWrite CursorLine / hi! def link LspReferenceText CursorLine \17nvim_command\bapi\bvim\0", "config", "vim-illuminate")
 time([[Config for vim-illuminate]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType lua ++once lua require("packer.load")({'cmp-nvim-lua'}, { ft = "lua" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)

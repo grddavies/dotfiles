@@ -69,9 +69,13 @@ return require('packer').startup(function(use)
     use "rafamadriz/friendly-snippets" -- Snippet library
 
     -- LSP
-    use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
-    use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-    use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+    use "neovim/nvim-lspconfig" -- Collection of configurations for built-in LSP client
+    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+    use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+
+    -- Telescope Fuzzyfinder
+    use {"nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim"}
+    use {"xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim", opt = true}
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then

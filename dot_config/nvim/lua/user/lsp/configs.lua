@@ -6,7 +6,7 @@ end
 
 local lspconfig = require("lspconfig")
 local handlers = require("user.lsp.handlers")
-local servers = { "jsonls", "sumneko_lua", "pyright" }
+local servers = { "jsonls", "sumneko_lua", "pyright", "hls" }
 
 
 lsp_installer.setup({
