@@ -53,7 +53,8 @@ return require('packer').startup(function(use)
      }
 
     -- Theme -- 
-    use 'martinsione/darkplus.nvim'
+    -- use 'martinsione/darkplus.nvim'
+    use '~/code/opensource/darkplus.nvim'
 
     -- Code completion plugins
     use "hrsh7th/nvim-cmp" -- Autocompletion plugin
@@ -76,8 +77,13 @@ return require('packer').startup(function(use)
     -- Telescope Fuzzyfinder
     use {"nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim"}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' } use {"xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim"}
+
     -- TreeSitter Source Code Parsing
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+    -- highlight current function context
+    use  {"nvim-treesitter/nvim-treesitter-context", requires = "nvim-treesitter/nvim-treesitter"}
+    -- Rainbow paretheses
+    use {"p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter"}
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then

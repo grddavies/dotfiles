@@ -110,7 +110,7 @@ _G.packer_plugins = {
   ["darkplus.nvim"] = {
     loaded = true,
     path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
-    url = "https://github.com/martinsione/darkplus.nvim"
+    url = "/Users/gethin/code/opensource/darkplus.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -141,6 +141,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
+  },
+  ["nvim-ts-rainbow"] = {
+    loaded = true,
+    path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
+    url = "https://github.com/p00f/nvim-ts-rainbow"
   },
   ["packer.nvim"] = {
     loaded = true,
