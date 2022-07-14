@@ -1,6 +1,6 @@
 local options = {
-  backup = false,                          -- creates a backup file
-  cmdheight = 2,                           -- more space in the neovim command line for displaying messages
+  backup = false,                          -- create a backup file
+  cmdheight = 2,                           -- Nvim command line height
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
   fileencoding = "utf-8",                  -- the encoding written to a file
@@ -18,19 +18,21 @@ local options = {
   termguicolors = true,                    -- set term gui colors (most terminals support this)
   timeoutlen = 100,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,                         -- enable persistent undo
-  updatetime = 1000,                        -- faster completion (4000ms default)
+  updatetime = 1000,                       -- time until completions offered (4000ms default)
   writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   expandtab = true,                        -- convert tabs to spaces
   shiftwidth = 2,                          -- the number of spaces inserted for each indentation
   tabstop = 2,                             -- insert 2 spaces for a tab
-  cursorline = false,                      -- highlight the current line
+  cursorline = true,                       -- highlight the current line
+  cursorlineopt = 'number',                 -- only highlight current line's number
   number = true,                           -- set numbered lines
   relativenumber = true,                   -- set relative numbered lines
-  -- numberwidth = 2,                         -- set number column width to 2 {default 4}
-  signcolumn = "number",                   -- set the number column as the sign column
+  numberwidth = 4,                         -- set number column width to 2 {default 4}
+  signcolumn = "yes",                      -- set the number column as the sign column
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
+  list = true,                             -- show whitespace chars
 }
 
 vim.opt.shortmess:append "c"
