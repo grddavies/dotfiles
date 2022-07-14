@@ -53,7 +53,6 @@ return require('packer').startup(function(use)
      }
 
     -- Theme -- 
-    -- use 'martinsione/darkplus.nvim'
     use '~/code/opensource/darkplus.nvim'
 
     -- Code completion plugins
