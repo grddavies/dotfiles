@@ -6,11 +6,19 @@ if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins_vsc.lua source <afile> | PackerUpdate
+  augroup end
+]])
+
+
 return require('packer').startup(function(use)
 
   -- Packages
   use 'wbthomason/packer.nvim'
-  use 'tpope/vim-surround'
+  use 'kylechui/nvim-surround'
   use 'tpope/vim-abolish'
   use 'mg979/vim-visual-multi'
 

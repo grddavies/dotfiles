@@ -36,7 +36,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Editing Plugins
-    use 'tpope/vim-surround' -- Modifying text <({'surroundings'})>
+    use 'kylechui/nvim-surround' -- Modifying text <({'surroundings'})>
     use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
     use 'mg979/vim-visual-multi' -- MultiCursor support
     use {
@@ -53,7 +53,7 @@ return require('packer').startup(function(use)
      }
 
     -- Theme -- 
-    use '~/code/opensource/darkplus.nvim'
+    use 'grddavies/darkplus.nvim'
 
     -- Code completion plugins
     use "hrsh7th/nvim-cmp" -- Autocompletion plugin
