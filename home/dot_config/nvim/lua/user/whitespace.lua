@@ -25,7 +25,7 @@ end
 
 vim.api.nvim_create_user_command( "ShowChars", ShowChars, {
   nargs = 1,
-  complete = function(_, _, _) return { "astxpne", 'none' } end,
+  complete = function(_, _, _) return { "atxpn", "astxpne", 'none' } end,
 })
 
 -- set default listchars
