@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
   use {'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end}
   use 'tpope/vim-abolish'
   use 'mg979/vim-visual-multi'
+  use "numToStr/comment.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then

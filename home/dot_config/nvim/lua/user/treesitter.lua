@@ -11,7 +11,7 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = {"phpdoc"},
+  ignore_install = { "phpdoc", },
 
   -- Consistent Syntax highlighting
   highlight = {
@@ -49,8 +49,8 @@ require'nvim-treesitter.configs'.setup {
   -- PLUGINS --
   -- Automatically pair parentheses etc via 'windwp/nvim-autopairs'
   autopairs = {
-		enable = true,
-	},
+    enable = true,
+  },
   -- Rainbow parentheses via 'p00f/nvim-ts-rainbow'
   rainbow = {
     enable = true,
@@ -67,7 +67,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
--- Show context based on current selection
+-- Show current context/scope based on cursor position
 require('treesitter-context').setup{
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
