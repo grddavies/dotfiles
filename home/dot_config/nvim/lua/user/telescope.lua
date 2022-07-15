@@ -118,9 +118,36 @@ telescope.setup {
   },
 }
 
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
-telescope.load_extension('fzf')
-telescope.load_extension('emoji')
+local notify = require('notify')
 
+
+-- Load Extensions
+telescope.load_extension('emoji')
+telescope.load_extension('notify')
+
+local plugname = "Telescope fzf Native"
+
+-- Try to load fzf and help user if it can't be loaded
+local fzf_loaded, _ = pcall(telescope.load_extension, 'fzf')
+if not fzf_loaded then
+-- fzf extension could not load
+local build_tool = 'make'
+  local cmd
+  local os = vim.loop.os_uname().sysname
+  if os == 'Linux' then
+    cmd = "sudo apt install " .. build_tool
+  elseif os == 'Darwin' then
+    cmd = "brew install " .. build_tool
+  else
+    cmd = '...?'
+    notify("Unsupported OS", vim.log.levels.WARN, { title = plugname })
+  end
+  -- Tell the user how to install the build_tool
+  notify(
+    "`telescope-fzf-native.nvim` requires building with `".. build_tool ..
+    "`\nAdd `".. build_tool .. "` to your $PATH or install with\n" .. cmd,
+    vim.log.levels.INFO,
+    { title = plugname, timeout = 10000 }
+  )
+end
 

@@ -45,6 +45,7 @@ keymap("n", "<A-Down>", "<Esc>:m .+1<CR>==", opts)
 
 -- Clear search register with ctrl+/
   keymap("n", "<C-/>", ':let @/ = ""<CR>', opts)
+  keymap("n", "<C-_>", ':let @/ = ""<CR>', opts)
 
 -- Insert Mode --
 -- Press jk fast to exit insert mode 

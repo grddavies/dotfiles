@@ -1,6 +1,6 @@
 local options = {
   backup = false,                          -- create a backup file
-  cmdheight = 2,                           -- Nvim command line height
+  cmdheight = 1,                           -- Nvim command line height
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
   fileencoding = "utf-8",                  -- the encoding written to a file

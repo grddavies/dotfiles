@@ -13,11 +13,11 @@ require "user.options" -- Global options
 require "user.plugins" -- All plugins
 require "user.theme" -- Editor Theme
 require "user.cmp" -- Code completion
+require "user.comment" -- Easy comment code
 require "user.lsp" -- LSP setup
+require "user.nvimtree"  -- File Explorer
 require "user.telescope" -- Telescope fuzzyfinding
 require "user.treesitter" -- Treesitter source code parsing
 require "user.autopairs" -- Auto pair brackets etc
-require "user.comment" -- Easy comment code
 require "user.whitespace" -- Set whitespace display characters
-require "user.nvimtree"  -- File Explorer
 

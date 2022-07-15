@@ -54,6 +54,7 @@ return require('packer').startup(function(use)
 
     -- Theme --
     use 'grddavies/darkplus.nvim'
+    use 'rcarriga/nvim-notify'
 
     -- Code completion plugins
     use "hrsh7th/nvim-cmp" -- Autocompletion plugin
@@ -75,7 +76,11 @@ return require('packer').startup(function(use)
 
     -- Telescope Fuzzyfinder
     use {"nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim"}
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' } use {"xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim"}
+    use {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'make'
+    }
+    use {"xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim"}
 
     -- Easy Block Comment
     use "numToStr/comment.nvim"

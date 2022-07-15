@@ -18,7 +18,7 @@ comment.setup {
     ---@type table
     opleader = {
         ---Line-comment keymap
-        line = 'gc',
+        line = '<M-/>', -- default = 'gc'
         ---Block-comment keymap
         block = 'gb',
     },
