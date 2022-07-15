@@ -9,7 +9,9 @@ Selected dotfiles (mostly Nvim config)
 - [x] Telescope fuzzyfinder
 - [x] vscode-style commenting
 - [x] Display whitespace characters
+- [x] vscode-style line movements with Alt+Arrow
+- [ ] vscode-style line duplication with Alt+Shift+Arrow
 - [ ] Hex/RGB colour code display
-- [ ] Move-line in insert mode with alt-arrow
 - [ ] git integration
 - [ ] autoformatter integration
+- [ ] projects
