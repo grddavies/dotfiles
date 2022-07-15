@@ -1,4 +1,5 @@
 local opts = { noremap = true, silent = true }
+local recursive = { noremap = false, silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -37,11 +38,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Move text up and down
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==", opts)
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==", opts)
-keymap("n", "<A-Up>", "<Esc>:m .-2<CR>==", opts)
-keymap("n", "<A-Down>", "<Esc>:m .+1<CR>==", opts)
+-- Yank from cursor to EOL
+keymap("n", "Y", "y$", opts)
 
 -- Clear search register with ctrl+/
 keymap("n", "<C-/>", ':let @/ = ""<CR>', opts)
@@ -57,29 +55,45 @@ keymap("i", "jk", "<ESC>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
--- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+-- More intuitive yank/put behaviour
 keymap("v", "p", '"_dP', opts)
 
--- Visual Block Mode
-
+-- Visual Block Mode --
+-- <empty>
 
 -- VSCode-style comment-toggling --
 -- Normal Mode
 -- line comment
-keymap("n", "<M-/>", 'gcc', { noremap = false, silent = true })
+keymap("n", "<M-/>", 'gcc', recursive)
 -- block comment
-keymap("n", "<M-?>", 'gcb', { noremap = false, silent = true })
+keymap("n", "<M-?>", 'gcb', recursive)
 -- Visual Mode
-keymap("v", "<M-/>", 'gc', { noremap = false, silent = true })
-keymap("v", "<M-?>", 'gb', { noremap = false, silent = true })
+keymap("v", "<M-/>", 'gc', recursive)
+keymap("v", "<M-?>", 'gb', recursive)
 
 -- VSCode-style line movement/duplication with alt-direction --
+-- Move lines up and down
+-- Insert Mode
+keymap("i", "<A-Up>", "<Esc>:m .-2<CR>==i", opts)
+keymap("i", "<A-Down>", "<Esc>:m .+1<CR>==i", opts)
+-- Normal Mode
+keymap("n", "<A-k>", "<Esc>:m .-2<CR>==", opts)
+keymap("n", "<A-j>", "<Esc>:m .+1<CR>==", opts)
+keymap("n", "<A-Up>", "<Esc>:m .-2<CR>==", opts)
+keymap("n", "<A-Down>", "<Esc>:m .+1<CR>==", opts)
+-- Visual Mode
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+-- for some reason also works with arrow keys?
 -- Visual Block Mode
--- Move text up and down
 keymap("x", "<A-Down>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-Up>", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+
+-- Dupicate lines above/below
+-- keymap("n", "<A-S-Down>", "yy :call append(getline(\".\"), getreg())", opts)
+
+
 

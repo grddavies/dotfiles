@@ -33,6 +33,7 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   list = true,                             -- show whitespace chars
+  startofline = true,                    -- retain cursor position where possible
 }
 
 vim.opt.shortmess:append "c"
