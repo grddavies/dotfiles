@@ -1,6 +1,7 @@
 -- Highlight on yank
 local opts = {
-  higroup = "WildMenu",
+  -- Default higroup = "IncSearch"
+  higroup = "Visual",
   timeout = 150,
 }
 

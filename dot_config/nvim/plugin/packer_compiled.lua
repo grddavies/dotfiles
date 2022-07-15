@@ -148,6 +148,7 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-surround"] = {
+    config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0" },
     loaded = true,
     path = "/Users/gethin/.local/share/nvim/site/pack/packer/start/nvim-surround",
     url = "https://github.com/kylechui/nvim-surround"
@@ -220,6 +221,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for vim-illuminate]], true)
 try_loadstring("\27LJ\2\nÙ\3\0\0\6\0\14\0 6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0016\0\0\0009\0\1\0009\0\2\0'\2\4\0B\0\2\0016\0\0\0009\0\1\0009\0\2\0'\2\5\0B\0\2\0016\0\0\0009\0\1\0009\0\6\0'\2\a\0'\3\b\0'\4\t\0005\5\n\0B\0\5\0016\0\0\0009\0\1\0009\0\6\0'\2\a\0'\3\v\0'\4\f\0005\5\r\0B\0\5\1K\0\1\0\1\0\1\fnoremap\2L<cmd>lua require\"illuminate\".next_reference{reverse=true,wrap=true}<cr>\f<A-S-n>\1\0\1\fnoremap\2?<cmd>lua require\"illuminate\".next_reference{wrap=true}<cr>\n<A-n>\6n\20nvim_set_keymap/ hi! def link LspReferenceRead CursorLine 0 hi! def link LspReferenceWrite CursorLine / hi! def link LspReferenceText CursorLine \17nvim_command\bapi\bvim\0", "config", "vim-illuminate")
 time([[Config for vim-illuminate]], false)
+-- Config for: nvim-surround
+time([[Config for nvim-surround]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
+time([[Config for nvim-surround]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads

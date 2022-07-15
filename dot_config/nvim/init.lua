@@ -4,8 +4,8 @@ require "user.keymaps" -- Custom keybindings
 
 -- VSCode-nvim config --
 if vim.fn.exists("g:vscode") ~= 0 then
-    require "vscode.plugins_vsc"
-    return
+  require "vscode.plugins_vsc"
+  return
 end
 
 -- Standard NeoVim Config --
