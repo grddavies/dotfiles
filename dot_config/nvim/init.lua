@@ -19,3 +19,5 @@ require "user.treesitter" -- Treesitter source code parsing
 require "user.autopairs" -- Auto pair brackets etc
 require "user.comment" -- Easy comment code
 require "user.whitespace" -- Set whitespace display characters
+require "user.nvimtree"  -- File Explorer
+

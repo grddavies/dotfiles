@@ -36,7 +36,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Editing Plugins
-    use {'kylechui/nvim-surround', config = function() require("nvim-surround").setup({}) end} -- Modifying text <({'surroundings'})>
+    use {'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end} -- Modifying text <({'surroundings'})>
     use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
     use 'mg979/vim-visual-multi' -- MultiCursor support
     use {
@@ -90,6 +90,9 @@ return require('packer').startup(function(use)
     use "windwp/nvim-autopairs"
     -- Context-aware 'commentstring' setting
     use "JoosepAlviste/nvim-ts-context-commentstring"
+
+    -- File explorer
+    use { 'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}}
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
