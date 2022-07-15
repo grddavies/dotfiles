@@ -44,8 +44,9 @@ keymap("n", "<A-Up>", "<Esc>:m .-2<CR>==", opts)
 keymap("n", "<A-Down>", "<Esc>:m .+1<CR>==", opts)
 
 -- Clear search register with ctrl+/
-  keymap("n", "<C-/>", ':let @/ = ""<CR>', opts)
-  keymap("n", "<C-_>", ':let @/ = ""<CR>', opts)
+keymap("n", "<C-/>", ':let @/ = ""<CR>', opts)
+keymap("n", "<C-_>", ':let @/ = ""<CR>', opts)
+
 
 -- Insert Mode --
 -- Press jk fast to exit insert mode 
@@ -61,9 +62,24 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
--- Visual Block Mode --
+-- Visual Block Mode
+
+
+-- VSCode-style comment-toggling --
+-- Normal Mode
+-- line comment
+keymap("n", "<M-/>", 'gcc', { noremap = false, silent = true })
+-- block comment
+keymap("n", "<M-?>", 'gcb', { noremap = false, silent = true })
+-- Visual Mode
+keymap("v", "<M-/>", 'gc', { noremap = false, silent = true })
+keymap("v", "<M-?>", 'gb', { noremap = false, silent = true })
+
+-- VSCode-style line movement/duplication with alt-direction --
+-- Visual Block Mode
 -- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "<A-Down>", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "<A-Up>", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+

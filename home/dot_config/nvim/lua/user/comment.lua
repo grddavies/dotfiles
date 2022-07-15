@@ -9,16 +9,16 @@ comment.setup {
     ---@type table
     toggler = {
         ---Line-comment toggle keymap
-        line = '<M-/>', -- default = 'gcc'
+        line = 'gcc', -- default = 'gcc'
         ---Block-comment toggle keymap
-        block = 'gcb', -- default = 'gbc'
+        block = 'gbc', -- default = 'gbc'
     },
 
     ---LHS of operator-pending mappings in NORMAL + VISUAL mode
     ---@type table
     opleader = {
         ---Line-comment keymap
-        line = '<M-/>', -- default = 'gc'
+        line = 'gc', -- default = 'gc'
         ---Block-comment keymap
         block = 'gb',
     },
