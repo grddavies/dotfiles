@@ -1,12 +1,12 @@
 -- Define functions that set which whitespace characters to display
 local chars = {
+  a = {trail = '·'}, -- '•'
   s = {space = '·'},
   t = {tab = '-->'}, -- '→'
   x = {extends = '…'},
   p = {precedes = '…'},
   n = {nbsp = '␣'},
   e = {eol = '↲'},
-  a = {trail = '•'},
   -- TODO: conceal, lead, multispace
 }
 
@@ -16,14 +16,17 @@ local function set_listchars(str)
 end
 
 local function ShowChars(arg)
-  vim.o.list = arg.args ~= ''
-  set_listchars(string.lower(arg.args))
+  local show = arg.args ~= 'none'
+  if show then
+    set_listchars(string.lower(arg.args))
+  end
+  vim.opt.list = show
 end
 
 vim.api.nvim_create_user_command( "ShowChars", ShowChars, {
   nargs = 1,
-  complete = function(_, _, _) return { "stxpnea" } end,
+  complete = function(_, _, _) return { "astxpne", 'none' } end,
 })
 
 -- set default listchars
-set_listchars('stxpn')
+set_listchars('atxpn')
