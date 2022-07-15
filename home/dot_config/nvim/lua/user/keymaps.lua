@@ -62,14 +62,14 @@ keymap("v", "p", '"_dP', opts)
 -- <empty>
 
 -- VSCode-style comment-toggling --
+-- Insert Mode
+keymap("i", "<M-/>", '<Esc>gcci', recursive) -- line comment
 -- Normal Mode
--- line comment
-keymap("n", "<M-/>", 'gcc', recursive)
--- block comment
-keymap("n", "<M-?>", 'gcb', recursive)
+keymap("n", "<M-/>", 'gcc', recursive) -- line comment
+keymap("n", "<M-?>", 'gcb', recursive) -- block comment
 -- Visual Mode
-keymap("v", "<M-/>", 'gc', recursive)
-keymap("v", "<M-?>", 'gb', recursive)
+keymap("v", "<M-/>", 'gc', recursive) -- line
+keymap("v", "<M-?>", 'gb', recursive) -- block
 
 -- VSCode-style line movement/duplication with alt-direction --
 -- Move lines up and down
