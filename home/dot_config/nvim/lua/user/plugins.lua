@@ -39,18 +39,7 @@ return require('packer').startup(function(use)
     use {'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end} -- Modifying text <({'surroundings'})>
     use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
     use 'mg979/vim-visual-multi' -- MultiCursor support
-    use {
-       'RRethy/vim-illuminate', -- Highlight other uses of word under cursor
-       config = function ()
-         -- Override LSP-highlighting modes in `darkplus`
-         vim.api.nvim_command [[ hi! def link LspReferenceText CursorLine ]]
-         vim.api.nvim_command [[ hi! def link LspReferenceWrite CursorLine ]]
-         vim.api.nvim_command [[ hi! def link LspReferenceRead CursorLine ]]
-         vim.api.nvim_set_keymap('n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', {noremap=true})
-         vim.api.nvim_set_keymap('n', '<A-S-n>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>', {noremap=true})
-       end,
-       requires = 'neovim/nvim-lspconfig'
-     }
+    use { 'RRethy/vim-illuminate', requires = 'neovim/nvim-lspconfig' } -- Highlight other uses of word under cursor
 
     -- Theme --
     use 'grddavies/darkplus.nvim'

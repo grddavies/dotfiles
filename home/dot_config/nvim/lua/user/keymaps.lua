@@ -63,7 +63,7 @@ keymap("v", "p", '"_dP', opts)
 
 -- VSCode-style comment-toggling --
 -- Insert Mode
-keymap("i", "<M-/>", '<Esc>gcci', recursive) -- line comment
+keymap("i", "<M-/>", '<Esc>gcca', recursive) -- line comment
 -- Normal Mode
 keymap("n", "<M-/>", 'gcc', recursive) -- line comment
 keymap("n", "<M-?>", 'gcb', recursive) -- block comment
@@ -74,7 +74,7 @@ keymap("v", "<M-?>", 'gb', recursive) -- block
 -- VSCode-style line movement/duplication with alt-direction --
 -- Move lines up and down
 -- Insert Mode
-keymap("i", "<A-Up>", "<Esc>:m .-2<CR>==i", opts)
+keymap("i", "<A-Up>", "<Esc>:m .-2<CR>==i", opts)  -- FIXME: retain cursor position
 keymap("i", "<A-Down>", "<Esc>:m .+1<CR>==i", opts)
 -- Normal Mode
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==", opts)
@@ -94,6 +94,4 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Dupicate lines above/below
 -- keymap("n", "<A-S-Down>", "yy :call append(getline(\".\"), getreg())", opts)
-
-
 
