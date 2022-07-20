@@ -1,0 +1,7 @@
+[edit]
+    command = "nvim"
+
+[diff]
+    format = "git"
+    pager = "diff-so-fancy"
+
