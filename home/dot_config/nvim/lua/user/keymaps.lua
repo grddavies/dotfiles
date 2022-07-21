@@ -61,7 +61,7 @@ keymap("v", "p", '"_dP', opts)
 -- Visual Block Mode --
 -- <empty>
 
--- VSCode-style comment-toggling --
+-- Comment-toggling --
 -- Insert Mode
 keymap("i", "<M-/>", '<Esc>gcca', recursive) -- line comment
 -- Normal Mode
