@@ -62,14 +62,26 @@ keymap("v", "p", '"_dP', opts)
 -- <empty>
 
 -- Comment-toggling --
--- Insert Mode
-keymap("i", "<M-/>", '<Esc>gcca', recursive) -- line comment
--- Normal Mode
-keymap("n", "<M-/>", 'gcc', recursive) -- line comment
-keymap("n", "<M-?>", 'gcb', recursive) -- block comment
--- Visual Mode
-keymap("v", "<M-/>", 'gc', recursive) -- line
-keymap("v", "<M-?>", 'gb', recursive) -- block
+if vim.fn.exists("g:vscode") ~= 0 then
+  -- VScode-nvim
+  -- Insert mode handled in VSCode
+  -- Normal Mode
+  keymap("n", "<C-/>", 'gcc', recursive) -- line comment
+  keymap("n", "<C-?>", 'gcb', recursive) -- block comment
+  -- Visual Mode
+  keymap("v", "<C-/>", 'gc', recursive) -- line
+  keymap("v", "<C-?>", 'gb', recursive) -- block
+else
+  -- Standard NeoVim
+  -- Insert Mode
+  keymap("i", "<M-/>", '<Esc>gcca', recursive) -- line comment
+  -- Normal Mode
+  keymap("n", "<M-/>", 'gcc', recursive) -- line comment
+  keymap("n", "<M-?>", 'gcb', recursive) -- block comment
+  -- Visual Mode
+  keymap("v", "<M-/>", 'gc', recursive) -- line
+  keymap("v", "<M-?>", 'gb', recursive) -- block
+end
 
 -- VSCode-style line movement/duplication with alt-direction --
 -- Move lines up and down
