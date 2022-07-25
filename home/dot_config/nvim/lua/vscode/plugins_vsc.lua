@@ -18,7 +18,6 @@ return require('packer').startup(function(use)
 
   -- Packages
   use 'wbthomason/packer.nvim'
-  use 'kylechui/nvim-surround'
   use {'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end}
   use 'tpope/vim-abolish'
   use 'mg979/vim-visual-multi'
