@@ -88,10 +88,10 @@ keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 -- for some reason also works with arrow keys?
 -- Visual Block Mode
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-Up>", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-Down>", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "<A-k>", ":move '<-2<CR>gv=gv", opts)
+keymap("x", "<A-j>", ":move '>+1<CR>gv=gv", opts)
+keymap("x", "<A-Up>", ":move '<-2<CR>gv=gv", opts)
+keymap("x", "<A-Down>", ":move '>+1<CR>gv=gv", opts)
 
 -- Dupicate lines above/below
 -- Insert Mode
