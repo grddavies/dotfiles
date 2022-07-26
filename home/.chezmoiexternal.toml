@@ -1,4 +1,34 @@
+# Install antigen zsh plugin manager
 [".config/zsh/antigen.zsh"]
     type = "file"
     url = "https://git.io/antigen"
     refreshPeriod = "168h"
+
+{{- if .fonts }}
+# Install NerdFonts to os-specific location
+{{- $fontDir := "" }}
+{{-   if eq .chezmoi.os "darwin" }}
+{{-     $fontDir = "Library/Fonts" }}
+{{-   else if eq .chezmoi.os "linux" }}
+{{-     $fontDir = ".local/share/fonts" }}
+{{-   end }}
+
+# FiraCode NF
+["{{ $fontDir }}/FiraCode"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip"
+    include = [ "Fira*Complete.ttf" ]
+
+# CaskaydiaCove NF
+["{{ $fontDir }}/CaskaydiaCove"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
+    include = [ "*Complete.ttf", "*Mono.ttf" ]
+
+# Ubuntu NF
+["{{ $fontDir }}/Ubuntu"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip"
+    include = [ "*Complete.ttf", "*Mono.ttf" ]
+
+{{- end }}
