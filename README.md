@@ -6,7 +6,7 @@ Selected dotfiles, managed with `chezmoi`
 
 - [x] `zsh` setup
 - [x] (WIP) interactive `chezmoi init` to configure installs
-- [ ] install Nerd Fonts to correct locations for different machines
+- [x] install Nerd Fonts to correct locations for different machines
 - [ ] package and software installation
 
 ## NeoVim TODOs:
