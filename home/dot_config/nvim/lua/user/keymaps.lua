@@ -45,9 +45,8 @@ keymap("n", "Y", "y$", opts)
 keymap("n", "<C-/>", ':let @/ = ""<CR>', opts)
 keymap("n", "<C-_>", ':let @/ = ""<CR>', opts)
 
-
 -- Insert Mode --
--- Press jk fast to exit insert mode 
+-- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 
 -- Visual Mode --
@@ -64,15 +63,18 @@ keymap("v", "p", '"_dP', opts)
 -- Comment-toggling --
 if vim.fn.exists("g:vscode") ~= 0 then
   -- VScode-nvim
-  -- Insert mode handled in VSCode
+
+  -- Insert mode
+  keymap("i", "<A-/>", "<Esc>gcca", recursive)
   -- Normal Mode
-  keymap("n", "<C-/>", 'gcc', recursive) -- line comment
-  keymap("n", "<C-S-/>", 'gcb', recursive) -- block comment
+  keymap("n", "gcc", ":VSCodeCommentary<CR>", opts)
+  keymap("n", "<A-/>", 'gcc', recursive)
   -- Visual Mode
-  keymap("v", "<C-/>", 'gc', recursive) -- line
-  keymap("v", "<C-S-/>", 'gb', recursive) -- block
+  keymap("v", "gc", "<Plug>VSCodeCommentary", opts)
+  keymap("v", "<A-/>", 'gcgv', recursive)
 else
   -- Standard NeoVim
+
   -- Insert Mode
   keymap("i", "<A-/>", '<Esc>gcca', recursive) -- line comment
   -- Normal Mode
@@ -108,17 +110,17 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv=gv", opts)
 keymap("x", "<A-Up>", ":move '<-2<CR>gv=gv", opts)
 keymap("x", "<A-Down>", ":move '>+1<CR>gv=gv", opts)
 
--- Dupicate lines above/below
+-- Duplicate lines above/below
 -- Insert Mode
-keymap("i", "<A-K>", "<Esc>m` :t.<CR> ``a", opts)
-keymap("i", "<A-J>", "<Esc>m` :t.<CR> `` ji", opts)
-keymap("i", "<A-S-UP>", "<Esc>m` :t.<CR> ``a", opts)
+keymap("i", "<A-S-j>", "<Esc>m` :t.<CR> `` ji", opts)
+keymap("i", "<A-S-k>", "<Esc>m` :t.<CR> ``a", opts)
+keymap("i", "<A-S-Up>", "<Esc>m` :t.<CR> ``a", opts)
 keymap("i", "<A-S-Down>", "<Esc>m` :t.<CR> `` ji", opts)
 -- Normal Mode
-keymap("n", "<A-K>", "m` :t.<CR> ``", opts)
-keymap("n", "<A-J>", "m` :t.<CR> `` jh", opts)
-keymap("n", "<A-S-UP>", "m` :t.<CR> ``", opts)
+keymap("n", "<A-S-k>", "m` :t.<CR> ``", opts)
+keymap("n", "<A-S-j>", "m` :t.<CR> `` jh", opts)
+keymap("n", "<A-S-Up>", "m` :t.<CR> ``", opts)
 keymap("n", "<A-S-Down>", "m` :t.<CR> `` jh", opts)
--- Visual Mode
+-- -- Visual Mode
 -- keymap("v", "<A-J>", ":co .+1<CR>==", opts)
 -- keymap("v", "<A-K>", ":co .-2<CR>==", opts)
