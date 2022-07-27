@@ -5,7 +5,7 @@
     refreshPeriod = "168h"
 
 {{- if .fonts }}
-# Install NerdFonts to os-specific location
+# Install Fonts to os-specific location
 {{- $fontDir := "" }}
 {{-   if eq .chezmoi.os "darwin" }}
 {{-     $fontDir = "Library/Fonts" }}
@@ -14,21 +14,41 @@
 {{-   end }}
 
 # FiraCode NF
-["{{ $fontDir }}/FiraCode"]
+["{{ $fontDir }}/FiraCodeNF"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip"
     include = [ "Fira*Complete.ttf" ]
 
 # CaskaydiaCove NF
-["{{ $fontDir }}/CaskaydiaCove"]
+["{{ $fontDir }}/CaskaydiaCoveNF"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
     include = [ "*Complete.ttf", "*Mono.ttf" ]
 
 # Ubuntu NF
-["{{ $fontDir }}/Ubuntu"]
+["{{ $fontDir }}/UbuntuNF"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip"
     include = [ "*Complete.ttf", "*Mono.ttf" ]
+
+# Nerd Font Symbols Only
+["{{ $fontDir }}/NerdFontGlyphs"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/2.2.0-RC/NerdFontsSymbolsOnly.zip"
+    include = ["*.ttf"]
+
+# FiraCode
+["{{ $fontDir }}/FiraCode"]
+    type = "archive"
+    url = "https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip"
+    stripComponents = 1
+    include = ["*/FiraCode-VF.ttf"]
+
+# VictorMono
+["{{ $fontDir }}/VictorMono"]
+    type = "archive"
+    url = "https://rubjo.github.io/victor-mono/VictorMonoAll.zip"
+    stripComponents = 1
+    include = ["*/*.ttf"]
 
 {{- end }}
