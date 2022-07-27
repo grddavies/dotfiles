@@ -13,7 +13,7 @@ npairs.setup {
   },
   disable_filetype = { "TelescopePrompt", "spectre_panel" },
   fast_wrap = {
-    map = "<M-e>",  -- Map 'fast_wrap' to <Alt-e>
+    map = "<A-e>",  -- Map 'fast_wrap' to <Alt-e>
     chars = { "{", "[", "(", '"', "'" },
     pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
     offset = 0, -- Offset from pattern match

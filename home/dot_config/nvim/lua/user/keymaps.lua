@@ -67,20 +67,23 @@ if vim.fn.exists("g:vscode") ~= 0 then
   -- Insert mode handled in VSCode
   -- Normal Mode
   keymap("n", "<C-/>", 'gcc', recursive) -- line comment
-  keymap("n", "<C-?>", 'gcb', recursive) -- block comment
+  keymap("n", "<C-S-/>", 'gcb', recursive) -- block comment
   -- Visual Mode
   keymap("v", "<C-/>", 'gc', recursive) -- line
-  keymap("v", "<C-?>", 'gb', recursive) -- block
+  keymap("v", "<C-S-/>", 'gb', recursive) -- block
 else
   -- Standard NeoVim
   -- Insert Mode
-  keymap("i", "<M-/>", '<Esc>gcca', recursive) -- line comment
+  keymap("i", "<A-/>", '<Esc>gcca', recursive) -- line comment
   -- Normal Mode
-  keymap("n", "<M-/>", 'gcc', recursive) -- line comment
-  keymap("n", "<M-?>", 'gcb', recursive) -- block comment
+  keymap("n", "<A-/>", 'gcc', recursive) -- line comment
+  -- FIXME: Not block-commenting out a word as expected
+  -- Should this command take some kind of motion?
+  -- ie <A-S-/>+6j block comments current line and the six below?
+  -- keymap("n", "<A-S-/>", 'gcb', recursive) -- block comment
   -- Visual Mode
-  keymap("v", "<M-/>", 'gc', recursive) -- line
-  keymap("v", "<M-?>", 'gb', recursive) -- block
+  keymap("v", "<A-/>", 'gc', recursive) -- line
+  keymap("v", "<A-S-/>", 'gb', recursive) -- block
 end
 
 -- VSCode-style line movement/duplication with alt-direction --
