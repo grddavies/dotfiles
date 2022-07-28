@@ -28,6 +28,7 @@ Selected dotfiles, managed with `chezmoi`
 
 ### Additional tools
 - [x] Telescope fuzzyfinder (not added useful hotkeys)
+- [ ] [Neoclip](https://github.com/AckslD/nvim-neoclip.lua)
 - [ ] Hex/RGB colour code display
 - [x] Git Integration
 - [ ] Autoformatters
