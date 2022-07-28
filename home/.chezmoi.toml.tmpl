@@ -9,7 +9,7 @@
 
 {{/* boolean feature tags */}}
 {{- $work := promptBool "Is this your work laptop" }}{{/* Use motilent email? */}}
-{{- $fonts := promptBool "Install extra fonts?" }}
+{{- $fonts := promptBool "Install extra fonts" }}
 
 {{/* init data */}}
 {{- $email := $work | ternary "gethin.davies@motilent.co.uk" "grd.davies@gmail.com" }}
