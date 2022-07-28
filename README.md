@@ -11,6 +11,8 @@ Selected dotfiles, managed with `chezmoi`
 
 ## NeoVim TODOs:
 
+- [ ] Conditionally loading Plugins for VSCode and Standalone function
+
 ### Styling
 - [x] Display whitespace characters
 - [ ] Make yank-highlighting take precedence over 'illuminate' current word highlighting
