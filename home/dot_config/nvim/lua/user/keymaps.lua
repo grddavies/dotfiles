@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
 local recursive = { noremap = false, silent = true }
+local vscode_nvim = vim.g.vscode
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -18,25 +19,28 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Normal Mode --
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+if not vscode_nvim then
+    -- Normal Mode --
+    -- Better window navigation
+    keymap("n", "<C-h>", "<C-w>h", opts)
+    keymap("n", "<C-j>", "<C-w>j", opts)
+    keymap("n", "<C-k>", "<C-w>k", opts)
+    keymap("n", "<C-l>", "<C-w>l", opts)
 
--- Open File Browser
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+    -- Open File Browser
+    keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+    -- Resize with arrows
+    keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+    keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+    keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+    keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+    -- Navigate buffers
+    keymap("n", "<S-l>", ":bnext<CR>", opts)
+    keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
+end
 
 -- Yank from cursor to EOL
 keymap("n", "Y", "y$", opts)
@@ -61,31 +65,28 @@ keymap("v", "p", '"_dP', opts)
 -- <empty>
 
 -- Comment-toggling --
-if vim.fn.exists("g:vscode") ~= 0 then
-  -- VScode-nvim
-
-  -- Insert mode
-  keymap("i", "<A-/>", "<Esc>gcca", recursive)
-  -- Normal Mode
-  keymap("n", "gcc", ":VSCodeCommentary<CR>", opts)
-  keymap("n", "<A-/>", 'gcc', recursive)
-  -- Visual Mode
-  keymap("v", "gc", "<Plug>VSCodeCommentary", opts)
-  keymap("v", "<A-/>", 'gcgv', recursive)
+if vscode_nvim then
+    -- Insert mode
+    keymap("i", "<A-/>", "<Esc>gcca", recursive)
+    -- Normal Mode
+    keymap("n", "gcc", ":VSCodeCommentary<CR>", opts)
+    keymap("n", "<A-/>", 'gcc', recursive)
+    -- Visual Mode
+    keymap("v", "gc", "<Plug>VSCodeCommentary", opts)
+    keymap("v", "<A-/>", 'gcgv', recursive)
 else
-  -- Standard NeoVim
-
-  -- Insert Mode
-  keymap("i", "<A-/>", '<Esc>gcca', recursive) -- line comment
-  -- Normal Mode
-  keymap("n", "<A-/>", 'gcc', recursive) -- line comment
-  -- FIXME: Not block-commenting out a word as expected
-  -- Should this command take some kind of motion?
-  -- ie <A-S-/>+6j block comments current line and the six below?
-  -- keymap("n", "<A-S-/>", 'gcb', recursive) -- block comment
-  -- Visual Mode
-  keymap("v", "<A-/>", 'gc', recursive) -- line
-  keymap("v", "<A-S-/>", 'gb', recursive) -- block
+    -- Standard NeoVim --
+    -- Insert Mode
+    keymap("i", "<A-/>", '<Esc>gcca', recursive) -- line comment
+    -- Normal Mode
+    keymap("n", "<A-/>", 'gcc', recursive) -- line comment
+    -- FIXME: Not block-commenting out a word as expected
+    -- Should this command take some kind of motion?
+    -- ie <A-S-/>+6j block comments current line and the six below?
+    -- keymap("n", "<A-S-/>", 'gcb', recursive) -- block comment
+    -- Visual Mode
+    keymap("v", "<A-/>", 'gc', recursive) -- line
+    keymap("v", "<A-S-/>", 'gb', recursive) -- block
 end
 
 -- VSCode-style line movement/duplication with alt-direction --

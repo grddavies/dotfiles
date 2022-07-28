@@ -1,4 +1,5 @@
 local fn = vim.fn
+local vscode_nvim = vim.g.vscode -- is nvim running behind vscode?
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
@@ -19,31 +20,52 @@ if not status_ok then
     return
 end
 
--- Have packer use a popup window
-packer.init {
-    display = {
-        open_fn = function()
-            return require("packer.util").float {
-                border = "rounded"
-            }
-        end
+if vscode_nvim then
+    -- No windows for packer cmds
+    packer.init {
+        display = {
+            non_interactive = true
+        }
     }
-}
+else
+    -- Standalone nvim
+    -- Have packer use a popup window
+    packer.init {
+        display = {
+            open_fn = function()
+                return require("packer.util").float {
+                    border = "rounded"
+                }
+            end
+        }
+    }
+end
+
+local standalone = function () return not vim.g.vscode end
 
 -- Install Packages
 return require('packer').startup(function(use)
-    -- Package manager
+    -- Manage packer itself
     use 'wbthomason/packer.nvim'
+    -- Standalone only Plugins --
+    use { 'RRethy/vim-illuminate', requires = 'neovim/nvim-lspconfig' , cond = standalone } -- Highlight other uses of word under cursor
+    use { 'grddavies/darkplus.nvim', cond = standalone }  -- Colour scheme / Theme
+    use { 'rcarriga/nvim-notify', cond = standalone }  -- popup notifications
+    use { "neovim/nvim-lspconfig", cond = standalone } -- Collection of configurations for built-in LSP client
+    use { "williamboman/nvim-lsp-installer", cond = standalone } -- simple to use language server installer
+    use { "jose-elias-alvarez/null-ls.nvim", cond = standalone } -- for formatters and linters
+    use { 'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}, cond = standalone } -- File explorer
+    use { "lewis6991/gitsigns.nvim", cond = standalone } -- Git integration
+    use { "windwp/nvim-autopairs", cond = standalone } -- Autopair paretheses etc
+    -- Telescope Fuzzyfinder
+    use { "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim", cond = standalone}
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = standalone }
+    use { "xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim", cond = standalone }
 
     -- Editing Plugins
-    use {'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end} -- Modifying text <({'surroundings'})>
+    use { 'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end } -- Modifying text <({'surroundings'})>
     use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
     use 'mg979/vim-visual-multi' -- MultiCursor support
-    use { 'RRethy/vim-illuminate', requires = 'neovim/nvim-lspconfig' } -- Highlight other uses of word under cursor
-
-    -- Theme --
-    use 'grddavies/darkplus.nvim'
-    use 'rcarriga/nvim-notify'
 
     -- Code completion plugins
     use "hrsh7th/nvim-cmp" -- Autocompletion plugin
@@ -51,45 +73,24 @@ return require('packer').startup(function(use)
     use "hrsh7th/cmp-path" -- Path completions
     use "hrsh7th/cmp-cmdline" -- cmdline completions
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use {'hrsh7th/cmp-nvim-lua', ft = 'lua'} -- Completions for Lua nvim api
+    use { 'hrsh7th/cmp-nvim-lua', ft = 'lua' } -- Completions for Lua nvim api
     use "saadparwaiz1/cmp_luasnip" -- Snippet completions
 
     -- Snippets
     use "L3MON4D3/LuaSnip" -- Snippet engine
     use "rafamadriz/friendly-snippets" -- Snippet library
 
-    -- LSP
-    use "neovim/nvim-lspconfig" -- Collection of configurations for built-in LSP client
-    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-    use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-
-    -- Telescope Fuzzyfinder
-    use {"nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim"}
-    use {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      run = 'make'
-    }
-    use {"xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim"}
-
     -- Easy Block Comment
     use "numToStr/comment.nvim"
 
     -- TreeSitter Source Code Parsing
-    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     -- highlight current function context
-    use  {"nvim-treesitter/nvim-treesitter-context", requires = "nvim-treesitter/nvim-treesitter"}
+    use { "nvim-treesitter/nvim-treesitter-context", requires = "nvim-treesitter/nvim-treesitter" }
     -- Rainbow paretheses
-    use {"p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter"}
-    -- Autopair paretheses etc
-    use "windwp/nvim-autopairs"
+    use { "p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter" }
     -- Context-aware 'commentstring' setting
     use "JoosepAlviste/nvim-ts-context-commentstring"
-
-    -- File explorer
-    use { 'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}}
-
-    -- Git integration
-    use "lewis6991/gitsigns.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then

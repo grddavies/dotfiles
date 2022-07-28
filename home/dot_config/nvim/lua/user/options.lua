@@ -1,4 +1,4 @@
--- Options relevant to neovim in Standalone and running under VScode-nvim
+-- Options relevant to NeoVim and running under VScode-nvim
 local shared_options = {
   backup = false,                          -- create a backup file
   conceallevel = 0,                        -- so that `` is visible in markdown files
@@ -7,7 +7,7 @@ local shared_options = {
   ignorecase = true,                       -- ignore case in search patterns
   smartcase = true,                        -- smart case: Use case sensitive search if uppercase chars in query
   pumheight = 10,                          -- pop up menu height
-  showmode = true,                        -- Toggle mode display -- INSERT -- anymore
+  showmode = true,                         -- Toggle mode display -- INSERT -- anymore
   showtabline = 2,                         -- always show tabs
   splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
@@ -19,13 +19,13 @@ local shared_options = {
   expandtab = true,                        -- convert tabs to spaces
   shiftwidth = 2,                          -- the number of spaces inserted for each indentation
   tabstop = 2,                             -- insert 2 spaces for a tab
-  scrolloff = 8,                           -- is one of my fav
-  sidescrolloff = 8,
   startofline = true,                      -- retain cursor position where possible
 }
 
 -- Options that don't apply to running VScode-nvim
 local standalone_options = {
+  scrolloff = 8,                           -- keep cursor 8 lines from top & bottom of page
+  sidescrolloff = 8,
   smartindent = true,                      -- make indenting smarter again
   cmdheight = 1,                           -- Nvim command line height
   completeopt = { "menuone", "noselect" }, -- completion params?
@@ -47,7 +47,7 @@ for k, v in pairs(shared_options) do
   vim.opt[k] = v
 end
 
-if vim.fn.exists("g:vscode") ~= 0 then
+if vim.g.vscode then
   -- VScode-nvim
 else
   -- Standalone nvim
