@@ -41,27 +41,31 @@ else
     }
 end
 
-local standalone = function () return not vim.g.vscode end
+local standalone = function()
+    return not vim.g.vscode
+end
 
 -- Install Packages
 return require('packer').startup(function(use)
     -- Manage packer itself
     use 'wbthomason/packer.nvim'
-    -- Standalone only Plugins --
-    use { 'RRethy/vim-illuminate', requires = 'neovim/nvim-lspconfig' , cond = standalone } -- Highlight other uses of word under cursor
-    use { 'grddavies/darkplus.nvim', cond = standalone }  -- Colour scheme / Theme
-    use { 'rcarriga/nvim-notify', cond = standalone }  -- popup notifications
-    use { "neovim/nvim-lspconfig", cond = standalone } -- Collection of configurations for built-in LSP client
-    use { "williamboman/nvim-lsp-installer", cond = standalone } -- simple to use language server installer
-    use { "jose-elias-alvarez/null-ls.nvim", cond = standalone } -- for formatters and linters
-    use { 'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}, cond = standalone } -- File explorer
-    use { "lewis6991/gitsigns.nvim", cond = standalone } -- Git integration
-    use { "windwp/nvim-autopairs", cond = standalone } -- Autopair paretheses etc
-    -- Telescope Fuzzyfinder
-    use { "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim", cond = standalone}
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = standalone }
-    use { "xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim", cond = standalone }
 
+    -- Standalone Only Plugins --
+    use {'grddavies/darkplus.nvim'} -- Colour scheme / Theme
+    use { 'RRethy/vim-illuminate', requires = 'neovim/nvim-lspconfig' } -- Highlight other uses of word under cursor
+    use {'rcarriga/nvim-notify'} -- popup notifications
+    use { "neovim/nvim-lspconfig", cond = standalone } -- Collection of configurations for built-in LSP client
+    use {"williamboman/nvim-lsp-installer"} -- simple to use language server installer
+    use {"jose-elias-alvarez/null-ls.nvim"} -- for formatters and linters
+    use { 'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'} } -- File explorer
+    use {"lewis6991/gitsigns.nvim"} -- Git integration
+    use {"windwp/nvim-autopairs"} -- Autopair paretheses etc
+    -- Telescope Fuzzyfinder
+    use { "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim" }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { "xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim" }
+
+    -- Shared Plugins // VSCode-Neovim // Standalone
     -- Editing Plugins
     use { 'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end } -- Modifying text <({'surroundings'})>
     use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
