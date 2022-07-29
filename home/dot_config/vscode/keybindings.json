@@ -12,6 +12,6 @@
     // Toggle sidebar with space + e
     "command": "workbench.action.toggleSidebarVisibility",
     "key": "space e",
-    "when": "neovim.mode != insert"
+    "when": "editorTextFocus && neovim.mode != insert"
   }
 ]
