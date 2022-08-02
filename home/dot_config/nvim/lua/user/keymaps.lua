@@ -1,3 +1,5 @@
+-- vim: foldmethod=marker
+
 local opts = { noremap = true, silent = true }
 local recursive = { noremap = false, silent = true }
 local vscode_nvim = vim.g.vscode
@@ -5,11 +7,13 @@ local vscode_nvim = vim.g.vscode
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
--- Remap space as leader key
--- Default <Leader> is "\"
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Leader defn {{{
+  -- Remap space as leader key
+  -- Default <Leader> is "\"
+  keymap("", "<Space>", "<Nop>", opts)
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
+-- }}}
 
 -- Modes
 --   normal_mode = "n",
@@ -19,7 +23,8 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
-if not vscode_nvim then
+-- Standalone only keymaps {{{
+  if not vscode_nvim then
     -- Normal Mode --
     -- Better window navigation
     keymap("n", "<C-h>", "<C-w>h", opts)
@@ -40,32 +45,44 @@ if not vscode_nvim then
     keymap("n", "<S-l>", ":bnext<CR>", opts)
     keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
-end
+  end
+-- }}}
 
--- Yank from cursor to EOL
-keymap("n", "Y", "y$", opts)
 
--- Clear search register with ctrl+/
-keymap("n", "<C-/>", ':let @/ = ""<CR>', opts)
-keymap("n", "<C-_>", ':let @/ = ""<CR>', opts)
+-- Yanks {{{
+  -- Yank from cursor to EOL
+  keymap("n", "Y", "y$", opts)
 
--- Insert Mode --
--- Press jk fast to exit insert mode
-keymap("i", "jk", "<ESC>", opts)
+  -- Yank to ctrl-v register
+  keymap("n", "<leader>y", '"+y', opts)
+  keymap("v", "<leader>y", '"+y', opts)
 
--- Visual Mode --
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+  -- More intuitive yank/put behaviour
+  keymap("v", "p", '"_dP', opts)
 
--- More intuitive yank/put behaviour
-keymap("v", "p", '"_dP', opts)
+-- }}}
 
--- Visual Block Mode --
--- <empty>
+-- Misc user-defined {{{
 
--- Comment-toggling --
-if vscode_nvim then
+  -- Clear search register with ctrl+/
+  keymap("n", "<C-/>", ':let @/ = ""<CR>', opts)
+  keymap("n", "<C-_>", ':let @/ = ""<CR>', opts)
+-- }}}
+
+-- Common keymaps {{{
+  -- Press jk fast to exit insert mode
+  keymap("i", "jk", "<ESC>", opts)
+
+  -- Stay in indent mode
+  keymap("v", "<", "<gv", opts)
+  keymap("v", ">", ">gv", opts)
+
+-- }}}
+
+
+
+-- Comment-toggling {{{
+  if vscode_nvim then
     -- Insert mode
     keymap("i", "<A-/>", "<Esc>gcca", recursive)
     -- Normal Mode
@@ -74,7 +91,7 @@ if vscode_nvim then
     -- Visual Mode
     keymap("v", "gc", "<Plug>VSCodeCommentary", opts)
     keymap("v", "<A-/>", 'gcgv', recursive)
-else
+  else
     -- Standard NeoVim --
     -- Insert Mode
     keymap("i", "<A-/>", '<Esc>gcca', recursive) -- line comment
@@ -87,41 +104,48 @@ else
     -- Visual Mode
     keymap("v", "<A-/>", 'gc', recursive) -- line
     keymap("v", "<A-S-/>", 'gb', recursive) -- block
-end
+  end
+-- }}}
 
--- VSCode-style line movement/duplication with alt-direction --
--- Move lines up and down
--- Insert Mode
-keymap("i", "<A-k>", "<Esc>m`:m .-2<CR>==``a", opts)
-keymap("i", "<A-j>", "<Esc>m`:m .+1<CR>==``a", opts)
-keymap("i", "<A-Up>", "<Esc>m`:m .-2<CR>==``a", opts)
-keymap("i", "<A-Down>", "<Esc>m`:m .+1<CR>==``a", opts)
--- Normal Mode
-keymap("n", "<A-k>", "<Esc>m`:m .-2<CR>==``", opts)
-keymap("n", "<A-j>", "<Esc>m`:m .+1<CR>==``", opts)
-keymap("n", "<A-Up>", "<Esc>m`:m .-2<CR>==``", opts)
-keymap("n", "<A-Down>", "<Esc>m`:m .+1<CR>==``", opts)
--- Visual Mode
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
--- for some reason also works with arrow keys?
--- Visual Block Mode
-keymap("x", "<A-k>", ":move '<-2<CR>gv=gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv=gv", opts)
-keymap("x", "<A-Up>", ":move '<-2<CR>gv=gv", opts)
-keymap("x", "<A-Down>", ":move '>+1<CR>gv=gv", opts)
+-- VSCode-style line movement {{{
+  -- Move lines up and down
+  -- Insert Mode
+  keymap("i", "<A-k>", "<Esc>m`:m .-2<CR>==``a", opts)
+  keymap("i", "<A-j>", "<Esc>m`:m .+1<CR>==``a", opts)
+  keymap("i", "<A-Up>", "<Esc>m`:m .-2<CR>==``a", opts)
+  keymap("i", "<A-Down>", "<Esc>m`:m .+1<CR>==``a", opts)
+  -- Normal Mode
+  keymap("n", "<A-k>", "<Esc>m`:m .-2<CR>==``", opts)
+  keymap("n", "<A-j>", "<Esc>m`:m .+1<CR>==``", opts)
+  keymap("n", "<A-Up>", "<Esc>m`:m .-2<CR>==``", opts)
+  keymap("n", "<A-Down>", "<Esc>m`:m .+1<CR>==``", opts)
+  -- Visual Mode
+  keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+  keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+  -- for some reason also works with arrow keys?
+  -- Visual Block Mode
+  keymap("x", "<A-k>", ":move '<-2<CR>gv=gv", opts)
+  keymap("x", "<A-j>", ":move '>+1<CR>gv=gv", opts)
+  keymap("x", "<A-Up>", ":move '<-2<CR>gv=gv", opts)
+  keymap("x", "<A-Down>", ":move '>+1<CR>gv=gv", opts)
 
--- Duplicate lines above/below
--- Insert Mode
-keymap("i", "<A-S-j>", "<Esc>m` :t.<CR> `` ji", opts)
-keymap("i", "<A-S-k>", "<Esc>m` :t.<CR> ``a", opts)
-keymap("i", "<A-S-Up>", "<Esc>m` :t.<CR> ``a", opts)
-keymap("i", "<A-S-Down>", "<Esc>m` :t.<CR> `` ji", opts)
--- Normal Mode
-keymap("n", "<A-S-k>", "m` :t.<CR> ``", opts)
-keymap("n", "<A-S-j>", "m` :t.<CR> `` jh", opts)
-keymap("n", "<A-S-Up>", "m` :t.<CR> ``", opts)
-keymap("n", "<A-S-Down>", "m` :t.<CR> `` jh", opts)
--- -- Visual Mode
--- keymap("v", "<A-J>", ":co .+1<CR>==", opts)
--- keymap("v", "<A-K>", ":co .-2<CR>==", opts)
+  -- Duplicate lines above/below
+  -- Insert Mode
+  keymap("i", "<A-S-j>", "<Esc>m` :t.<CR> `` ji", opts)
+  keymap("i", "<A-S-k>", "<Esc>m` :t.<CR> ``a", opts)
+  keymap("i", "<A-S-Up>", "<Esc>m` :t.<CR> ``a", opts)
+  keymap("i", "<A-S-Down>", "<Esc>m` :t.<CR> `` ji", opts)
+  -- Normal Mode
+  keymap("n", "<A-S-k>", "m` :t.<CR> ``", opts)
+  keymap("n", "<A-S-j>", "m` :t.<CR> `` jh", opts)
+  keymap("n", "<A-S-Up>", "m` :t.<CR> ``", opts)
+  keymap("n", "<A-S-Down>", "m` :t.<CR> `` jh", opts)
+  -- -- Visual Mode
+  -- keymap("v", "<A-J>", ":co .+1<CR>==", opts)
+  -- keymap("v", "<A-K>", ":co .-2<CR>==", opts)
+-- }}}
+
+-- LSP {{{
+  -- keymap 'C-k' -> display signature
+-- }}}
+
