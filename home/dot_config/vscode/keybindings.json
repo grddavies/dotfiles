@@ -3,15 +3,22 @@
 [
   {
     // Comment line(s) in vscode nvim
-    "command": "vscode-neovim.send",
     "key": "alt+/",
+    "command": "vscode-neovim.send",
     "when": "editorTextFocus && neovim.init",
     "args": "<A-/>"
   },
   {
     // Toggle sidebar with space + e
-    "command": "workbench.action.toggleSidebarVisibility",
     "key": "space e",
+    "command": "workbench.action.toggleSidebarVisibility",
     "when": "editorTextFocus && neovim.mode != insert"
+  },
+  {
+    // Format document 
+    "key": "shift+alt+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   }
 ]
+
