@@ -1,6 +1,7 @@
 // Setting sync is per platform
 // Move this file to the appropriate folder to be used by VSCode
 [
+  // VSCode-NeoVim only
   {
     // Comment line(s) in vscode-nvim
     "key": "alt+/",
@@ -14,11 +15,24 @@
     "command": "workbench.action.toggleSidebarVisibility",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
+  // {
+  //   // Toggle fold
+  //   "key": "z a",
+  //   "command": "editor.toggleFold",
+  //   "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  // },
+  // All keybindings
   {
     // Format document 
     "key": "shift+alt+f",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  },
+  {
+    // Show hover help (matching nvim)
+    "key": "ctrl+k",
+    "command": "editor.action.showHover",
+    "when":"editorTextFocus"
   }
 ]
 
