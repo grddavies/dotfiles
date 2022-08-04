@@ -2,17 +2,17 @@
 // Move this file to the appropriate folder to be used by VSCode
 [
   {
-    // Comment line(s) in vscode nvim
+    // Comment line(s) in vscode-nvim
     "key": "alt+/",
     "command": "vscode-neovim.send",
     "when": "editorTextFocus && neovim.init",
     "args": "<A-/>"
   },
   {
-    // Toggle sidebar with space + e
+    // Toggle sidebar with space + e when using vscode-neovim
     "key": "space e",
     "command": "workbench.action.toggleSidebarVisibility",
-    "when": "editorTextFocus && neovim.mode != insert"
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   {
     // Format document 
