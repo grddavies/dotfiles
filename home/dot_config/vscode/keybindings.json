@@ -17,6 +17,34 @@
     "args": "<A-S-/>"
   },
   {
+    // Move lines up arrow
+    "key": "alt+up",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.init",
+    "args": "<A-Up>"
+  },
+  {
+    // Move lines up k
+    "key": "alt+k",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.init",
+    "args": "<A-k>"
+  },
+  {
+    // Move lines down arrow
+    "key": "alt+down",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.init",
+    "args": "<A-Down>"
+  },
+  {
+    // Move lines down j
+    "key": "alt+j",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.init",
+    "args": "<A-j>"
+  },
+  {
     // Toggle sidebar with space + e when using vscode-neovim
     "key": "space e",
     "command": "workbench.action.toggleSidebarVisibility",
@@ -43,3 +71,4 @@
   }
 ]
 
+ 
