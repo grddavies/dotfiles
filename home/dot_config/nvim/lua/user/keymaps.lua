@@ -100,10 +100,7 @@ else
     keymap("i", "<A-/>", '<Esc>gcca', recursive) -- line comment
     -- Normal Mode
     keymap("n", "<A-/>", 'gcc', recursive) -- line comment
-    -- FIXME: Not block-commenting out a word as expected
-    -- Should this command take some kind of motion?
-    -- ie <A-S-/>+6j block comments current line and the six below?
-    -- keymap("n", "<A-S-/>", 'gcb', recursive) -- block comment
+    keymap("n", "<A-S-/>", 'gbc', recursive) -- block comment
     -- Visual Mode
     keymap("v", "<A-/>", 'gc', recursive) -- line
     keymap("v", "<A-S-/>", 'gb', recursive) -- block
