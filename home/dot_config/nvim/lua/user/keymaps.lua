@@ -85,13 +85,14 @@ keymap("v", ">", ">gv", opts)
 
 -- Comment-toggling {{{
 if vscode_nvim then
+    -- Line Comment with 'Alt+/'
     -- Insert mode
     keymap("i", "<A-/>", "<Esc>gcca", recursive)
     -- Normal Mode
     keymap("n", "gcc", ":VSCodeCommentary<CR>", opts)
     keymap("n", "<A-/>", 'gcc', recursive)
     -- Visual Mode
-    keymap("v", "gc", "<Plug>VSCodeCommentary", opts)
+    keymap("v", "gc", "'<,'><Plug>VSCodeCommentary", opts)
     keymap("v", "<A-/>", 'gcgv', recursive)
 else
     -- Standard NeoVim --
