@@ -10,6 +10,13 @@
     "args": "<A-/>"
   },
   {
+    // Comment line(s) blockwise in vscode-nvim
+    "key": "alt+shift+/",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.init",
+    "args": "<A-S-/>"
+  },
+  {
     // Toggle sidebar with space + e when using vscode-neovim
     "key": "space e",
     "command": "workbench.action.toggleSidebarVisibility",

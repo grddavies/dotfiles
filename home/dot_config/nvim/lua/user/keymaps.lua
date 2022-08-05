@@ -89,11 +89,41 @@ if vscode_nvim then
     -- Insert mode
     keymap("i", "<A-/>", "<Esc>gcca", recursive)
     -- Normal Mode
-    keymap("n", "gcc", ":VSCodeCommentary<CR>", opts)
+    keymap("n", "gcc", "<Plug>VSCodeCommentary", opts)
     keymap("n", "<A-/>", 'gcc', recursive)
     -- Visual Mode
     keymap("v", "gc", "'<,'><Plug>VSCodeCommentary", opts)
     keymap("v", "<A-/>", 'gcgv', recursive)
+
+    -- Block Comment With 'Alt+Shift+/'
+    vim.cmd([[
+        function! s:vscodeCommentBlock(...) abort
+            if !a:0
+                let &operatorfunc = matchstr(expand('<sfile>'), '[^. ]*$')
+                return 'g@'
+            elseif a:0 > 1
+                let [line1, line2] = [a:1, a:2]
+            else
+                let [line1, line2] = [line("'["), line("']")]
+            endif
+        
+            call VSCodeCallRange('editor.action.blockComment', line1, line2, 0)
+        endfunction
+
+        command! -range -bar VSCodeCommentary call s:vscodeCommentary(<line1>, <line2>)
+
+        xnoremap <expr> <Plug>VSCodeCommentBlock <SID>vscodeCommentBlock()
+        nnoremap <expr> <Plug>VSCodeCommentBlock <SID>vscodeCommentBlock()
+    ]])
+    -- Insert mode
+    keymap("i", "<A-S-/>", "<Esc>lgbca", recursive)
+    -- Normal Mode
+    keymap("n", "gbc", "<Plug>VSCodeCommentBlock", opts)
+    keymap("n", "<A-S-/>", 'gbc', recursive)
+    -- Visual Mode
+    keymap("v", "gb", "'<,'><Plug>VSCodeCommentBlock", opts)
+    keymap("v", "<A-S-/>", 'gbgv', recursive)
+
 else
     -- Standard NeoVim --
     -- Insert Mode
