@@ -50,6 +50,20 @@
     "command": "workbench.action.toggleSidebarVisibility",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
+  {
+    // Yank to "+ register with space + y
+    "key": "space y",
+    "command": "vscode-neovim.send",
+    "args": "<Space>y",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    // Paste/put from "+ register with space + p
+    "key": "space p",
+    "command": "vscode-neovim.send",
+    "args": "<Space>p",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
   // {
   //   // Toggle fold
   //   "key": "z a",
@@ -70,5 +84,3 @@
     "when":"editorTextFocus"
   }
 ]
-
- 

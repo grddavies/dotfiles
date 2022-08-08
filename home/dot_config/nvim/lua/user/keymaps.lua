@@ -61,6 +61,10 @@ keymap("n", "Y", "y$", opts)
 keymap("n", "<leader>y", '"+y', opts)
 keymap("v", "<leader>y", '"+y', opts)
 
+-- Put from ctrl-v register
+keymap("n", "<leader>p", '"+p', opts)
+keymap("v", "<leader>p", '"+p', opts)
+
 -- More intuitive yank/put behaviour
 keymap("v", "p", '"_dP', opts)
 
