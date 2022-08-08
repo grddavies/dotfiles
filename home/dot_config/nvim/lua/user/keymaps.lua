@@ -88,10 +88,12 @@ keymap("v", ">", ">gv", opts)
 -- }}}
 
 -- Comment-toggling {{{
+-- Line Comment with 'Alt+/'
+-- Block Comment With 'Alt+Shift+/'
 if vscode_nvim then
     -- Line Comment with 'Alt+/'
     -- Insert mode
-    keymap("i", "<A-/>", "<Plug>VSCodeCommentary", recursive)
+    keymap("i", "<A-/>", "<Esc>gcca", recursive)
     -- Normal Mode
     keymap("n", "gcc", "<Plug>VSCodeCommentary", opts)
     keymap("n", "<A-/>", 'gcc', recursive)
@@ -99,7 +101,6 @@ if vscode_nvim then
     keymap("v", "gc", "'<,'><Plug>VSCodeCommentary", opts)
     keymap("v", "<A-/>", 'gcgv', recursive)
 
-    -- Block Comment With 'Alt+Shift+/'
     vim.cmd([[
         function! s:vscodeCommentBlock(...) abort
             if !a:0
@@ -119,8 +120,9 @@ if vscode_nvim then
         xnoremap <expr> <Plug>VSCodeCommentBlock <SID>vscodeCommentBlock()
         nnoremap <expr> <Plug>VSCodeCommentBlock <SID>vscodeCommentBlock()
     ]])
+    -- Block Comment With 'Alt+Shift+/'
     -- Insert mode
-    keymap("i", "<A-S-/>", "<Plug>VSCodeCommentBlock", recursive)
+    keymap("i", "<A-S-/>", "<Esc>lgbca", recursive)
     -- Normal Mode
     keymap("n", "gbc", "<Plug>VSCodeCommentBlock", opts)
     keymap("n", "<A-S-/>", 'gbc', recursive)
@@ -131,13 +133,14 @@ if vscode_nvim then
 else
     -- Standard NeoVim --
     -- Insert Mode
-    keymap("i", "<A-/>", '<Esc>gcca', recursive) -- line comment
+    keymap("i", "<A-/>", '<Esc>gcca', recursive) -- Line
+    keymap("i", "<A-S-/>", "<Esc>gbca", recursive) -- Block
     -- Normal Mode
-    keymap("n", "<A-/>", 'gcc', recursive) -- line comment
-    keymap("n", "<A-S-/>", 'gbc', recursive) -- block comment
+    keymap("n", "<A-/>", 'gcc', recursive) -- Line
+    keymap("n", "<A-S-/>", 'gbc', recursive) -- Block
     -- Visual Mode
-    keymap("v", "<A-/>", 'gc', recursive) -- line
-    keymap("v", "<A-S-/>", 'gb', recursive) -- block
+    keymap("v", "<A-/>", 'gcgv', recursive) -- Line
+    keymap("v", "<A-S-/>", 'gbgv', recursive) -- Block
 end
 -- }}}
 
