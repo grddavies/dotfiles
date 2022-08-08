@@ -87,7 +87,7 @@ keymap("v", ">", ">gv", opts)
 if vscode_nvim then
     -- Line Comment with 'Alt+/'
     -- Insert mode
-    keymap("i", "<A-/>", "<Esc>gcca", recursive)
+    keymap("i", "<A-/>", "<Plug>VSCodeCommentary", recursive)
     -- Normal Mode
     keymap("n", "gcc", "<Plug>VSCodeCommentary", opts)
     keymap("n", "<A-/>", 'gcc', recursive)
@@ -110,13 +110,13 @@ if vscode_nvim then
             call VSCodeCallRange('editor.action.blockComment', line1, line2, 0)
         endfunction
 
-        command! -range -bar VSCodeCommentary call s:vscodeCommentary(<line1>, <line2>)
+        command! -range -bar VSCodeCommentBlock call s:vscodeCommentBlock(<line1>, <line2>)
 
         xnoremap <expr> <Plug>VSCodeCommentBlock <SID>vscodeCommentBlock()
         nnoremap <expr> <Plug>VSCodeCommentBlock <SID>vscodeCommentBlock()
     ]])
     -- Insert mode
-    keymap("i", "<A-S-/>", "<Esc>lgbca", recursive)
+    keymap("i", "<A-S-/>", "<Plug>VSCodeCommentBlock", recursive)
     -- Normal Mode
     keymap("n", "gbc", "<Plug>VSCodeCommentBlock", opts)
     keymap("n", "<A-S-/>", 'gbc', recursive)
