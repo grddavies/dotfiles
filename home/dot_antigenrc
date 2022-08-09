@@ -9,6 +9,7 @@ antigen bundle command-not-found
 # Load other bundles
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle z-shell/F-Sy-H --branch=main  # zsh syntax hl
+antigen bundle kiurchv/asdf.plugin.zsh
 
 # Executable completions
 antigen bundle zsh-users/zsh-completions

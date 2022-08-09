@@ -4,6 +4,13 @@
     url = "https://git.io/antigen"
     refreshPeriod = "168h"
 
+# Install asdf environment manager
+[".asdf"]
+    type = "git-repo"
+    url = "git@github.com:asdf-vm/asdf.git"
+    [".asdf".clone]
+    args = ["--branch", "v0.10.2"]
+
 {{- if .fonts }}
 # Install Fonts to os-specific location
 {{- $fontDir := "" }}
