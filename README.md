@@ -1,4 +1,4 @@
-# dotfiles
+# dotfiles - WIP :construction:
 
 Selected dotfiles, managed with `chezmoi`
 
