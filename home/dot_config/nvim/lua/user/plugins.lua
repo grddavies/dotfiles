@@ -70,6 +70,7 @@ return require('packer').startup(function(use)
     use { 'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end } -- Modifying text <({'surroundings'})>
     use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
     use 'mg979/vim-visual-multi' -- MultiCursor support
+    use("nathom/filetype.nvim")
 
     -- Code completion plugins
     use "hrsh7th/nvim-cmp" -- Autocompletion plugin
