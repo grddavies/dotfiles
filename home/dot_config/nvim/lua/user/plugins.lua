@@ -60,6 +60,8 @@ return require('packer').startup(function(use)
     use { 'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'} } -- File explorer
     use {"lewis6991/gitsigns.nvim"} -- Git integration
     use {"windwp/nvim-autopairs"} -- Autopair paretheses etc
+    use {"tversteeg/registers.nvim", cond=standalone}
+
     -- Telescope Fuzzyfinder
     use { "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim" }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
