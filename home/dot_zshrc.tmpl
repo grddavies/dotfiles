@@ -22,5 +22,17 @@ fi
 # Source keybindings
 source "$HOME/.config/zsh/keybindings.zsh"
 
+# Add user functions to fpath
+fpath=( ~/.config/zsh/funcs "${fpath[@]}" )
+
+# Tag user functions for autoload
+{{ if eq .chezmoi.os "linux" -}}
+autoload -Uz setBrightness
+{{ end -}}
+{{ if eq .chezmoi.os "darwin" -}}
+# No custom funcs for macOS
+{{ end -}}
+# End autoload
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

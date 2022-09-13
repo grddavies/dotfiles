@@ -10,6 +10,9 @@
 {{/* boolean feature tags */}}
 {{- $work := promptBool "Is this your work laptop" }}{{/* Use motilent email? */}}
 {{- $fonts := promptBool "Install extra fonts" }}
+{{- "" -}}
+
+{{- $osID := .chezmoi.os -}}
 
 {{/* init data */}}
 {{- $email := $work | ternary "gethin.davies@motilent.co.uk" "grd.davies@gmail.com" }}

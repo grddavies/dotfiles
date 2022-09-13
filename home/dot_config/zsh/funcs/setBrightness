@@ -1,0 +1,22 @@
+# setBrightness <0-255 | -h | --help >
+function setBrightness {
+  if [ $# -lt 1 ]; then
+    # print current value
+    cat /sys/class/backlight/amdgpu_bl0/brightness
+    return
+  fi
+
+  if [[ $# -gt 1 || $1 = "-h" ]]; then
+    print Usage:
+    print "  Set brightness: $funcstack[1] <0-255>"
+    print "  Get brightness: $funcstack[1]"
+    return
+  fi
+
+  if [[ $1 -lt 0 || $1 -gt 255 ]]; then
+    print "Invalid argument: Input range (0-255)"
+    return 1
+  fi
+  # Set new value
+  print $1 | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
+}
