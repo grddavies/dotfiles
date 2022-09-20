@@ -60,10 +60,11 @@ require'nvim-treesitter.configs'.setup {
     colors = { theme_colors.bracket_1, theme_colors.bracket_2, theme_colors.bracket_3 }, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
-  -- Use treesitter context to set the 'commentstring' parameter (JoosepAlviste/nvim-ts-context-commentstring)
+  -- Use treesitter context to set the 'commentstring' parameter 
+  -- (JoosepAlviste/nvim-ts-context-commentstring)
   context_commentstring = {
     enable = true,
-    enable_autocmd = false,
+    enable_autocmd = false,  -- for Comment.nvim integration
   },
 }
 

@@ -3,28 +3,28 @@ if not status_ok then
   return
 end
 
-comment.setup {
-
-    ---LHS of toggle mappings in NORMAL + VISUAL mode
-    ---@type table
+comment.setup  {
+    ---Add a space b/w comment and the line
+    padding = true,
+    ---Whether the cursor should stay at its position
+    sticky = true,
+    ---Lines to be ignored while (un)comment
+    ignore = nil,
+    ---LHS of toggle mappings in NORMAL mode
     toggler = {
         ---Line-comment toggle keymap
-        line = 'gcc', -- default = 'gcc'
+        line = 'gcc',
         ---Block-comment toggle keymap
-        block = 'gbc', -- default = 'gbc'
+        block = 'gbc',
     },
-
-    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
-    ---@type table
+    ---LHS of operator-pending mappings in NORMAL and VISUAL mode
     opleader = {
         ---Line-comment keymap
-        line = 'gc', -- default = 'gc'
+        line = 'gc',
         ---Block-comment keymap
         block = 'gb',
     },
-
     ---LHS of extra mappings
-    ---@type table
     extra = {
         ---Add comment on the line above
         above = 'gcO',
@@ -33,23 +33,20 @@ comment.setup {
         ---Add comment at the end of line
         eol = 'gcA',
     },
-
-    ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
-    ---NOTE: If `mappings = false` then the plugin won't create any mappings
-    ---@type boolean|table
+    ---Enable keybindings
+    ---NOTE: If given `false` then the plugin won't create any mappings
     mappings = {
-        ---Operator-pending mapping
-        ---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
-        ---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
+        ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
         basic = true,
-        ---Extra mapping
-        ---Includes `gco`, `gcO`, `gcA`
+        ---Extra mapping; `gco`, `gcO`, `gcA`
         extra = true,
-        ---Extended mapping
-        ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+        ---Extended mapping; `g>` `g<` `g>[count]{motion}` `g<[count]{motion}`
         extended = false,
     },
-
-  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+    ---Function to call before (un)comment
+    -- Use nvim-ts-context-commentstring pre_hook
+    pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+    ---Function to call after (un)comment
+    post_hook = nil,
 }
 
