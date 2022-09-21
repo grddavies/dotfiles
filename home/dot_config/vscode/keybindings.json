@@ -1,7 +1,7 @@
 // Setting sync is per platform
 // Move this file to the appropriate folder to be used by VSCode
 [
-  // VSCode-NeoVim only
+  // ## VSCode-NeoVim only
   {
     // Comment line(s) in vscode-nvim
     "key": "alt+/",
@@ -64,13 +64,38 @@
     "args": "<Space>p",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
+  // ### TreeSitter incremental selection
+  {
+    // init selection
+    "key": "space .",
+    "command": "vscode-neovim.send",
+    "args": "<Space>.",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    // Decrement node
+    "key": "space ;",
+    "command": "vscode-neovim.send",
+    "args": "<Space>;",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    // Increment node
+    "key": "space '",
+    "command": "vscode-neovim.send",
+    "args": "<Space>'",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  // ### End Treesitter Incremental selection
+
   // {
   //   // Toggle fold
   //   "key": "z a",
   //   "command": "editor.toggleFold",
   //   "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   // },
-  // All keybindings
+
+  // ## All keybindings
   {
     // Format document 
     "key": "shift+alt+f",
@@ -84,3 +109,4 @@
     "when":"editorTextFocus"
   }
 ]
+ 
