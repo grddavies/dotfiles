@@ -15,7 +15,7 @@ fi
 export EDITOR=nvim
 
 # Add yarn global binaries to PATH
-if [ command -v yarn 2>/dev/null ]; then                                                                                                                               ✔  09:51:54  
+if [ `command -v yarn &>/dev/null` ]; then                                                                                                                               ✔  09:51:54  
   export PATH="$(yarn global bin):$PATH"
 fi
 
