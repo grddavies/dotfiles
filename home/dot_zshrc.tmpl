@@ -15,7 +15,7 @@ fi
 export EDITOR=nvim
 
 # Add yarn global binaries to PATH
-if [ `command -v yarn &>/dev/null` ]; then                                                                                                                               ✔  09:51:54  
+if [[ `command -v yarn` ]]; then
   export PATH="$(yarn global bin):$PATH"
 fi
 
@@ -24,6 +24,7 @@ source "$HOME/.config/zsh/keybindings.zsh"
 
 # Add user functions to fpath
 fpath=( ~/.config/zsh/funcs "${fpath[@]}" )
+fpath+=.zfunc
 
 # Tag user functions for autoload
 {{ if eq .chezmoi.os "linux" -}}
