@@ -1,0 +1,38 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+set -euo pipefail
+
+{{ $brews := list
+    "curl"
+    "cmake"
+    "exa"
+    "fd"
+    "fzf"
+    "git"
+    "git-delta"
+    "less"
+    "neofetch"
+    "neovim"
+    "nmap"
+    "ripgrep"
+    "wget"
+    -}}
+
+{{ $casks := list
+     "blackhole-16ch"
+     "brave-browser"
+     "dropbox"
+     "kitty"
+     "visual-studio-code"
+     "vlc"
+     "spotify"
+     "whatsapp"
+     "notion"
+     "signal"
+     "transmission"
+     "rekordbox"
+     "the-unarchiver"
+     "supercollider"
+     "vcv-rack"
+     "xld" -}}
+
+{{ end -}}
