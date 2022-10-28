@@ -19,6 +19,10 @@ if [[ `command -v yarn` ]]; then
   export PATH="$(yarn global bin):$PATH"
 fi
 
+if [ -d ~/.ghcup/ ]; then
+  . ~/.ghcup/env
+fi
+
 # Source keybindings
 source "$HOME/.config/zsh/keybindings.zsh"
 
