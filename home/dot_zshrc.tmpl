@@ -19,7 +19,7 @@ if [[ `command -v yarn` ]]; then
   export PATH="$(yarn global bin):$PATH"
 fi
 
-if [ -d ~/.ghcup/ ]; then
+if [ -f ~/.ghcup/env ]; then
   . ~/.ghcup/env
 fi
 
