@@ -1,9 +1,0 @@
-{{- if (eq .chezmoi.os "linux") -}}
-#!/bin/bash
-
-set -euo pipefail
-
-# Kitty terminal
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-
-{{ end -}}
