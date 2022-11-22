@@ -60,12 +60,8 @@
 
 {{- end }}
 
-{{- if eq .chezmoi.os "darwin" }}
-
 # Kitty logo
-# May need to run `rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock`
+# macOS: May need to run `rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock`
 [".config/kitty/kitty.app.png"]
     type = "file"
     url = "https://raw.githubusercontent.com/samholmes/whiskers/main/whiskers-tokyo.png"
-
-{{ end -}}
