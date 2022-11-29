@@ -1,0 +1,8 @@
+{{- if (eq .chezmoi.os "linux") -}}
+#!/bin/bash
+
+set -euo pipefail
+
+brew install neovim
+
+{{ end -}}

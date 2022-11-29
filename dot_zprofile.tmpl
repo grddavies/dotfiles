@@ -1,0 +1,4 @@
+{{ if eq .chezmoi.os "linux" -}}
+# Set PATH, MANPATH, etc., for Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{ end -}}
