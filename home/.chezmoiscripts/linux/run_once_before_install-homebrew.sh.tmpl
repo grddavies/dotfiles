@@ -1,0 +1,17 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+
+if [[ `command -v brew` ]]; then
+  exit 0
+fi
+
+# Get Homebrew package manager (macOS & Linux)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Set PATH, MANPATH, etc., for Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# install packages
+brew install neovim
+
+{{ end -}}
