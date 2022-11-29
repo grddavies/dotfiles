@@ -1,2 +1,6 @@
+# Editor config
 .vscode
+# macOS
 .DS_Store
+# asdf version manager
+.tool-versions
