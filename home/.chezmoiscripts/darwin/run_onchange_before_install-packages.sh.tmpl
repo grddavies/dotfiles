@@ -1,7 +1,11 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
-# TODO: install homebrew
 set -euo pipefail
+
+if  ! command -v brew &> /dev/null; then
+    # Get Homebrew package manager
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
 {{ $brews := list
     "curl"

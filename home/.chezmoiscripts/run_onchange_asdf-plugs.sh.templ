@@ -1,15 +1,24 @@
 #!/bin/sh
 
+{{ if eq .chezmoi.os "linux" -}}
 if ! sudo -v;
     then
     echo "Password required for installing 'asdf' plugins:"
 fi
 
-## python ##
-# python system deps
-sudo apt-get -qq update; sudo apt-get -qq install make build-essential libssl-dev zlib1g-dev \
+# Install some system dependencies
+sudo apt-get -qq update;
+
+# python
+sudo apt-get -qq install make build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+# node
+sudo apt-get install dirmngr gpg curl gawk
+{{ end -}}
+
+## python ##
 
 # Versions
 asdf plugin-add python
@@ -19,9 +28,6 @@ asdf global python 3.10.6
 # asdf global python 3:latest
 
 ## nodejs ##
-# node system deps
-sudo apt-get install dirmngr gpg curl gawk
-
 # Versions
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs latest 18.12.1 14.15.0
