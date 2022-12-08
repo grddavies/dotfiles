@@ -12,6 +12,8 @@
 
   autoload -Uz is-at-least && is-at-least 5.1 || return
 
+  typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
+
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     os_icon                 # os identifier
     dir                     # current directory
