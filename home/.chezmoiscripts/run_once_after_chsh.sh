@@ -8,4 +8,6 @@ sudo sh -c "echo \"$(brew --prefix)/bin/zsh\" >> /etc/shells"
 # Change shell
 sudo chsh -s "$(brew --prefix)/bin/zsh" $USER
 # Symlink to the installed version
+if [[ ! -f /usr/bin/zsh ]]; then
 sudo ln -s "$(brew --prefix)/bin/zsh" /usr/bin/zsh
+fi
