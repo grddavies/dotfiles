@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+
+set -u pipefail
 
 echo "Setting up asdf version manager..."
+. $HOME/.asdf/asdf.sh
 
 {{ if eq .chezmoi.os "linux" -}}
 if ! sudo -v; then
@@ -16,7 +19,7 @@ sudo apt-get -qq install make build-essential libssl-dev zlib1g-dev \
     libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 # node
-sudo apt-get install dirmngr gpg curl gawk
+sudo apt-get -qq install dirmngr gpg curl gawk
 {{ end -}}
 
 ## python ##
