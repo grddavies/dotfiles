@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "Setting up asdf version manager..."
+
 {{ if eq .chezmoi.os "linux" -}}
 if ! sudo -v; then
     echo "Password required for installing 'asdf' plugins:"
