@@ -3,7 +3,7 @@
 echo "Installing apt packages..."
 sudo apt-get update -y && sudo apt-get upgrade -y
 
-sudo apt-get install \
+sudo apt-get install -y \
     curl \
     exa \
     llvm \
