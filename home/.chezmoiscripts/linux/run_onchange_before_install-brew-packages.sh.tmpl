@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if  ! command -v brew &> /dev/null; then
     # Get Homebrew package manager
@@ -11,6 +11,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # install packages
 {{ $brews := list
     "bat"
+    "chezmoi"
     "exa"
     "fzf"
     "git-delta"
