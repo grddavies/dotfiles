@@ -1,4 +1,3 @@
-{{- if (eq .chezmoi.os "linux") -}}
 #!/bin/bash
 
 set -euo pipefail
@@ -25,5 +24,3 @@ sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/kit
 sudo desktop-file-install ~/.local/kitty.app/share/applications/kitty.desktop
 # # If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file
 # # sudo desktop-file-install ~/.local/kitty.app/share/applications/kitty-open.desktop 
-
-{{ end -}}

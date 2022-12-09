@@ -27,8 +27,13 @@ fi
 source "$HOME/.config/zsh/keybindings.zsh"
 
 # Add user functions to fpath
-fpath=( ~/.config/zsh/funcs "${fpath[@]}" )
-fpath+=.zfunc
+fpath=(~/.config/zsh/funcs $fpath )
+
+# Add completions for brew pkgs
+if [[ `type brew &>/dev/null` ]]; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit; compinit
+fi
 
 # Tag user functions for autoload
 {{ if eq .chezmoi.os "linux" -}}
