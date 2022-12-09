@@ -41,9 +41,7 @@ else
     }
 end
 
-local standalone = function()
-    return not vim.g.vscode
-end
+local vscode = vim.g.vscode == 1
 
 -- Install Packages
 return require('packer').startup(function(use)
@@ -51,25 +49,77 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Standalone Only Plugins --
-    use {'grddavies/darkplus.nvim'} -- Colour scheme / Theme
-    use { 'RRethy/vim-illuminate', requires = 'neovim/nvim-lspconfig' } -- Highlight other uses of word under cursor
-    use {'rcarriga/nvim-notify'} -- popup notifications
-    use { "neovim/nvim-lspconfig", cond = standalone } -- Collection of configurations for built-in LSP client
-    use {"williamboman/nvim-lsp-installer"} -- simple to use language server installer
-    use {"jose-elias-alvarez/null-ls.nvim"} -- for formatters and linters
-    use { 'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'} } -- File explorer
-    use {"lewis6991/gitsigns.nvim"} -- Git integration
-    use {"windwp/nvim-autopairs"} -- Autopair paretheses etc
-    use {"tversteeg/registers.nvim", cond=standalone}
+    use {
+        'grddavies/darkplus.nvim',
+        disable = vscode
+    } -- Colour scheme / Theme
+    use {
+        'RRethy/vim-illuminate',
+        requires = 'neovim/nvim-lspconfig'
+    } -- Highlight other uses of word under cursor
+    use {
+        'rcarriga/nvim-notify',
+        disable = vscode
+    } -- popup notifications
+    use {
+        "neovim/nvim-lspconfig",
+        disable = vscode
+    } -- Collection of configurations for built-in LSP client
+    use {
+        "williamboman/nvim-lsp-installer",
+        disable = vscode
+    } -- simple to use language server installer
+    use {
+        "jose-elias-alvarez/null-ls.nvim",
+        disable = vscode
+    } -- for formatters and linters
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {'kyazdani42/nvim-web-devicons'}
+    } -- File explorer
+    use {
+        "lewis6991/gitsigns.nvim",
+        disable = vscode
+    } -- Git integration
+    use {
+        "windwp/nvim-autopairs",
+        disable = vscode
+    } -- Autopair paretheses etc
+    use {
+        "tversteeg/registers.nvim",
+        disable = vscode
+    }
+    use {
+        "p00f/nvim-ts-rainbow",
+        requires = "nvim-treesitter/nvim-treesitter",
+        disable = vscode
+    } -- Rainbow paretheses
 
     -- Telescope Fuzzyfinder
-    use { "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim" }
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use { "xiyaowong/telescope-emoji.nvim", requires = "nvim-telescope/telescope.nvim" }
+    use {
+        "nvim-telescope/telescope.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        disable = vscode
+    }
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make',
+        disable = vscode
+    }
+    use {
+        "xiyaowong/telescope-emoji.nvim",
+        requires = "nvim-telescope/telescope.nvim",
+        disable = vscode
+    }
 
     -- Shared Plugins // VSCode-Neovim // Standalone
     -- Editing Plugins
-    use { 'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end } -- Modifying text <({'surroundings'})>
+    use {
+        'kylechui/nvim-surround',
+        config = function()
+            require("nvim-surround").setup()
+        end
+    } -- Modifying text <({'surroundings'})>
     use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
     use 'mg979/vim-visual-multi' -- MultiCursor support
 
@@ -79,7 +129,10 @@ return require('packer').startup(function(use)
     use "hrsh7th/cmp-path" -- Path completions
     use "hrsh7th/cmp-cmdline" -- cmdline completions
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use { 'hrsh7th/cmp-nvim-lua', ft = 'lua' } -- Completions for Lua nvim api
+    use {
+        'hrsh7th/cmp-nvim-lua',
+        ft = 'lua'
+    } -- Completions for Lua nvim api
     use "saadparwaiz1/cmp_luasnip" -- Snippet completions
 
     -- Snippets
@@ -90,11 +143,15 @@ return require('packer').startup(function(use)
     use "numToStr/comment.nvim"
 
     -- TreeSitter Source Code Parsing
-    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate"
+    }
     -- highlight current function context
-    use { "nvim-treesitter/nvim-treesitter-context", requires = "nvim-treesitter/nvim-treesitter" }
-    -- Rainbow paretheses
-    use { "p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter" }
+    use {
+        "nvim-treesitter/nvim-treesitter-context",
+        requires = "nvim-treesitter/nvim-treesitter"
+    }
     -- Context-aware 'commentstring' setting
     use "JoosepAlviste/nvim-ts-context-commentstring"
     -- TS-Nodes as text objects
