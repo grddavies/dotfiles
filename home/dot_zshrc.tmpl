@@ -19,6 +19,12 @@ if [[ `command -v yarn` ]]; then
   export PATH="$(yarn global bin):$PATH"
 fi
 
+# Add pnpm global binaries to PATH
+if [[ `command -v pnpm` ]]; then
+  export PNPM_HOME="/Users/gethin/Library/pnpm"
+  export PATH="$PNPM_HOME:$PATH"
+fi
+
 if [ -f ~/.ghcup/env ]; then
   . ~/.ghcup/env
 fi
