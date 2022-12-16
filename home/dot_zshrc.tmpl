@@ -32,6 +32,9 @@ fi
 # Source keybindings
 source "$HOME/.config/zsh/keybindings.zsh"
 
+# Auto suggestions ignore glob
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="git clone *|git commit -m *"
+
 # Add user functions to fpath
 fpath=(~/.config/zsh/funcs $fpath )
 

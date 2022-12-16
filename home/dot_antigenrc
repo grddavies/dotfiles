@@ -2,6 +2,7 @@
 antigen use oh-my-zsh
 
 # Load oh-my-zsh plugins
+antigen bundle asdf
 antigen bundle sudo
 antigen bundle ripgrep
 antigen bundle command-not-found
@@ -13,7 +14,6 @@ antigen bundle kiurchv/asdf.plugin.zsh
 
 # Executable completions
 antigen bundle zsh-users/zsh-completions
-antigen bundle greymd/docker-zsh-completion
 
 # Add theme
 antigen theme romkatv/powerlevel10k
