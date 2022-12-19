@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if ! command -v snap &> /dev/null; then
+    echo "snap is not installed"
+    exit 1
+fi
+
+{{ $snaps := list
+    "bitwarden"
+    "cmake --classic"
+    "code --classic"
+    "eclipse --classic"
+    "firefox"
+    "notion-snap"
+    "peek"
+    "postman"
+    "spotify"
+    "vlc"
+    "weasis"
+-}}
+
+echo "Installing snap packages..."
+{{range $snaps}}
+sudo snap install {{.}}
+{{end}}
