@@ -2,7 +2,7 @@ local theme_colors = require('darkplus.colors')
 
 require'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all"
-    ensure_installed = {"html", "typescript", "javascript", "css", "cpp", "c", "rust", "r", "python"},
+    ensure_installed = {"help", "html", "typescript", "javascript", "css", "cpp", "c", "rust", "r", "python"},
 
     -- Incremental text selection based on the named nodes from the parse tree
     incremental_selection = {
@@ -11,7 +11,7 @@ require'nvim-treesitter.configs'.setup {
             init_selection = "<c-space>",
             node_incremental = "<c-'>",
             scope_incremental = "<c-\\>",
-            node_decremental = "<c-;>",
+            node_decremental = "<c-;>"
         }
     },
     -- Experimental feature
