@@ -66,24 +66,31 @@
   },
   // ### TreeSitter incremental selection
   {
-    // init selection
-    "key": "space .",
+    // Init selection
+    "key": "ctrl-space",
     "command": "vscode-neovim.send",
-    "args": "<Space>.",
+    "args": "<c-space>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   {
     // Decrement node
-    "key": "space ;",
+    "key": "ctrl-;",
     "command": "vscode-neovim.send",
-    "args": "<Space>;",
+    "args": "<c-;>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   {
     // Increment node
-    "key": "space '",
+    "key": "ctrl-'",
     "command": "vscode-neovim.send",
-    "args": "<Space>'",
+    "args": "<c-'>",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    // Increment scope
+    "key": "ctrl-\\",
+    "command": "vscode-neovim.send",
+    "args": "<c-\\>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   // ### End Treesitter Incremental selection
@@ -97,7 +104,7 @@
 
   // ## All keybindings
   {
-    // Format document 
+    // Format document
     "key": "shift+alt+f",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
@@ -106,7 +113,6 @@
     // Show hover help (matching nvim)
     "key": "ctrl+k",
     "command": "editor.action.showHover",
-    "when":"editorTextFocus"
+    "when": "editorTextFocus"
   }
 ]
- 

@@ -1,11 +1,11 @@
 -- vim: foldmethod=marker
 local opts = {
-    noremap = true,
-    silent = true
+  noremap = true,
+  silent = true
 }
 local recursive = {
-    noremap = false,
-    silent = true
+  noremap = false,
+  silent = true
 }
 local vscode_nvim = vim.g.vscode
 
@@ -30,25 +30,29 @@ vim.g.maplocalleader = " "
 
 -- Standalone only keymaps {{{
 if not vscode_nvim then
-    -- Normal Mode --
-    -- Better window navigation
-    keymap("n", "<C-h>", "<C-w>h", opts)
-    keymap("n", "<C-j>", "<C-w>j", opts)
-    keymap("n", "<C-k>", "<C-w>k", opts)
-    keymap("n", "<C-l>", "<C-w>l", opts)
+  -- Normal Mode --
+  -- Better window navigation
+  keymap("n", "<C-h>", "<C-w>h", opts)
+  keymap("n", "<C-j>", "<C-w>j", opts)
+  keymap("n", "<C-k>", "<C-w>k", opts)
+  keymap("n", "<C-l>", "<C-w>l", opts)
 
-    -- Open File Browser
-    keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+  -- Format buffer (requires user.lsp)
+  keymap("n", "<A-S-f>", ":Format", opts)
+  keymap("n", "<A-F>", ":Format", opts)
 
-    -- Resize with arrows
-    keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-    keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-    keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-    keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+  -- Open File Browser
+  keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
-    -- Navigate buffers
-    keymap("n", "<S-l>", ":bnext<CR>", opts)
-    keymap("n", "<S-h>", ":bprevious<CR>", opts)
+  -- Resize with arrows
+  keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+  keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+  keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+  keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+  -- Navigate buffers
+  keymap("n", "<S-l>", ":bnext<CR>", opts)
+  keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 end
 -- }}}
@@ -91,17 +95,17 @@ keymap("v", ">", ">gv", opts)
 -- Line Comment with 'Alt+/'
 -- Block Comment With 'Alt+Shift+/'
 if vscode_nvim then
-    -- Line Comment with 'Alt+/'
-    -- Insert mode
-    keymap("i", "<A-/>", "<Esc>gcca", recursive)
-    -- Normal Mode
-    keymap("n", "gcc", "<Plug>VSCodeCommentary", opts)
-    keymap("n", "<A-/>", 'gcc', recursive)
-    -- Visual Mode
-    keymap("v", "gc", "'<,'><Plug>VSCodeCommentary", opts)
-    keymap("v", "<A-/>", 'gcgv', recursive)
+  -- Line Comment with 'Alt+/'
+  -- Insert mode
+  keymap("i", "<A-/>", "<Esc>gcca", recursive)
+  -- Normal Mode
+  keymap("n", "gcc", "<Plug>VSCodeCommentary", opts)
+  keymap("n", "<A-/>", 'gcc', recursive)
+  -- Visual Mode
+  keymap("v", "gc", "'<,'><Plug>VSCodeCommentary", opts)
+  keymap("v", "<A-/>", 'gcgv', recursive)
 
-    vim.cmd([[
+  vim.cmd([[
         function! s:vscodeCommentBlock(...) abort
             if !a:0
                 let &operatorfunc = matchstr(expand('<sfile>'), '[^. ]*$')
@@ -120,37 +124,40 @@ if vscode_nvim then
         xnoremap <expr> <Plug>VSCodeCommentBlock <SID>vscodeCommentBlock()
         nnoremap <expr> <Plug>VSCodeCommentBlock <SID>vscodeCommentBlock()
     ]])
-    -- Block Comment With 'Alt+Shift+/'
-    -- Insert mode
-    keymap("i", "<A-S-/>", "<Esc>lgbca", recursive)
-    -- Normal Mode
-    keymap("n", "gbc", "<Plug>VSCodeCommentBlock", opts)
-    keymap("n", "<A-S-/>", 'gbc', recursive)
-    -- Visual Mode
-    keymap("v", "gb", "'<,'><Plug>VSCodeCommentBlock", opts)
-    keymap("v", "<A-S-/>", 'gbgv', recursive)
+  -- Block Comment With 'Alt+Shift+/'
+  -- Insert mode
+  keymap("i", "<A-S-/>", "<Esc>lgbca", recursive)
+  -- Normal Mode
+  keymap("n", "gbc", "<Plug>VSCodeCommentBlock", opts)
+  keymap("n", "<A-S-/>", 'gbc', recursive)
+  -- Visual Mode
+  keymap("v", "gb", "'<,'><Plug>VSCodeCommentBlock", opts)
+  keymap("v", "<A-S-/>", 'gbgv', recursive)
 
 else
-    -- Standard NeoVim --
-    -- Insert Mode
-    keymap("i", "<A-/>", '<Esc>gcca', recursive) -- Line
-    keymap("i", "<A-S-/>", "<Esc>gbca", recursive) -- Block
-    -- Normal Mode
-    keymap("n", "<A-/>", 'gcc', recursive) -- Line
-    keymap("n", "<A-S-/>", 'gbc', recursive) -- Block
-    -- Visual Mode
-    keymap("v", "<A-/>", 'gcgv', recursive) -- Line
-    keymap("v", "<A-S-/>", 'gbgv', recursive) -- Block
+  -- Standard NeoVim --
+  -- Insert Mode
+  keymap("i", "<A-/>", '<Esc>gcca', recursive) -- Line
+  keymap("i", "<A-S-/>", "<Esc>gbca", recursive) -- Block
+  -- Normal Mode
+  keymap("n", "<A-/>", 'gcc', recursive) -- Line
+  keymap("n", "<A-S-/>", 'gbc', recursive) -- Block
+  -- Visual Mode
+  keymap("v", "<A-/>", 'gcgv', recursive) -- Line
+  keymap("v", "<A-S-/>", 'gbgv', recursive) -- Block
 end
 -- }}}
 
 -- VSCode-style line movement {{{
 -- Move lines up and down
 -- Insert Mode
-keymap("i", "<A-k>", "<Esc>m`:m .-2<CR>==``a", opts)
-keymap("i", "<A-j>", "<Esc>m`:m .+1<CR>==``a", opts)
-keymap("i", "<A-Up>", "<Esc>m`:m .-2<CR>==``a", opts)
-keymap("i", "<A-Down>", "<Esc>m`:m .+1<CR>==``a", opts)
+
+if not vscode_nvim then
+  keymap("i", "<A-k>", "<Esc>m`:m .-2<CR>==``a", opts)
+  keymap("i", "<A-j>", "<Esc>m`:m .+1<CR>==``a", opts)
+  keymap("i", "<A-Up>", "<Esc>m`:m .-2<CR>==``a", opts)
+  keymap("i", "<A-Down>", "<Esc>m`:m .+1<CR>==``a", opts)
+end
 -- Normal Mode
 keymap("n", "<A-k>", "<Esc>m`:m .-2<CR>==``", opts)
 keymap("n", "<A-j>", "<Esc>m`:m .+1<CR>==``", opts)
@@ -168,10 +175,12 @@ keymap("x", "<A-Down>", ":move '>+1<CR>gv=gv", opts)
 
 -- Duplicate lines above/below
 -- Insert Mode
-keymap("i", "<A-S-j>", "<Esc>m` :t.<CR> `` ji", opts)
-keymap("i", "<A-S-k>", "<Esc>m` :t.<CR> ``a", opts)
-keymap("i", "<A-S-Up>", "<Esc>m` :t.<CR> ``a", opts)
-keymap("i", "<A-S-Down>", "<Esc>m` :t.<CR> `` ji", opts)
+if not vscode_nvim then
+  keymap("i", "<A-S-j>", "<Esc>m` :t.<CR> `` ji", opts)
+  keymap("i", "<A-S-k>", "<Esc>m` :t.<CR> ``a", opts)
+  keymap("i", "<A-S-Up>", "<Esc>m` :t.<CR> ``a", opts)
+  keymap("i", "<A-S-Down>", "<Esc>m` :t.<CR> `` ji", opts)
+end
 -- Normal Mode
 keymap("n", "<A-S-k>", "m` :t.<CR> ``", opts)
 keymap("n", "<A-S-j>", "m` :t.<CR> `` jh", opts)
@@ -183,6 +192,11 @@ keymap("n", "<A-S-Down>", "m` :t.<CR> `` jh", opts)
 -- }}}
 
 -- LSP {{{
--- keymap 'C-k' -> display signature
--- }}}
+-- Diagnostic keymaps
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
+-- Additional LSP keymaps in user.lsp
+-- }}}

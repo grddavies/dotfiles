@@ -26,19 +26,19 @@ local shared_options = {
 local standalone_options = {
   scrolloff = 8,                           -- keep cursor 8 lines from top & bottom of page
   sidescrolloff = 8,
-  smartindent = true,                      -- make indenting smarter again
+  smartindent = true,                      -- Make indenting smarter again
   cmdheight = 1,                           -- Nvim command line height
-  completeopt = { "menuone", "noselect" }, -- completion params?
-  updatetime = 1000,                       -- time until completions offered (4000ms default)
-  mouse = "a",                             -- allow the mouse to be used in neovim
-  cursorline = true,                       -- highlight the current line
-  cursorlineopt = 'number',                -- only highlight current line's number
-  number = true,                           -- set numbered lines
-  relativenumber = true,                   -- set relative numbered lines
-  numberwidth = 4,                         -- set number column width to 2 {default 4}
-  signcolumn = "yes",                      -- set the number column as the sign column
-  wrap = false,                            -- display lines as one long line
-  list = true,                             -- show whitespace chars
+  completeopt = { "menuone", "noselect" }, -- Completion params
+  updatetime = 1000,                       -- Time until completions offered (4000ms default)
+  mouse = "a",                             -- Enable mouse
+  cursorline = true,                       -- Highlight the current line
+  cursorlineopt = 'number',                -- Only highlight current line's number
+  number = true,                           -- Set numbered lines
+  relativenumber = true,                   -- Set relative numbered lines
+  numberwidth = 4,                         -- Set number column width to 2 {default 4}
+  signcolumn = "yes",                      -- Set the number column as the sign column
+  wrap = false,                            -- Display lines as one long line
+  list = true,                             -- Show whitespace chars
 }
 
 vim.opt.shortmess:append "c"
