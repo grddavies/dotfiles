@@ -1,37 +1,40 @@
-# dotfiles - WIP :construction:
+# dotfiles
 
 Selected dotfiles, managed with `chezmoi`
 
-## Chezmoi TODOs:
+## Chezmoi TODOs
 
 - [x] `zsh` setup
 - [x] Interactive `chezmoi init` to configure installs
-- [x] install Fonts
-- [ ] package and software installation
+- [x] Install Fonts
+- [x] Package and software installation
 
-## NeoVim TODOs:
+## NeoVim TODOs
 
-- [ ] Conditionally loading Plugins for VSCode and Standalone function
+- [ ] (?) Conditionally loading Plugins for VSCode and Standalone function
 
 ### Styling
+
 - [x] Display whitespace characters
 - [ ] Make yank-highlighting take precedence over 'illuminate' current word highlighting
 
 ### Text Editing
+
 - [x] vscode-style commenting
 - [x] vscode-style line movements with Alt+Arrow
 - [ ] vscode-style line duplication with Alt+Shift+Arrow
 
 ### LSP
+
 - [x] Basic install
 - [x] Tree-Sitter integration to LSP
-- [ ] Better LSP settings config
-- [ ] Plug and play with new language
+- [x] Better LSP settings config
+- [x] Plug and play with new language
+- [ ] Fix undercurl display
 
-### Additional tools
-- [x] Telescope fuzzyfinder (not added useful hotkeys)
+### Additional Tools
+
+- [x] Telescope fuzzyfinder
 - [ ] [Neoclip](https://github.com/AckslD/nvim-neoclip.lua)
 - [ ] Hex/RGB colour code display
-- [x] Git Integration
-- [ ] Autoformatters
-- [ ] Projects
+- [ ] Undo-tree
