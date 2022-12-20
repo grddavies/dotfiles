@@ -8,7 +8,12 @@ local actions = require "telescope.actions"
 telescope.setup {
   defaults = {
     selection_caret = " ",
-    path_display = { "smart" },
+    path_display = { "smart" }
+  },
+  pickers = {
+    find_files = {
+      hidden = true
+    }
   },
   extensions = {
     -- Your extension configuration goes here:
