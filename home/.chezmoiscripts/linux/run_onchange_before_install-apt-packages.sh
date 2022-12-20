@@ -9,5 +9,6 @@ sudo apt-get install -qq \
     llvm \
     neofetch \
     nmap \
+    jq \
     wget \
     xclip \
