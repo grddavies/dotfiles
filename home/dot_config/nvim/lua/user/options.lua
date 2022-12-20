@@ -1,25 +1,25 @@
 -- Options relevant to NeoVim and running under VScode-nvim
 local shared_options = {
-  backup = false,                          -- create a backup file
-  conceallevel = 0,                        -- so that `` is visible in markdown files
-  fileencoding = "utf-8",                  -- the encoding written to a file
-  hlsearch = true,                         -- highlight all matches on previous search pattern
-  ignorecase = true,                       -- ignore case in search patterns
-  smartcase = true,                        -- smart case: Use case sensitive search if uppercase chars in query
-  pumheight = 10,                          -- pop up menu height
-  showmode = true,                         -- Toggle mode display -- INSERT -- anymore
-  showtabline = 2,                         -- always show tabs
-  splitbelow = true,                       -- force all horizontal splits to go below current window
-  splitright = true,                       -- force all vertical splits to go to the right of current window
-  swapfile = false,                        -- creates a swapfile
-  termguicolors = true,                    -- set term gui colors (most terminals support this)
-  timeoutlen = 100,                        -- time to wait for a mapped sequence to complete (in milliseconds)
-  undofile = true,                         -- enable persistent undo
-  writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  expandtab = true,                        -- convert tabs to spaces
-  shiftwidth = 2,                          -- the number of spaces inserted for each indentation
-  tabstop = 2,                             -- insert 2 spaces for a tab
-  startofline = true,                      -- retain cursor position where possible
+  backup = false,                          -- Create a backup file
+  conceallevel = 0,                        -- So that `` is visible in markdown files
+  fileencoding = "utf-8",                  -- The encoding written to a file
+  hlsearch = true,                         -- Highlight all matches on previous search pattern
+  ignorecase = true,                       -- Ignore case in search patterns
+  smartcase = true,                        -- Smart case: Use case sensitive search if uppercase chars in query
+  pumheight = 10,                          -- Pop up menu height
+  showmode = true,                         -- Toggle mode display
+  -- showtabline = 2,                         -- Always show tabs
+  splitbelow = true,                       -- Force all horizontal splits to go below current window
+  splitright = true,                       -- Force all vertical splits to go to the right of current window
+  swapfile = false,                        -- Creates a swapfile
+  termguicolors = true,                    -- Set term gui colors (most terminals support this)
+  timeoutlen = 100,                        -- Time to wait for a mapped sequence to complete (in milliseconds)
+  undofile = true,                         -- Enable persistent undo
+  writebackup = false,                     -- If a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+  expandtab = true,                        -- Convert tabs to spaces
+  shiftwidth = 2,                          -- The number of spaces inserted for each indentation
+  tabstop = 2,                             -- Insert 2 spaces for a tab
+  startofline = true,                      -- Retain cursor position where possible
 }
 
 -- Options that don't apply to running VScode-nvim
