@@ -48,10 +48,14 @@ local function vsplit_preview()
   -- Finally refocus on tree if it was lost
   view.focus()
 end
+
 -- }}}
 
 local config = {
   disable_netrw = true,
+  git = {
+    ignore = false,
+  },
   view = {
     mappings = {
       custom_only = false,
@@ -71,4 +75,3 @@ local config = {
 }
 
 nvim_tree.setup(config)
-
