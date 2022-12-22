@@ -94,25 +94,49 @@
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   // ### End Treesitter Incremental selection
-
+  // ### LSP (keymaps mirrored in nvim)
+  {
+    // Show hover help
+    "key": "shift-k",
+    "command": "editor.action.showHover",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    // Show signature help
+    "key": "ctrl-k",
+    "command": "editor.action.triggerParameterHints",
+    "when": "editorTextFocus && neovim.init && editorHasSignatureHelpProvider"
+  },
+  {
+    // Toggle signature help
+    "key": "ctrl-k",
+    "command": "closeParameterHints",
+    "when": "editorTextFocus && neovim.init && editorHasSignatureHelpProvider && parameterHintsVisible"
+  },
+  {
+    // Rename symbol
+    "key": "space r n",
+    "command": "editor.action.rename",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasRenameProvider && !editorReadonly"
+  },
+  {
+    // Go to Definition
+    // FIXME: also sends 'd' command!
+    "key": "space g d",
+    "command": "editor.action.revealDefinition",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+  },
+  {
+    // Format document
+    "key": "shift+alt+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  }
+  // ### End LSP
   // {
   //   // Toggle fold
   //   "key": "z a",
   //   "command": "editor.toggleFold",
   //   "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   // },
-
-  // ## All keybindings
-  {
-    // Format document
-    "key": "shift+alt+f",
-    "command": "editor.action.formatDocument",
-    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-  },
-  {
-    // Show hover help (matching nvim)
-    "key": "ctrl+k",
-    "command": "editor.action.showHover",
-    "when": "editorTextFocus"
-  }
 ]
