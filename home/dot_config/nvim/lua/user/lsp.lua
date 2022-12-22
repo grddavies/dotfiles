@@ -45,7 +45,7 @@ end
 require('mason').setup()
 
 -- Enable the following language servers by default
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', "jsonls", "html" }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
