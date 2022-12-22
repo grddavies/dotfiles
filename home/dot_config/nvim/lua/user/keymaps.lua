@@ -31,33 +31,38 @@ vim.g.maplocalleader = " "
 -- Standalone only keymaps {{{
 if not vscode_nvim then
   -- Normal Mode --
-  -- Better window navigation
+  -- Better window navigation {{{
   keymap("n", "<C-h>", "<C-w>h", opts)
   keymap("n", "<C-j>", "<C-w>j", opts)
   keymap("n", "<C-k>", "<C-w>k", opts)
   keymap("n", "<C-l>", "<C-w>l", opts)
+  -- }}}
 
-  -- Format buffer (requires user.lsp)
-  keymap("n", "<A-S-f>", ":Format", opts)
-  keymap("n", "<A-F>", ":Format", opts)
+  -- Format buffer (requires user.lsp) {{{
+  keymap("n", "<A-S-f>", ":Format<CR>", opts)
+  -- keymap("n", "<A-F>", ":Format<CR>", opts)
+  --}}}
 
-  -- Open File Browser
+  -- Open File Browser {{{
   keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+  --}}}
 
-  -- Resize with arrows
+  -- Resize with arrows {{{
   keymap("n", "<C-Up>", ":resize -2<CR>", opts)
   keymap("n", "<C-Down>", ":resize +2<CR>", opts)
   keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
   keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+  --}}}
 
-  -- Navigate buffers
+  -- Navigate buffers {{{
   keymap("n", "<S-l>", ":bnext<CR>", opts)
   keymap("n", "<S-h>", ":bprevious<CR>", opts)
+  --}}}
 
-  -- TelescopeKeymaps
+  -- TelescopeKeymaps {{{
   -- See `:help telescope.builtin`
-  vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-  vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+  vim.keymap.set('n', '<leader>\\', require('telescope.builtin').oldfiles, { desc = '[\\] Find recently opened files' })
+  vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
   vim.keymap.set('n', '<leader>/', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
     require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -71,8 +76,9 @@ if not vscode_nvim then
   vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
   vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
   vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-
-  end
+  --}}}
+  -- End Standalone keymaps
+end
 -- }}}
 
 -- Yanks {{{
@@ -218,4 +224,3 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- Additional LSP keymaps in user.lsp
 -- }}}
-
