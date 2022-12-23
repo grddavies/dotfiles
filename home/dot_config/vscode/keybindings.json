@@ -127,16 +127,26 @@
     "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
   },
   {
+    "key": "alt+n",
+    "command": "editor.action.wordHighlight.next",
+    "when": "editorTextFocus && hasWordHighlights"
+  },
+  {
+    "key": "alt+shift+n",
+    "command": "editor.action.wordHighlight.prev",
+    "when": "editorTextFocus && hasWordHighlights"
+  },
+  {
     // Format document
     "key": "shift+alt+f",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   // ### End LSP
-   {
-     // Toggle fold
-     "key": "z a",
-     "command": "editor.toggleFold",
-     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-   }
+  {
+    // Toggle fold
+    "key": "z a",
+    "command": "editor.toggleFold",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  }
 ]
