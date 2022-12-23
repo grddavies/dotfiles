@@ -1,54 +1,62 @@
 local theme_colors = require('darkplus.colors')
 
-require'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all"
-    ensure_installed = {"help", "html", "typescript", "javascript", "css", "cpp", "c", "rust", "r", "python"},
+-- Disable unused providers
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
 
-    -- Incremental text selection based on the named nodes from the parse tree
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "<c-space>",
-            node_incremental = "<c-'>",
-            scope_incremental = "<c-\\>",
-            node_decremental = "<c-;>"
-        }
-    },
-    -- Experimental feature
-    indent = {
-        enable = false
-    },
+local VSCODE = vim.g.vscode == 1
 
-    -- PLUGINS --
-    -- Automatically pair parentheses etc via 'windwp/nvim-autopairs'
-    autopairs = {
-        enable = not vim.g.vscode
-    },
-    -- Rainbow parentheses via 'p00f/nvim-ts-rainbow'
-    rainbow = {
-        enable = not vim.g.vscode,
-        -- disable = { "jsx", "cpp" }, -- Disable for these languages
-        extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        colors = {theme_colors.bracket_1, theme_colors.bracket_2, theme_colors.bracket_3} -- table of hex strings
-        -- termcolors = {} -- table of colour name strings
-    },
-    -- Use treesitter context to set the 'commentstring' parameter 
-    -- (JoosepAlviste/nvim-ts-context-commentstring)
-    context_commentstring = {
-        enable = true,
-        enable_autocmd = false -- for Comment.nvim integration
-    },
-    -- Use treesitter nodes for text objects
-    textsubjects = {
-        enable = true,
-        prev_selection = ',', -- (Optional) keymap to select the previous selection
-        keymaps = {
-            ['.'] = 'textsubjects-smart',
-            [';'] = 'textsubjects-container-outer',
-            ['i;'] = 'textsubjects-container-inner'
-        }
+require 'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "help", "html", "typescript", "javascript", "css", "cpp", "c", "rust", "r", "python" },
+
+  -- Incremental text selection based on the named nodes from the parse tree
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<c-space>",
+      node_incremental = "<c-'>",
+      scope_incremental = "<c-\\>",
+      node_decremental = "<c-;>"
     }
+  },
+  -- Experimental feature
+  indent = {
+    enable = true
+  },
+
+  -- PLUGINS --
+  -- Automatically pair parentheses etc via 'windwp/nvim-autopairs'
+  autopairs = {
+    enable = not VSCODE
+  },
+  -- Rainbow parentheses via 'p00f/nvim-ts-rainbow'
+  rainbow = {
+    enable = not VSCODE,
+    -- disable = { "jsx", "cpp" }, -- Disable for these languages
+    extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    colors = { theme_colors.bracket_1, theme_colors.bracket_2, theme_colors.bracket_3 } -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  },
+  -- Use treesitter context to set the 'commentstring' parameter
+  -- (JoosepAlviste/nvim-ts-context-commentstring)
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false -- for Comment.nvim integration
+  },
+  -- Use treesitter nodes for text objects
+  textsubjects = {
+    enable = true,
+    prev_selection = ',', -- (Optional) keymap to select the previous selection
+    keymaps = {
+      ['.'] = 'textsubjects-smart',
+      [';'] = 'textsubjects-container-outer',
+      ['i;'] = 'textsubjects-container-inner'
+    }
+  }
 }
 
 -- -- Show current context/scope based on cursor position
