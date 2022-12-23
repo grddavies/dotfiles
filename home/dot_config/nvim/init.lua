@@ -8,7 +8,7 @@ require "user.comment" -- Easy comment code
 require "user.treesitter" -- Treesitter source code parsing
 
 -- Do not run under vscode
-if (not vim.g.vscode) then
+if (not (vim.g.vscode == 1)) then
   require "user.theme" -- Editor Theme
   require "user.nvimtree" -- File Explorer
   require("lualine").setup {} -- Fancier statusline
