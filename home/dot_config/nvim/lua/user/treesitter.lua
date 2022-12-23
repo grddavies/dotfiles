@@ -1,4 +1,4 @@
-local theme_colors = require('darkplus.colors')
+local vscode_colours = { bracket_1 = "#FFD700", bracket_2 = "#DA70D6", bracket_3 = "#179FFF" }
 
 -- Disable unused providers
 vim.g.loaded_python3_provider = 0
@@ -10,7 +10,7 @@ local VSCODE = vim.g.vscode == 1
 
 require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "help", "html", "typescript", "javascript", "css", "cpp", "c", "rust", "r", "python" },
+  ensure_installed = { "help", "html", "typescript", "tsx", "javascript", "css", "scss", "cpp", "c", "rust", "r", "python" },
 
   -- Incremental text selection based on the named nodes from the parse tree
   incremental_selection = {
@@ -36,9 +36,9 @@ require 'nvim-treesitter.configs'.setup {
   rainbow = {
     enable = not VSCODE,
     -- disable = { "jsx", "cpp" }, -- Disable for these languages
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    colors = { theme_colors.bracket_1, theme_colors.bracket_2, theme_colors.bracket_3 } -- table of hex strings
+    colors = { vscode_colours.bracket_1, vscode_colours.bracket_2, vscode_colours.bracket_3 } -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
   -- Use treesitter context to set the 'commentstring' parameter

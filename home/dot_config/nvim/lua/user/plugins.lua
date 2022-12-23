@@ -53,80 +53,6 @@ return require('packer').startup(function(use)
   -- Manage packer itself
   use 'wbthomason/packer.nvim'
 
-  -- *** Standalone Only Plugins *** --
-
-  use { -- Colour scheme / Theme
-    'grddavies/darkplus.nvim',
-    disable = VSCODE_NVIM
-  }
-
-  use { -- Popup notifications
-    'rcarriga/nvim-notify',
-    disable = VSCODE_NVIM
-  }
-
-  use { -- File explorer
-    'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons' }
-  }
-
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-
-  use { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    disable = VSCODE_NVIM,
-    requires = { 'williamboman/mason.nvim' --[[ Automatically install LSPs to stdpath for neovim ]] ,
-      'williamboman/mason-lspconfig.nvim' --[[ Useful status updates for LSP ]] , 'j-hui/fidget.nvim' }
-  }
-
-  -- Highlight other uses of word under cursor
-  use 'RRethy/vim-illuminate'
-
-
-  use { -- Git visual feedback
-    "lewis6991/gitsigns.nvim",
-    disable = VSCODE_NVIM
-  }
-
-  use { -- Autopair paretheses etc
-    "windwp/nvim-autopairs",
-    disable = VSCODE_NVIM
-  }
-
-  -- use { -- Show register contents
-  --     "tversteeg/registers.nvim",
-  --     disable = vscode
-  -- }
-
-  use { -- Rainbow paretheses
-    "p00f/nvim-ts-rainbow",
-    requires = "nvim-treesitter/nvim-treesitter",
-    disable = VSCODE_NVIM
-  }
-
-  -- use { -- Highlight current function context
-  --     "nvim-treesitter/nvim-treesitter-context",
-  --     requires = "nvim-treesitter/nvim-treesitter",
-  --     disable = VSCODE_NVIM
-  -- }
-
-  use { -- Telescope Fuzzyfinder
-    "nvim-telescope/telescope.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    disable = VSCODE_NVIM
-  }
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    reqiuires = "nvim-telescope/telescope.nvim",
-    run = 'make',
-    disable = VSCODE_NVIM
-  }
-  use {
-    "xiyaowong/telescope-emoji.nvim",
-    requires = "nvim-telescope/telescope.nvim",
-    disable = VSCODE_NVIM
-  }
-
   -- *** Shared Plugins - VSCode-Neovim & Standalone ***--
   -- Editing Plugins
   use { -- Modifying text <({'surroundings'})>
@@ -166,6 +92,8 @@ return require('packer').startup(function(use)
     end
   }
 
+  use "nvim-treesitter/playground"
+
   -- TODO: Move to standalone only and set up vscode commentary to use Visual Mode selection
   -- See https://github.com/neovim/neovim/issues/19708
   use "numToStr/comment.nvim" -- Easy Comment
@@ -174,9 +102,82 @@ return require('packer').startup(function(use)
     requires = "nvim-treesitter/nvim-treesitter"
   }
 
-  use { -- TS-Nodes as text objects
+  use { -- Smart TS-Nodes as text objects
     "RRethy/nvim-treesitter-textsubjects",
     requires = "nvim-treesitter/nvim-treesitter"
+  }
+
+  -- *** Standalone Only Plugins *** --
+
+  use { -- Colour scheme / Theme
+    'grddavies/darkplus.nvim',
+    disable = VSCODE_NVIM
+  }
+
+  use { -- Popup notifications
+    'rcarriga/nvim-notify',
+    disable = VSCODE_NVIM
+  }
+
+  use { -- File explorer
+    'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons' }
+  }
+
+  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+
+  use { -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
+    disable = VSCODE_NVIM,
+    requires = { 'williamboman/mason.nvim' --[[ Automatically install LSPs to stdpath for neovim ]] ,
+      'williamboman/mason-lspconfig.nvim' --[[ Useful status updates for LSP ]] , 'j-hui/fidget.nvim' }
+  }
+
+  -- Highlight other uses of word under cursor
+  use 'RRethy/vim-illuminate'
+
+  use { -- Git visual feedback
+    "lewis6991/gitsigns.nvim",
+    disable = VSCODE_NVIM
+  }
+
+  use { -- Autopair paretheses etc
+    "windwp/nvim-autopairs",
+    disable = VSCODE_NVIM
+  }
+
+  -- use { -- Show register contents
+  --     "tversteeg/registers.nvim",
+  --     disable = VSCODE_NVIM
+  -- }
+
+  use { -- Rainbow paretheses
+    "p00f/nvim-ts-rainbow",
+    requires = "nvim-treesitter/nvim-treesitter",
+    disable = VSCODE_NVIM
+  }
+
+  -- use { -- Highlight current function context
+  --     "nvim-treesitter/nvim-treesitter-context",
+  --     requires = "nvim-treesitter/nvim-treesitter",
+  --     disable = VSCODE_NVIM
+  -- }
+
+  use { -- Telescope Fuzzyfinder
+    "nvim-telescope/telescope.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    disable = VSCODE_NVIM
+  }
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    reqiuires = "nvim-telescope/telescope.nvim",
+    run = 'make',
+    disable = VSCODE_NVIM
+  }
+  use {
+    "xiyaowong/telescope-emoji.nvim",
+    requires = "nvim-telescope/telescope.nvim",
+    disable = VSCODE_NVIM
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
