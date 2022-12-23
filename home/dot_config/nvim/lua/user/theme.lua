@@ -7,7 +7,7 @@ vim.cmd("let g:VM_theme = 'purplegray'")
 -- Requires 'grddavies/darkplus.nvim' plugin
 vim.cmd([[
   try
-    colorscheme darkplus
+    colorscheme tokyonight-night
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

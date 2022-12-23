@@ -109,8 +109,13 @@ return require('packer').startup(function(use)
 
   -- *** Standalone Only Plugins *** --
 
-  use { -- Colour scheme / Theme
+  use { -- VSCode-inspired Colour scheme / Theme
     'grddavies/darkplus.nvim',
+    disable = VSCODE_NVIM
+  }
+
+  use {  -- Colour scheme / Theme
+    'folke/tokyonight.nvim',
     disable = VSCODE_NVIM
   }
 
