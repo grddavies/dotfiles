@@ -54,46 +54,56 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- *** Standalone Only Plugins *** --
+
   use { -- Colour scheme / Theme
     'grddavies/darkplus.nvim',
     disable = VSCODE_NVIM
   }
+
   use { -- Popup notifications
     'rcarriga/nvim-notify',
     disable = VSCODE_NVIM
   }
+
   use { -- File explorer
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' }
   }
+
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     disable = VSCODE_NVIM,
     requires = { 'williamboman/mason.nvim' --[[ Automatically install LSPs to stdpath for neovim ]] ,
       'williamboman/mason-lspconfig.nvim' --[[ Useful status updates for LSP ]] , 'j-hui/fidget.nvim' }
   }
-  use { -- Highlight other uses of word under cursor
-    'RRethy/vim-illuminate',
-    requires = 'neovim/nvim-lspconfig'
-  }
-  use { -- Git integration
+
+  -- Highlight other uses of word under cursor
+  use 'RRethy/vim-illuminate'
+
+
+  use { -- Git visual feedback
     "lewis6991/gitsigns.nvim",
     disable = VSCODE_NVIM
   }
+
   use { -- Autopair paretheses etc
     "windwp/nvim-autopairs",
     disable = VSCODE_NVIM
   }
+
   -- use { -- Show register contents
   --     "tversteeg/registers.nvim",
   --     disable = vscode
   -- }
+
   use { -- Rainbow paretheses
     "p00f/nvim-ts-rainbow",
     requires = "nvim-treesitter/nvim-treesitter",
     disable = VSCODE_NVIM
   }
+
   -- use { -- Highlight current function context
   --     "nvim-treesitter/nvim-treesitter-context",
   --     requires = "nvim-treesitter/nvim-treesitter",
@@ -107,6 +117,7 @@ return require('packer').startup(function(use)
   }
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
+    reqiuires = "nvim-telescope/telescope.nvim",
     run = 'make',
     disable = VSCODE_NVIM
   }
@@ -116,7 +127,7 @@ return require('packer').startup(function(use)
     disable = VSCODE_NVIM
   }
 
-  -- Shared Plugins // VSCode-Neovim // Standalone
+  -- *** Shared Plugins - VSCode-Neovim & Standalone ***--
   -- Editing Plugins
   use { -- Modifying text <({'surroundings'})>
     'kylechui/nvim-surround',
@@ -124,7 +135,9 @@ return require('packer').startup(function(use)
       require("nvim-surround").setup()
     end
   }
+
   use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
+
   use 'mg979/vim-visual-multi' -- MultiCursor support
 
   -- Code completion plugins
@@ -137,13 +150,12 @@ return require('packer').startup(function(use)
     'hrsh7th/cmp-nvim-lua',
     ft = 'lua'
   }
-  use "saadparwaiz1/cmp_luasnip" -- Snippet completions
+
   -- Snippets
+  use "saadparwaiz1/cmp_luasnip" -- Snippet completions
   use "L3MON4D3/LuaSnip" -- Snippet engine
   use "rafamadriz/friendly-snippets" -- Snippet library
 
-  -- Easy Block Comment
-  use "numToStr/comment.nvim"
   use { -- TreeSitter Source Code Parsing
     "nvim-treesitter/nvim-treesitter",
     run = function()
@@ -153,11 +165,18 @@ return require('packer').startup(function(use)
       ts_update()
     end
   }
-  -- Context-aware 'commentstring' setting
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+
+  -- TODO: Move to standalone only and set up vscode commentary to use Visual Mode selection
+  -- See https://github.com/neovim/neovim/issues/19708
+  use "numToStr/comment.nvim" -- Easy Comment
+  use { -- Context-aware 'commentstring' setting
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
+
   use { -- TS-Nodes as text objects
     "RRethy/nvim-treesitter-textsubjects",
-    after = 'nvim-treesitter'
+    requires = "nvim-treesitter/nvim-treesitter"
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
