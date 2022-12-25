@@ -1,4 +1,10 @@
 -- LSP settings [ from https://github.com/nvim-lua/kickstart.nvim ]
+
+-- Do not focus hover windows
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, { focusable = false }
+)
+
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
