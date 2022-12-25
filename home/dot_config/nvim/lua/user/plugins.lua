@@ -109,12 +109,18 @@ return require('packer').startup(function(use)
 
   -- *** Standalone Only Plugins *** --
 
+  use {
+    'rose-pine/neovim',
+    as = 'rose-pine',
+    disable = VSCODE_NVIM
+  }
+
   use { -- VSCode-inspired Colour scheme / Theme
     'grddavies/darkplus.nvim',
     disable = VSCODE_NVIM
   }
 
-  use {  -- Colour scheme / Theme
+  use { -- Colour scheme / Theme
     'folke/tokyonight.nvim',
     disable = VSCODE_NVIM
   }
@@ -146,40 +152,35 @@ return require('packer').startup(function(use)
     disable = VSCODE_NVIM
   }
 
+  use { -- Use git in nvim
+    "tpope/vim-fugitive",
+    disable = VSCODE_NVIM
+  }
+
   use { -- Autopair paretheses etc
     "windwp/nvim-autopairs",
     disable = VSCODE_NVIM
   }
 
-  -- use { -- Show register contents
-  --     "tversteeg/registers.nvim",
-  --     disable = VSCODE_NVIM
-  -- }
 
-  use { -- Rainbow paretheses
-    "p00f/nvim-ts-rainbow",
-    requires = "nvim-treesitter/nvim-treesitter",
-    disable = VSCODE_NVIM
-  }
-
-  -- use { -- Highlight current function context
-  --     "nvim-treesitter/nvim-treesitter-context",
-  --     requires = "nvim-treesitter/nvim-treesitter",
-  --     disable = VSCODE_NVIM
-  -- }
+use { -- Show available keybindings
+ "folke/which-key.nvim"
+}
 
   use { -- Telescope Fuzzyfinder
     "nvim-telescope/telescope.nvim",
     requires = "nvim-lua/plenary.nvim",
     disable = VSCODE_NVIM
   }
-  use {
+
+  use {  -- Use fzf to speed up Telescope
     'nvim-telescope/telescope-fzf-native.nvim',
     reqiuires = "nvim-telescope/telescope.nvim",
     run = 'make',
     disable = VSCODE_NVIM
   }
-  use {
+
+  use { -- Find emojis with Telescope
     "xiyaowong/telescope-emoji.nvim",
     requires = "nvim-telescope/telescope.nvim",
     disable = VSCODE_NVIM
@@ -195,3 +196,4 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+

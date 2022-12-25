@@ -8,12 +8,11 @@ local shared_options = {
   smartcase = true,                        -- Smart case: Use case sensitive search if uppercase chars in query
   pumheight = 10,                          -- Pop up menu height
   showmode = true,                         -- Toggle mode display
-  -- showtabline = 2,                         -- Always show tabs
   splitbelow = true,                       -- Force all horizontal splits to go below current window
   splitright = true,                       -- Force all vertical splits to go to the right of current window
   swapfile = false,                        -- Creates a swapfile
   termguicolors = true,                    -- Set term gui colors (most terminals support this)
-  timeoutlen = 100,                        -- Time to wait for a mapped sequence to complete (in milliseconds)
+  timeoutlen = 250,                        -- Time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,                         -- Enable persistent undo
   writebackup = false,                     -- If a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   expandtab = true,                        -- Convert tabs to spaces
@@ -47,7 +46,7 @@ for k, v in pairs(shared_options) do
   vim.opt[k] = v
 end
 
-if vim.g.vscode then
+if vim.g.vscode == 1 then
   -- VScode-nvim
 else
   -- Standalone nvim
