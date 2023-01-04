@@ -18,8 +18,8 @@ require 'nvim-treesitter.configs'.setup {
     enable = true,
     keymaps = {
       init_selection = "<c-space>",
-      node_incremental = "<c-'>",
-      scope_incremental = "<c-\\>",
+      node_incremental = "<c-space>",
+      scope_incremental = "<c-'>",
       node_decremental = "<c-;>"
     }
   },
