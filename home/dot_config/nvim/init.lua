@@ -6,6 +6,7 @@ require "user.plugins" -- All plugins
 require "user.cmp" -- Code completion
 require "user.comment" -- Easy comment code
 require "user.treesitter" -- Treesitter source code parsing
+require "user.registers" -- Utils for managing vim registers
 
 -- Do not run under vscode
 if (vim.g.vscode ~= 1) then
@@ -17,7 +18,7 @@ if (vim.g.vscode ~= 1) then
   require "user.autopairs" -- Auto pair brackets etc
   require "user.gitsigns" -- Git integration
   require "user.whitespace" -- Set whitespace display characters
-  require "user.illuminate" -- Highlight other instances of word under cursor
+  -- require "user.illuminate" -- Highlight other instances of word under cursor
   require "which-key".setup() -- Shows available keymaps
 end
 

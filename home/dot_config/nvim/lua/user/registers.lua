@@ -1,4 +1,3 @@
-
 local function clear_registers(args)
   for reg in string.gmatch(args.args, ".") do
     vim.fn.setreg(reg, {})

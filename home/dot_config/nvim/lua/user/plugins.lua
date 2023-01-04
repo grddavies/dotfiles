@@ -144,8 +144,8 @@ return require('packer').startup(function(use)
       'williamboman/mason-lspconfig.nvim' --[[ Useful status updates for LSP ]] , 'j-hui/fidget.nvim' }
   }
 
-  -- Highlight other uses of word under cursor
-  use 'RRethy/vim-illuminate'
+  -- -- Highlight other uses of word under cursor
+  -- use 'RRethy/vim-illuminate'
 
   use { -- Git visual feedback
     "lewis6991/gitsigns.nvim",
@@ -163,9 +163,9 @@ return require('packer').startup(function(use)
   }
 
 
-use { -- Show available keybindings
- "folke/which-key.nvim"
-}
+  use { -- Show available keybindings
+    "folke/which-key.nvim"
+  }
 
   use { -- Telescope Fuzzyfinder
     "nvim-telescope/telescope.nvim",
@@ -173,7 +173,7 @@ use { -- Show available keybindings
     disable = VSCODE_NVIM
   }
 
-  use {  -- Use fzf to speed up Telescope
+  use { -- Use fzf to speed up Telescope
     'nvim-telescope/telescope-fzf-native.nvim',
     reqiuires = "nvim-telescope/telescope.nvim",
     run = 'make',
@@ -196,4 +196,3 @@ use { -- Show available keybindings
     require('packer').sync()
   end
 end)
-
