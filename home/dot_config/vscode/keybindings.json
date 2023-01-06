@@ -148,5 +148,37 @@
     "key": "z a",
     "command": "editor.toggleFold",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  // ## Override VSCode Defaults when using NVim
+  // ### Autocomplete menu navigation with Tab/S-Tab
+  {
+    "key": "tab",
+    "command": "-insertBestCompletion",
+    "when": "neovim.init && neovim.mode == insert && atEndOfWord && textInputFocus && !hasOtherSuggestions && !inSnippetMode && !suggestWidgetVisible && config.editor.tabCompletion == 'on'"
+  },
+  {
+    "key": "enter",
+    "command": "insertBestCompletion",
+    "when": "neovim.init && neovim.mode == insert && atEndOfWord && textInputFocus && !hasOtherSuggestions && !inSnippetMode && !suggestWidgetVisible && config.editor.tabCompletion == 'on'"
+  },
+  {
+    "key": "tab",
+    "command": "selectNextQuickFix",
+    "when": "neovim.init && neovim.mode == insert && editorFocus && quickFixWidgetVisible"
+  },
+  {
+    "key": "shift+tab",
+    "command": "selectPrevQuickFix",
+    "when": "neovim.init && neovim.mode == insert && editorFocus && quickFixWidgetVisible"
+  },
+  {
+    "key": "tab",
+    "command": "selectNextSuggestion",
+    "when": "neovim.init && neovim.mode == insert && editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "shift+tab",
+    "command": "selectPrevSuggestion",
+    "when": "neovim.init && neovim.mode == insert && editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
   }
 ]
