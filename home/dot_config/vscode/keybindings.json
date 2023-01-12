@@ -73,24 +73,24 @@
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   {
-    // Decrement node
-    "key": "ctrl-;",
+    // Increment node
+    "key": "ctrl-space",
     "command": "vscode-neovim.send",
-    "args": "<c-;>",
+    "args": "<c-space>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   {
-    // Increment node
+    // Increment scope
     "key": "ctrl-'",
     "command": "vscode-neovim.send",
     "args": "<c-'>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   {
-    // Increment scope
-    "key": "ctrl-\\",
+    // Decrement node
+    "key": "ctrl-;",
     "command": "vscode-neovim.send",
-    "args": "<c-\\>",
+    "args": "<c-;>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   // ### End Treesitter Incremental selection
