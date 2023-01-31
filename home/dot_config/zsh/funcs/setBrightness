@@ -2,7 +2,7 @@
 function setBrightness {
   if [ $# -lt 1 ]; then
     # print current value
-    cat /sys/class/backlight/amdgpu_bl0/brightness
+    < /sys/class/backlight/amdgpu_bl*/brightness
     return
   fi
 
@@ -18,5 +18,5 @@ function setBrightness {
     return 1
   fi
   # Set new value
-  print $1 | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
+  print $1 | sudo tee /sys/class/backlight/amdgpu_bl*/brightness
 }
