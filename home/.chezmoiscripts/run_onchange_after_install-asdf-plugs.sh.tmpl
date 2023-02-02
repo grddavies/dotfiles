@@ -14,9 +14,21 @@ fi
 sudo apt-get -qq update
 
 # python
-sudo apt-get -qq install make build-essential libssl-dev zlib1g-dev \
-    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-    libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+sudo apt-get -qq install -y \
+  build-essential \
+  libssl-dev \
+  zlib1g-dev \
+  libbz2-dev \
+  libreadline-dev \
+  libsqlite3-dev \
+  curl \
+  libncursesw5-dev \
+  xz-utils \
+  tk-dev \
+  libxml2-dev \
+  libxmlsec1-dev \
+  libffi-dev \
+  liblzma-dev
 
 # node
 sudo apt-get -qq install dirmngr gpg curl gawk
@@ -26,15 +38,17 @@ sudo apt-get -qq install dirmngr gpg curl gawk
 
 # Versions
 asdf plugin-add python
-asdf install python 3.10.6
-asdf global python 3.10.6
-# asdf install python 3.10-latest 3.6-latest 3.7:latest
-# asdf global python 3:latest
+asdf install python latest latest:3.7
+asdf global python latest
+
+## # See https://github.com/pyenv/pyenv/issues/1889
+## sudo apt-get -qq install clang
+## CC=clang asdf install python 3.7.2
 
 ## nodejs ##
 # Versions
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs latest 18.12.1 14.15.0
+asdf install nodejs latest 18.12.1
 asdf global nodejs latest
 
 # Set local versions using
