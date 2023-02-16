@@ -17,6 +17,7 @@ if (vim.g.vscode ~= 1) then
   require "user.telescope" -- Telescope fuzzyfinding
   require "user.autopairs" -- Auto pair brackets etc
   require "user.gitsigns" -- Git integration
+  require "user.null-ls" -- Code diagnostics/formatting
   require "user.whitespace" -- Set whitespace display characters
   -- require "user.illuminate" -- Highlight other instances of word under cursor
   require "which-key".setup() -- Shows available keymaps

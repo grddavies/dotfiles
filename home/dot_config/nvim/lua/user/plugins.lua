@@ -141,7 +141,16 @@ return require('packer').startup(function(use)
     'neovim/nvim-lspconfig',
     disable = VSCODE_NVIM,
     requires = { 'williamboman/mason.nvim' --[[ Automatically install LSPs to stdpath for neovim ]] ,
-      'williamboman/mason-lspconfig.nvim' --[[ Useful status updates for LSP ]] , 'j-hui/fidget.nvim' }
+      'williamboman/mason-lspconfig.nvim' --[[ Using mason with lspconfig ]],
+      'j-hui/fidget.nvim' --[[ Useful status updates for LSP ]] ,
+      'folke/neodev.nvim' --[[ Lua LSP settings for nvim configuration ]] ,
+    }
+  }
+
+  use {  -- Integrate non-LSP sources into nvim LSP
+    'jose-elias-alvarez/null-ls.nvim',
+    disable = VSCODE_NVIM,
+    reqiuires = { "nvim-lua/plenary.nvim" }
   }
 
   -- -- Highlight other uses of word under cursor
