@@ -50,7 +50,7 @@ local servers = {
   rust_analyzer = {},
   pyright = {},
   tsserver = {},
-  sumneko_lua = {
+  lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
@@ -90,4 +90,3 @@ mason_lspconfig.setup_handlers {
 
 -- Turn on lsp status information
 require('fidget').setup()
-
