@@ -9,7 +9,7 @@
     type = "git-repo"
     url = "git@github.com:asdf-vm/asdf.git"
     [".asdf".clone]
-    args = ["--branch", "v0.11.1"]
+    args = ["--branch", "v0.11.2"]
 
 {{- if .fonts }}
 # Install Fonts to os-specific location
