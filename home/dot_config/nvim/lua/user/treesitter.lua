@@ -11,7 +11,7 @@ local VSCODE = vim.g.vscode == 1
 require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "help", "html", "typescript", "tsx", "javascript", "css", "scss", "cpp", "c", "rust", "r",
-    "python" },
+    "python", "haskell" },
 
   -- Incremental text selection based on the named nodes from the parse tree
   incremental_selection = {
