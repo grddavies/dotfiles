@@ -5,8 +5,8 @@ Selected dotfiles, managed with `chezmoi`
 ## Chezmoi
 
 - Installs packages & software (inc NeoVim & kitty)
-- Styles zsh prompt
-- Install Fonts
+- Styles zsh prompt with [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+- Installs Fonts
 
 ## NeoVim Config
 
@@ -14,5 +14,6 @@ Selected dotfiles, managed with `chezmoi`
 - Plug & play LSP integration with [mason.nvim](https://github.com/williamboman/mason.nvim)
 - Tree-sitter syntax highlighting and text selection
 - Git integration with [fugitive.vim](https://github.com/tpope/vim-fugitive)
-- Smart comment toggling
+- Terminal window with [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
+- Smart comment toggling with [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - More...
