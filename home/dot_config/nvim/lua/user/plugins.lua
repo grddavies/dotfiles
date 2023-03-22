@@ -62,27 +62,27 @@ return require('packer').startup(function(use)
     end
   }
 
-  use 'tpope/vim-abolish' -- Spelling and smart case-sentitive query replace
+  use 'tpope/vim-abolish'      -- Spelling and smart case-sentitive query replace
 
   use 'mg979/vim-visual-multi' -- MultiCursor support
 
   -- Code completion plugins
-  use "hrsh7th/nvim-cmp" -- Autocompletion plugin
-  use "hrsh7th/cmp-buffer" -- Buffer completions
-  use "hrsh7th/cmp-path" -- Path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "hrsh7th/nvim-cmp"     -- Autocompletion plugin
+  use "hrsh7th/cmp-buffer"   -- Buffer completions
+  use "hrsh7th/cmp-path"     -- Path completions
+  use "hrsh7th/cmp-cmdline"  -- cmdline completions
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use { -- Completions for Lua nvim api
+  use {                      -- Completions for Lua nvim api
     'hrsh7th/cmp-nvim-lua',
     ft = 'lua'
   }
 
   -- Snippets
-  use "saadparwaiz1/cmp_luasnip" -- Snippet completions
-  use "L3MON4D3/LuaSnip" -- Snippet engine
+  use "saadparwaiz1/cmp_luasnip"     -- Snippet completions
+  use "L3MON4D3/LuaSnip"             -- Snippet engine
   use "rafamadriz/friendly-snippets" -- Snippet library
 
-  use { -- TreeSitter Source Code Parsing
+  use {                              -- TreeSitter Source Code Parsing
     "nvim-treesitter/nvim-treesitter",
     run = function()
       local ts_update = require('nvim-treesitter.install').update({
@@ -97,7 +97,7 @@ return require('packer').startup(function(use)
   -- TODO: Move to standalone only and set up vscode commentary to use Visual Mode selection
   -- See https://github.com/neovim/neovim/issues/19708
   use "numToStr/comment.nvim" -- Easy Comment
-  use { -- Context-aware 'commentstring' setting
+  use {                       -- Context-aware 'commentstring' setting
     "JoosepAlviste/nvim-ts-context-commentstring",
     requires = "nvim-treesitter/nvim-treesitter"
   }
@@ -132,22 +132,27 @@ return require('packer').startup(function(use)
 
   use { -- File explorer
     'kyazdani42/nvim-tree.lua',
+    disable = VSCODE_NVIM,
     requires = { 'kyazdani42/nvim-web-devicons' }
   }
 
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 
+  use { "akinsho/toggleterm.nvim", tag = '*',
+    disable = VSCODE_NVIM,
+  }
+
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     disable = VSCODE_NVIM,
-    requires = { 'williamboman/mason.nvim' --[[ Automatically install LSPs to stdpath for neovim ]] ,
+    requires = { 'williamboman/mason.nvim' --[[ Automatically install LSPs to stdpath for neovim ]],
       'williamboman/mason-lspconfig.nvim' --[[ Using mason with lspconfig ]],
-      'j-hui/fidget.nvim' --[[ Useful status updates for LSP ]] ,
-      'folke/neodev.nvim' --[[ Lua LSP settings for nvim configuration ]] ,
+      'j-hui/fidget.nvim' --[[ Useful status updates for LSP ]],
+      'folke/neodev.nvim' --[[ Lua LSP settings for nvim configuration ]],
     }
   }
 
-  use {  -- Integrate non-LSP sources into nvim LSP
+  use { -- Integrate non-LSP sources into nvim LSP
     'jose-elias-alvarez/null-ls.nvim',
     disable = VSCODE_NVIM,
     reqiuires = { "nvim-lua/plenary.nvim" }

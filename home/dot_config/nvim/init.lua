@@ -15,6 +15,7 @@ if (vim.g.vscode ~= 1) then
   require "lualine".setup {} -- Fancier statusline
   require "user.lsp" -- LSP setup
   require "user.telescope" -- Telescope fuzzyfinding
+  require "user.toggleterm" -- Fancy terminal
   require "user.autopairs" -- Auto pair brackets etc
   require "user.gitsigns" -- Git integration
   require "user.null-ls" -- Code diagnostics/formatting
