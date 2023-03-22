@@ -9,6 +9,11 @@ vim.g.loaded_node_provider = 0
 local VSCODE = vim.g.vscode == 1
 
 require 'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+
   -- A list of parser names, or "all"
   ensure_installed = { "help", "html", "typescript", "tsx", "javascript", "css", "scss", "cpp", "c", "rust", "r",
     "python", "haskell" },
