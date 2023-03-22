@@ -10,7 +10,7 @@ local VSCODE = vim.g.vscode == 1
 
 require 'nvim-treesitter.configs'.setup {
   highlight = {
-    enable = true,
+    enable = not VSCODE,
     additional_vim_regex_highlighting = false,
   },
 
