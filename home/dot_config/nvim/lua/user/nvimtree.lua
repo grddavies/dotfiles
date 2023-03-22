@@ -52,7 +52,7 @@ end
 -- }}}
 
 local config = {
-  disable_netrw = true,
+  disable_netrw = false,
   git = {
     ignore = false,
   },
