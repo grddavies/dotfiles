@@ -1,10 +1,12 @@
-# Load Antigen
-source "$HOME/.config/zsh/antigen.zsh"
+#!/usr/bin/env zsh
+
+# Load Antigen zsh package manager
+source "$ZDOTDIR/antigen.zsh"
 
 # Load antigen config
-antigen init ~/.antigenrc
+antigen init "$ZDOTDIR/.antigenrc"
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of .zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -12,40 +14,27 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Set zsh options
-setopt AUTO_PUSHD
+setopt AUTO_PUSHD     # Push the old directory onto the stack on cd.
 
-# Set env vars
-export EDITOR=nvim
-
-# Add yarn global binaries to PATH
-if [[ `command -v yarn` ]]; then
-  export PATH="$(yarn global bin):$PATH"
-fi
-
+{{ if eq .chezmoi.os "darwin" -}}
 # Add pnpm global binaries to PATH
 if [[ `command -v pnpm` ]]; then
   export PNPM_HOME="/Users/gethin/Library/pnpm"
   export PATH="$PNPM_HOME:$PATH"
 fi
-
-if [ -f ~/.ghcup/env ]; then
-  . ~/.ghcup/env
-fi
+{{- end }}
 
 # Source keybindings
-source "$HOME/.config/zsh/keybindings.zsh"
+source "$ZDOTDIR/keybindings.zsh"
+
+# Configure completions
+source "$ZDOTDIR/completion.zsh"
 
 # Auto suggestions ignore glob
-ZSH_AUTOSUGGEST_HISTORY_IGNORE="git clone *|git commit -m *|git push --force"
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="git clone *|git commit -m *|git push --force|rm *"
 
 # Add user functions to fpath
 fpath=(~/.config/zsh/funcs $fpath )
-
-# Add completions for brew pkgs
-if [[ `type brew &>/dev/null` ]]; then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit; compinit
-fi
 
 # Tag user functions for autoload
 {{ if eq .chezmoi.os "linux" -}}
@@ -58,3 +47,4 @@ autoload -Uz setBrightness
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

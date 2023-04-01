@@ -1,3 +1,20 @@
+# zsh
+export ZDOTDIR=${XDG_CONFIG_HOME:-${HOME}/.config}/zsh
+export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
+export HISTSIZE=10000                   # Maximum events for internal history
+export SAVEHIST=10000                   # Maximum events in history file
+
+# Editing
+export EDITOR=nvim
+export VISUAL=nvim
+export MANPAGER='nvim +Man!'
+
+# Rust
+[[ ! -f "$HOME/.cargo/env"  ]] || source "$HOME/.cargo/env"
+
+# Haskell
+[[ ! -f "$HOME/.ghcup/env"  ]] || source "$HOME/.ghcup/env"
+
 {{ if eq .chezmoi.os "linux" -}}
 # Set PATH, MANPATH, etc., for Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
