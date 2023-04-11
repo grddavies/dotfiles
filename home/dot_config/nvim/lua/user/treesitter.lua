@@ -15,7 +15,7 @@ require 'nvim-treesitter.configs'.setup {
   },
 
   -- A list of parser names, or "all"
-  ensure_installed = { "help", "html", "typescript", "tsx", "javascript", "css", "scss", "cpp", "c", "rust", "r",
+  ensure_installed = { "vimdoc", "html", "typescript", "tsx", "javascript", "css", "scss", "cpp", "c", "rust", "r",
     "python", "haskell" },
 
   -- Incremental text selection based on the named nodes from the parse tree
