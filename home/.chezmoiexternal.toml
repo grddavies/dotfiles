@@ -6,10 +6,9 @@
 
 # Install asdf environment manager
 [".asdf"]
-    type = "git-repo"
-    url = "git@github.com:asdf-vm/asdf.git"
-    [".asdf".clone]
-    args = ["--branch", "v0.11.2"]
+    type = "archive"
+    url = "https://github.com/asdf-vm/asdf/archive/refs/tags/v0.11.3.tar.gz"
+    stripComponents = 1
 
 {{- if .fonts }}
 # Install Fonts to os-specific location
@@ -23,25 +22,25 @@
 # FiraCode NF
 ["{{ $fontDir }}/FiraCodeNF"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip"
     include = [ "Fira*Complete.ttf" ]
 
 # CaskaydiaCove NF
 ["{{ $fontDir }}/CaskaydiaCoveNF"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CascadiaCode.zip"
     include = [ "*Complete.ttf", "*Mono.ttf" ]
 
 # Ubuntu NF
 ["{{ $fontDir }}/UbuntuNF"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Ubuntu.zip"
     include = [ "*Complete.ttf", "*Mono.ttf" ]
 
 # Nerd Font Symbols Only
 ["{{ $fontDir }}/NerdFontGlyphs"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/2.2.0-RC/NerdFontsSymbolsOnly.zip"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/NerdFontsSymbolsOnly.zip"
     include = ["*.ttf"]
 
 # FiraCode
