@@ -29,7 +29,7 @@
 ["{{ $fontDir }}/CaskaydiaCoveNF"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CascadiaCode.zip"
-    include = [ "*Complete.ttf", "*Mono.ttf" ]
+    include = [ "*.otf" ]
 
 # Ubuntu NF
 ["{{ $fontDir }}/UbuntuNF"]
