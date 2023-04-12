@@ -64,6 +64,12 @@
     "args": "<Space>p",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
+  // ### Telescope Maps
+  {
+    "key": "space s f",
+    "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert "
+  },
   // ### TreeSitter incremental selection
   {
     // Init selection
@@ -121,7 +127,6 @@
   },
   {
     // Go to Definition
-    // FIXME: also sends 'd' command!
     "key": "space g d",
     "command": "editor.action.revealDefinition",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
@@ -141,6 +146,11 @@
     "key": "shift+alt+f",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  },
+  {
+    "key": "space c a",
+    "command": "editor.action.quickFix",
+    "when": "neovim.init && neovim.mode != insert && editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   // ### End LSP
   {
