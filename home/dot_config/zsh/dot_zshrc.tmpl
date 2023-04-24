@@ -1,17 +1,17 @@
 #!/usr/bin/env zsh
 
-# Load Antigen zsh package manager
-source "$ZDOTDIR/antigen.zsh"
-
-# Load antigen config
-antigen init "$ZDOTDIR/.antigenrc"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of .zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# Load Antigen zsh package manager
+source "$ZDOTDIR/antigen.zsh"
+
+# Load antigen config
+antigen init "$ZDOTDIR/.antigenrc"
 
 # Set zsh options
 setopt AUTO_PUSHD     # Push the old directory onto the stack on cd.
@@ -24,6 +24,9 @@ if [[ `command -v pnpm` ]]; then
 fi
 {{- end }}
 
+# Load adsf
+source "$HOME/.asdf/asdf.sh"
+
 # Source keybindings
 source "$ZDOTDIR/keybindings.zsh"
 
@@ -34,7 +37,7 @@ source "$ZDOTDIR/completion.zsh"
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="git clone *|git commit -m *|git push --force|rm *"
 
 # Add user functions to fpath
-fpath=(~/.config/zsh/funcs $fpath )
+fpath=(${ZDOTDIR}/funcs $fpath )
 
 # Tag user functions for autoload
 {{ if eq .chezmoi.os "linux" -}}

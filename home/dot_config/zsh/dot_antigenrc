@@ -2,15 +2,13 @@
 antigen use oh-my-zsh
 
 # Load oh-my-zsh plugins
-antigen bundle asdf
 antigen bundle sudo
 antigen bundle ripgrep
 antigen bundle command-not-found
 
 # Load other bundles
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle z-shell/F-Sy-H --branch=main  # zsh syntax hl
-antigen bundle kiurchv/asdf.plugin.zsh
+antigen bundle z-shell/F-Sy-H --branch=main # zsh syntax hl
 
 # Executable completions
 antigen bundle zsh-users/zsh-completions

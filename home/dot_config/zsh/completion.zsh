@@ -7,9 +7,10 @@ if [[ `command -v brew` ]]; then
   fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
 
-fpath=("$ZDOTDIR/completions" $fpath)
+fpath=(${ASDF_DIR}/completions $fpath)
+fpath=(${ZDOTDIR}/completions $fpath)
 
-autoload -Uz compinit; compinit
+autoload -Uz compinit && compinit
 
 # Set completers
 zstyle ':completion:*' completer _extensions _complete _approximate
