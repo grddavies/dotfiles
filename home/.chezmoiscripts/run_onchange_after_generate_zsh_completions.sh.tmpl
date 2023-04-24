@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 # Last run {{ now | date "2006-01" }}
-
+{{ if ne .chezmoi.os "darwin" }}
 docker completion zsh > "$ZDOTDIR/completions/_docker"
+{{ end -}}
 
