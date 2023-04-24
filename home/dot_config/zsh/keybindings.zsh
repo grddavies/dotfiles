@@ -1,3 +1,6 @@
+# vi-mode enabled in plugin
+source "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+
 # Jump fwd/backward words
 # alt+arrows
 bindkey "^[[1;3C" forward-word

@@ -11,7 +11,7 @@
     exact = true
     stripComponents = 1
 
-# Syntax highlighting in the zsh shell
+# Add sudo with Esc-Esc
 [".local/share/zsh/sudo/sudo.plugin.zsh"]
     type = "file"
     url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh"
@@ -32,6 +32,13 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+
+# Vi keybindings for zsh
+[".local/share/zsh/zsh-vi-mode"]
+    type = "archive"
+    url = "https://github.com/jeffreytse/zsh-vi-mode/archive/refs/tags/v0.9.0.tar.gz"
+    exact = true
+    stripComponents = 1
 
 # Install asdf environment manager
 [".asdf"]
