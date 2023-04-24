@@ -1,7 +1,36 @@
-# Install antigen zsh plugin manager
-[".config/zsh/antigen.zsh"]
+# Powerlevel10k zsh prompt theme
+[".local/share/zsh/powerlevel10k"]
+    type = "archive"
+    url = "https://github.com/romkatv/powerlevel10k/archive/v1.17.0.tar.gz"
+    stripComponents = 1
+
+# Syntax highlighting in the zsh shell
+[".local/share/zsh/f-sy-h"]
+    type = "archive"
+    url = "https://github.com/z-shell/F-Sy-H/archive/refs/tags/v1.67.tar.gz"
+    exact = true
+    stripComponents = 1
+
+# Syntax highlighting in the zsh shell
+[".local/share/zsh/sudo/sudo.plugin.zsh"]
     type = "file"
-    url = "https://git.io/antigen"
+    url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh"
+    refreshPeriod = "168h"
+
+# Command suggestions
+[".local/share/zsh/zsh-autosuggestions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+
+# Various completion scripts
+[".local/share/zsh/zsh-completions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-completions/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
     refreshPeriod = "168h"
 
 # Install asdf environment manager
