@@ -4,8 +4,10 @@ zmodload zsh/complist
 
 # Add completions for brew pkgs
 if [[ `command -v brew` ]]; then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
+
+fpath=("$ZDOTDIR/completions" $fpath)
 
 autoload -Uz compinit; compinit
 
