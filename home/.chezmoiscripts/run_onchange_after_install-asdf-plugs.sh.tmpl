@@ -5,54 +5,13 @@
 
 set -u pipefail
 
-echo "Setting up asdf version manager..."
-. $HOME/.asdf/asdf.sh
-
-{{ if eq .chezmoi.os "linux" -}}
-if ! sudo -v; then
-    echo "Password required for installing 'asdf' plugins:"
-fi
-
-# Install some system dependencies
-sudo apt-get -qq update
-
-# python
-sudo apt-get -qq install -y \
-  build-essential \
-  libssl-dev \
-  zlib1g-dev \
-  libbz2-dev \
-  libreadline-dev \
-  libsqlite3-dev \
-  curl \
-  libncursesw5-dev \
-  xz-utils \
-  tk-dev \
-  libxml2-dev \
-  libxmlsec1-dev \
-  libffi-dev \
-  liblzma-dev
-
-# node
-sudo apt-get -qq install dirmngr gpg curl gawk
-{{ end -}}
+source $HOME/.asdf/asdf.sh
 
 ## python ##
-
-# Versions
-asdf plugin-add python
-asdf install python latest latest:3.7
-asdf global python latest
-
-## # See https://github.com/pyenv/pyenv/issues/1889
-## sudo apt-get -qq install clang
-## CC=clang asdf install python 3.7.2
+[[ `command -v asdf python` ]] || asdf plugin-add python
 
 ## nodejs ##
-# Versions
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs latest 18.12.1
-asdf global nodejs latest
+[[ `command -v asdf node` ]] || asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
 # Set local versions using
 # > asdf local <exec> <ver>
