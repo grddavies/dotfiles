@@ -1,0 +1,17 @@
+#!/bin/bash
+
+protected_branches=("master" "main")
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+for branch in "${protected_branches[@]}"; do
+	if [ $current_branch = $branch ]; then
+		read -p "You're about to push to '$branch', is that what you intended? [y|n] " -n 1 -r </dev/tty
+		echo
+		if echo $REPLY | grep -E '^[Yy]$' >/dev/null; then
+			# Run local hook if exists
+			source "${XDG_CONFIG_HOME:-$HOME/.config}/git/hooks/run-local-hook" "${0##*/}"
+			exit $? # push will execute if local-hooks return 0
+		fi
+		exit 1 # push will not execute
+	fi
+done
