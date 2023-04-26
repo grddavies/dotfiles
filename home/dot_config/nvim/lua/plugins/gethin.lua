@@ -27,6 +27,13 @@ return {
     -- Modifying text <({'surroundings'})>
     "kylechui/nvim-surround",
     config = true,
+    event = "VeryLazy",
+  },
+  {
+    -- Text case change and case-smart query replace
+    "grddavies/text-case.nvim",
+    config = true,
+    event = "VeryLazy",
   },
   {
     -- Terminal window
