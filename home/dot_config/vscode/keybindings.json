@@ -113,27 +113,27 @@
     "command": "editor.action.goToReferences",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
-  // Move cursor to next word
+  // ### Move cursor to next word
   {
     "key": "alt+n",
     "command": "editor.action.wordHighlight.next",
-    "### when": "editorTextFocus && hasWordHighlights"
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
   },
   {
     "key": "] ]",
     "command": "editor.action.wordHighlight.next",
-    "when": "editorTextFocus && hasWordHighlights"
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
   },
-  // Move cursor to prev word
+  // ### Move cursor to prev word
   {
     "key": "alt+p",
     "command": "editor.action.wordHighlight.prev",
-    "when": "editorTextFocus && hasWordHighlights"
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
   },
   {
     "key": "[ [",
     "command": "editor.action.wordHighlight.next",
-    "when": "editorTextFocus && hasWordHighlights"
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
   },
   // Format document
   {
