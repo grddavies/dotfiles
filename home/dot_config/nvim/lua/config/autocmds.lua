@@ -13,3 +13,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.api.nvim_buf_set_option(0, "filetype", "jsonc")
   end,
 })
+
+-- Close some additional filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "fugitive",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+})
