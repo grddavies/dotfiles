@@ -5,7 +5,7 @@ local VSCODE_NVIM = vim.g.vscode == 1
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Format buffer (requires user.lsp) {{{
+-- Format buffer {{{
 vim.keymap.set("n", "<A-S-f>", require("lazyvim.plugins.lsp.format").format, { desc = "Format buffer" })
 --}}}
 
@@ -32,24 +32,24 @@ vim.keymap.set("v", "p", '"_dP')
 -- Block Comment With 'Alt+Shift+/'
 if VSCODE_NVIM then
   -- Line Comment with 'Alt+/'
-  -- Insert mode
-  vim.keymap.set("i", "<A-/>", "<Esc>gcca", { remap = true })
   -- Normal Mode
   vim.keymap.set("n", "gcc", "<Plug>VSCodeCommentary")
   vim.keymap.set("n", "<A-/>", "gcc", { remap = true })
   -- Visual Mode
   vim.keymap.set("v", "gc", "'<,'><Plug>VSCodeCommentary")
   vim.keymap.set("v", "<A-/>", "gcgv", { remap = true })
+  -- Insert mode
+  vim.keymap.set("i", "<A-/>", "<Esc>gcca", { remap = true })
 
   -- Block Comment With 'Alt+Shift+/'
-  -- Insert mode [[ block comment a line ]]
-  vim.keymap.set("i", "<A-S-/>", "<Esc>lgbca", { remap = true })
   -- Normal Mode [[ block comment a line ]]
   vim.keymap.set("n", "gbc", "<Plug>VSCodeNotifyVisual('editor.action.blockComment', 1)")
   vim.keymap.set("n", "<A-S-/>", "gbc", { remap = true })
   -- Visual Mode [[ block comment selection ]]
   vim.keymap.set("v", "gb", "<Plug>VSCodeNotifyVisual('editor.action.blockComment', 1)")
   vim.keymap.set("v", "<A-S-/>", "gbgv", { remap = true })
+  -- Insert mode [[ block comment a line ]]
+  vim.keymap.set("i", "<A-S-/>", "<Esc>lgbca", { remap = true })
 else
   -- Standard NeoVim --
   -- Insert Mode

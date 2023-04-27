@@ -18,22 +18,23 @@ return {
     "echasnovski/mini.pairs",
     cond = NOT_VSCODE,
   },
-  -- Disable mini.surround
   {
-    "echasnovski/mini.surround",
-    enabled = false,
+    "mini.comment",
+    cond = NOT_VSCODE,
   },
   {
-    -- Modifying text <({'surroundings'})>
-    "kylechui/nvim-surround",
-    config = true,
-    event = "VeryLazy",
+    "mini.pairs",
+    cond = NOT_VSCODE,
+  },
+  {
+    -- TODO: Find out why 't' text obj isn't working well then reeenable
+    "mini.ai",
+    enabled = false,
   },
   {
     -- Text case change and case-smart query replace
     "grddavies/text-case.nvim",
     config = true,
-    event = "VeryLazy",
   },
   {
     -- Terminal window
@@ -87,6 +88,7 @@ return {
         "html",
         "javascript",
         "json",
+        "jsonc",
         "lua",
         "luadoc",
         "luap",
