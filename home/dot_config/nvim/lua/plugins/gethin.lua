@@ -1,15 +1,27 @@
 -- True when not running inside vscode
 local NOT_VSCODE = vim.g.vscode ~= 1
+
+-- Disable ui plugins under vscode
+local ui = require("lazyvim.plugins.ui")
+for _, plugin in pairs(ui) do
+  plugin["cond"] = NOT_VSCODE
+end
+
 return {
   -- Colourscheme
-  { "rose-pine/neovim", name = "rose-pine" },
+  { "rose-pine/neovim", name = "rose-pine", cond = NOT_VSCODE },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      colorscheme = function()
+        if NOT_VSCODE then
+          require("rose-pine").setup()
+          vim.cmd("colorscheme rose-pine")
+        end
+      end,
     },
   },
-  -- Fugitive
+  --
   {
     "tpope/vim-fugitive",
     cond = NOT_VSCODE,
