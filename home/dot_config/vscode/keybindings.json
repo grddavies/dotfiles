@@ -2,6 +2,7 @@
 // Move this file to the appropriate folder to be used by VSCode
 [
   // ## VSCode-NeoVim only
+  // ### Comment
   {
     // Comment line(s) in vscode-nvim
     "key": "alt+/",
@@ -15,33 +16,23 @@
     "command": "vscode-neovim.send",
     "when": "editorTextFocus && neovim.init",
     "args": "<A-S-/>"
-  },
-  {
-    // Move lines up arrow
-    "key": "alt+up",
-    "command": "vscode-neovim.send",
-    "when": "editorTextFocus && neovim.init",
-    "args": "<A-Up>"
+    // ### Move lines
   },
   {
     // Move lines up k
+    // FIXME: only works for cursor line
+    // Could try calling
+    // "command": "editor.action.moveLinesUpAction",
     "key": "alt+k",
     "command": "vscode-neovim.send",
-    "when": "editorTextFocus && neovim.init",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
     "args": "<A-k>"
-  },
-  {
-    // Move lines down arrow
-    "key": "alt+down",
-    "command": "vscode-neovim.send",
-    "when": "editorTextFocus && neovim.init",
-    "args": "<A-Down>"
   },
   {
     // Move lines down j
     "key": "alt+j",
     "command": "vscode-neovim.send",
-    "when": "editorTextFocus && neovim.init",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
     "args": "<A-j>"
   },
   {
@@ -66,41 +57,26 @@
   },
   // ### Telescope Maps
   {
-    "key": "space s f",
+    "key": "space space",
     "command": "workbench.action.quickOpen",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert "
   },
   // ### TreeSitter incremental selection
   {
-    // Init selection
+    // Init selection / increment node
     "key": "ctrl-space",
     "command": "vscode-neovim.send",
     "args": "<c-space>",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-  },
-  {
-    // Increment node
-    "key": "ctrl-space",
-    "command": "vscode-neovim.send",
-    "args": "<c-space>",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-  },
-  {
-    // Increment scope
-    "key": "ctrl-'",
-    "command": "vscode-neovim.send",
-    "args": "<c-'>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   {
     // Decrement node
-    "key": "ctrl-;",
+    "key": "backspace",
     "command": "vscode-neovim.send",
-    "args": "<c-;>",
+    "args": "<BS>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
-  // ### End Treesitter Incremental selection
-  // ### LSP (keymaps mirrored in nvim)
+  // ### LSP
   {
     // Show hover help
     "key": "shift-k",
@@ -121,7 +97,7 @@
   },
   {
     // Rename symbol
-    "key": "space r n",
+    "key": "space c r",
     "command": "editor.action.rename",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasRenameProvider && !editorReadonly"
   },
@@ -132,35 +108,62 @@
     "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
   },
   {
+    // Go to References
+    "key": "space g r",
+    "command": "editor.action.goToReferences",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+  // ### Move cursor to next word
+  {
     "key": "alt+n",
     "command": "editor.action.wordHighlight.next",
-    "when": "editorTextFocus && hasWordHighlights"
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
   },
   {
-    "key": "alt+shift+n",
+    "key": "] ]",
+    "command": "editor.action.wordHighlight.next",
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
+  },
+  // ### Move cursor to prev word
+  {
+    "key": "alt+p",
     "command": "editor.action.wordHighlight.prev",
-    "when": "editorTextFocus && hasWordHighlights"
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
   },
   {
-    // Format document
+    "key": "[ [",
+    "command": "editor.action.wordHighlight.next",
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
+  },
+  // Format document
+  {
     "key": "shift+alt+f",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
+  {
+    "key": "space c f",
+    "command": "editor.action.formatDocument",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDocumentFormattingProvider && !editorReadonly && !inCompositeEditor"
+  },
+  // Quickfix menu
   {
     "key": "space c a",
     "command": "editor.action.quickFix",
     "when": "neovim.init && neovim.mode != insert && editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   // ### End LSP
-  {
-    // Toggle fold
-    "key": "z a",
-    "command": "editor.toggleFold",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-  },
-  // ## Override VSCode Defaults when using NVim
-  // ### Autocomplete menu navigation with Tab/S-Tab
+
+  // // Toggle fold
+  // {
+  //   // FIXME: Clashes with 'g z a' surrounds chord in nvim
+  //   "key": "z a",
+  //   "command": "editor.toggleFold",
+  //   "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  // },
+
+  // ## Override VSCode default settings when using NVim
+  // ### Autocomplete/snippet menu navigation with Tab/S-Tab
   {
     "key": "tab",
     "command": "-insertBestCompletion",
