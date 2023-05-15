@@ -20,9 +20,6 @@
   },
   {
     // Move lines up k
-    // FIXME: only works for cursor line
-    // Could try calling
-    // "command": "editor.action.moveLinesUpAction",
     "key": "alt+k",
     "command": "vscode-neovim.send",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert",
