@@ -6,3 +6,6 @@
 vim.opt.clipboard = ""
 
 vim.opt.completeopt = "menu,preview,menuone,noselect"
+
+-- Do not unload abandoned buffers (see toggleterm setup https://github.com/akinsho/toggleterm.nvim#setup)
+vim.opt.hidden = true
