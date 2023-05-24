@@ -24,6 +24,8 @@ vim.api.nvim_create_autocmd("FileType", {
   group = augroup("easy_close"),
   pattern = {
     "fugitive",
+    "fugitiveblame",
+    "git",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
