@@ -30,38 +30,12 @@ vim.keymap.set("v", "p", '"_dP')
 -- Comment-toggling {{{
 -- Line Comment with 'Alt+/'
 -- Block Comment With 'Alt+Shift+/'
-if VSCODE_NVIM then
-  -- Line Comment with 'Alt+/'
-  -- Normal Mode
-  vim.keymap.set("n", "gcc", "<Plug>VSCodeCommentary")
-  vim.keymap.set("n", "<A-/>", "gcc", { remap = true })
-  -- Visual Mode
-  vim.keymap.set("v", "gc", "'<,'><Plug>VSCodeCommentary")
-  vim.keymap.set("v", "<A-/>", "gcgv", { remap = true })
-  -- Insert mode
-  vim.keymap.set("i", "<A-/>", "<Esc>gcca", { remap = true })
+vim.keymap.set({ "i", "n" }, "<A-/>", "<Plug>(comment_toggle_linewise_current)", { desc = "Toggle linewise comment" })
+vim.keymap.set({ "i", "n" }, "<A-S-/>", "<Plug>(comment_toggle_blockwise_current)", { desc = "Toggle block comment" })
 
-  -- Block Comment With 'Alt+Shift+/'
-  -- Normal Mode [[ block comment a line ]]
-  vim.keymap.set("n", "gbc", "<Plug>VSCodeNotifyVisual('editor.action.blockComment', 1)")
-  vim.keymap.set("n", "<A-S-/>", "gbc", { remap = true })
-  -- Visual Mode [[ block comment selection ]]
-  vim.keymap.set("v", "gb", "<Plug>VSCodeNotifyVisual('editor.action.blockComment', 1)")
-  vim.keymap.set("v", "<A-S-/>", "gbgv", { remap = true })
-  -- Insert mode [[ block comment a line ]]
-  vim.keymap.set("i", "<A-S-/>", "<Esc>lgbca", { remap = true })
-else
-  -- Standard NeoVim --
-  -- Insert Mode
-  vim.keymap.set("i", "<A-/>", "<Esc>gcca", { remap = true, desc = "Toggle line comment" })
-  vim.keymap.set("i", "<A-S-/>", "<Esc>gbca", { remap = true, desc = "Toggle block comment" })
-  -- Normal Mode
-  vim.keymap.set("n", "<A-/>", "gcc", { remap = true, desc = "Toggle line comment" })
-  vim.keymap.set("n", "<A-S-/>", "gbc", { remap = true, desc = "Toggle block comment" })
-  -- Visual Mode
-  vim.keymap.set("v", "<A-/>", "gcgv", { remap = true, desc = "Toggle line comment" })
-  vim.keymap.set("v", "<A-S-/>", "gbgv", { remap = true, desc = "Toggle block comment" })
-end
+-- TODO: Update keymaps to reselect inner comment text object
+vim.keymap.set("x", "<A-/>", "<Plug>(comment_toggle_linewise_visual)gv", { desc = "Toggle linewise comment" })
+vim.keymap.set("x", "<A-S-/>", "<Plug>(comment_toggle_blockwise_visual)gv", { desc = "Toggle block comment" })
 -- }}}
 
 -- Terminal {{{

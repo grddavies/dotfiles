@@ -1,57 +1,41 @@
--- True when not running inside vscode
-local NOT_VSCODE = vim.g.vscode ~= 1
-
--- Disable ui plugins under vscode
-local ui = require("lazyvim.plugins.ui")
-for _, plugin in pairs(ui) do
-  plugin["cond"] = NOT_VSCODE
-end
-
 return {
   -- Colourscheme
-  { "rose-pine/neovim", name = "rose-pine", cond = NOT_VSCODE },
+  { "rose-pine/neovim", name = "rose-pine" },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = function()
-        if NOT_VSCODE then
-          require("rose-pine").setup()
-          vim.cmd("colorscheme rose-pine")
-        end
-      end,
+      colorscheme = "rose-pine",
     },
   },
   --
   {
     "tpope/vim-fugitive",
-    cond = NOT_VSCODE,
-  },
-  {
-    "echasnovski/mini.pairs",
-    cond = NOT_VSCODE,
   },
   {
     "mini.comment",
-    cond = NOT_VSCODE,
+    enabled = false, -- prefer Comment.nvim
   },
   {
-    "mini.pairs",
-    cond = NOT_VSCODE,
-  },
-  {
-    -- TODO: Find out why 't' text obj isn't working well then reeenable
-    "mini.ai",
-    enabled = false,
+    "numToStr/Comment.nvim",
+    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      return {
+        -- Use treesitter to determine commentstring eg in jsx/tsx files
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+    vscode = true,
   },
   {
     -- Text case change and case-smart query replace
     "grddavies/text-case.nvim",
     config = true,
+    branch = "experimental",
+    vscode = true,
   },
   {
     -- Terminal window
     "akinsho/toggleterm.nvim",
-    cond = NOT_VSCODE,
     version = "*",
     opts = {
       open_mapping = "<C-`>", -- Mimic VSCode keymap
@@ -59,7 +43,6 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    cond = NOT_VSCODE,
     opts = function(_, opts)
       opts.window.mappings = vim.tbl_extend("force", opts.window.mappings, {
         ["l"] = "open",
@@ -70,7 +53,6 @@ return {
   {
     -- Add telescope-fzf-native
     "telescope.nvim",
-    cond = NOT_VSCODE,
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -89,10 +71,10 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      -- Disable treesitter syntax highlighting in VSCode
-      highlight = { enable = NOT_VSCODE },
-      ensure_installed = {
+    dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
+    opts = function(_, opts)
+      -- Ensure parsers for following grammars are installed
+      vim.list_extend(opts.ensure_installed, {
         "bash",
         "c",
         "css",
@@ -117,22 +99,34 @@ return {
         "vim",
         "vimdoc",
         "yaml",
-      },
-    },
+      })
+
+      --  Incremental selection keymaps
+      opts.incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<C-bs>",
+        },
+      }
+    end,
   },
   {
     "nvim-treesitter/playground",
-    cond = NOT_VSCODE,
   },
   -- Disable default <tab> and <s-tab> behavior in LuaSnip
   {
     "L3MON4D3/LuaSnip",
+    vscode = true,
     keys = function()
       return {}
     end,
   },
   {
     "hrsh7th/nvim-cmp",
+    vscode = true,
     dependencies = {
       "hrsh7th/cmp-emoji",
     },

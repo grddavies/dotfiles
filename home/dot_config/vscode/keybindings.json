@@ -16,8 +16,8 @@
     "command": "vscode-neovim.send",
     "when": "editorTextFocus && neovim.init",
     "args": "<A-S-/>"
-    // ### Move lines
   },
+  // ### Move lines
   {
     // Move lines up k
     "key": "alt+k",
@@ -56,6 +56,16 @@
   {
     "key": "space space",
     "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert "
+  },
+  {
+    "key": "space /",
+    "command": "workbench.action.findInFiles",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert "
+  },
+  {
+    "key": "space s s",
+    "command": "workbench.action.gotoSymbol",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert "
   },
   // ### TreeSitter incremental selection
