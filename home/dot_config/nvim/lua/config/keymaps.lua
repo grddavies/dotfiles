@@ -1,6 +1,4 @@
 -- vim: foldmethod=marker
-local VSCODE_NVIM = vim.g.vscode == 1
-
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -25,17 +23,6 @@ vim.keymap.set("v", "<leader>p", '"+p', { desc = "[P]ut from system clipboard" }
 
 -- When putting in visual mode keep replaced text in "*
 vim.keymap.set("v", "p", '"_dP')
--- }}}
-
--- Comment-toggling {{{
--- Line Comment with 'Alt+/'
--- Block Comment With 'Alt+Shift+/'
-vim.keymap.set({ "i", "n" }, "<A-/>", "<Plug>(comment_toggle_linewise_current)", { desc = "Toggle linewise comment" })
-vim.keymap.set({ "i", "n" }, "<A-S-/>", "<Plug>(comment_toggle_blockwise_current)", { desc = "Toggle block comment" })
-
--- TODO: Update keymaps to reselect inner comment text object
-vim.keymap.set("x", "<A-/>", "<Plug>(comment_toggle_linewise_visual)gv", { desc = "Toggle linewise comment" })
-vim.keymap.set("x", "<A-S-/>", "<Plug>(comment_toggle_blockwise_visual)gv", { desc = "Toggle block comment" })
 -- }}}
 
 -- Terminal {{{

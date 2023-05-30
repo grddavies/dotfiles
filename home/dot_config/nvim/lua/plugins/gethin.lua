@@ -12,17 +12,18 @@ return {
     "tpope/vim-fugitive",
   },
   {
-    "mini.comment",
-    enabled = false, -- prefer Comment.nvim
-  },
-  {
     "numToStr/Comment.nvim",
     dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+    keys = {
+      { "<A-/>", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle linewise comment" },
+      { "<A-S-/>", "<Plug>(comment_toggle_blockwise_current)", desc = "Toggle block comment" },
+    },
     config = function()
-      return {
+      require("Comment").setup({
         -- Use treesitter to determine commentstring eg in jsx/tsx files
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      }
+        mappings = false, -- Disable all mappings, use mini.comment for gc, gcc and gc text object
+      })
     end,
     vscode = true,
   },
