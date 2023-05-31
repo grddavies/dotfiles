@@ -21,7 +21,7 @@ vim.keymap.set("v", "<leader>Y", '"+Y', { desc = "[Y]ank from cursor to eol into
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "[P]ut from system clipboard" })
 vim.keymap.set("v", "<leader>p", '"+p', { desc = "[P]ut from system clipboard" })
 
--- When putting in visual mode keep replaced text in "*
+-- When putting in visual mode keep replaced text in "_ register
 vim.keymap.set("v", "p", '"_dP')
 -- }}}
 

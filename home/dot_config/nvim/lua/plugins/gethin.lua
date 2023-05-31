@@ -12,11 +12,51 @@ return {
     "tpope/vim-fugitive",
   },
   {
+    "mini.comment",
+    keys = {
+      {
+        "<A-/>",
+        "gcgv",
+        mode = { "v" },
+        remap = true,
+        desc = "Toggle linewise comment",
+      },
+    },
+  },
+  {
     "numToStr/Comment.nvim",
     dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
     keys = {
-      { "<A-/>", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle linewise comment" },
-      { "<A-S-/>", "<Plug>(comment_toggle_blockwise_current)", desc = "Toggle block comment" },
+      -- Normal/insert mode toggle line
+      {
+        "<A-/>",
+        function()
+          require("Comment.api").toggle.linewise.current()
+        end,
+        mode = { "i", "n" },
+        desc = "Toggle linewise comment",
+      },
+      {
+        "<A-S-/>",
+        function()
+          require("Comment.api").toggle.blockwise.current()
+        end,
+        mode = { "i", "n" },
+        desc = "Toggle block comment",
+      },
+      {
+        "<A-S-/>",
+        function()
+          local api = require("Comment.api")
+          local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+          vim.api.nvim_feedkeys(esc, "nx", false)
+          api.locked("toggle.blockwise")(vim.fn.visualmode())
+          vim.api.nvim_feedkeys("gv", "nx", true)
+          -- TODO: Restore visual selection as inside block, so that A-S-/ toggles off again
+        end,
+        mode = { "v" },
+        desc = "Toggle blockwise comment",
+      },
     },
     config = function()
       require("Comment").setup({
