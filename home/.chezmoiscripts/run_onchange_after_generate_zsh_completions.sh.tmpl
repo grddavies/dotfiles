@@ -1,7 +1,11 @@
-#!/bin/zsh
+#!/bin/env zsh
 
 # Last run {{ now | date "2006-01" }}
 {{ if ne .chezmoi.os "darwin" }}
+# Linux only
 docker completion zsh > "$ZDOTDIR/completions/_docker"
 {{ end -}}
+
+rustup completions zsh > "$ZDOTDIR/completions/_rustup"
+rustup completions zsh cargo > "$ZDOTDIR/completions/_cargo"
 
