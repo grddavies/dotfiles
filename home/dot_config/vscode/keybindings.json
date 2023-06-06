@@ -78,9 +78,9 @@
   },
   {
     // Decrement node
-    "key": "backspace",
+    "key": "ctrl-backspace",
     "command": "vscode-neovim.send",
-    "args": "<BS>",
+    "args": "<C-BS>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   // ### LSP
@@ -120,14 +120,15 @@
     "command": "editor.action.goToReferences",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
+  {
+    // Go to Type Definition
+    "key": "space g y",
+    "command": "editor.action.goToTypeDefinition",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+  },
   // ### Move cursor to next word
   {
     "key": "alt+n",
-    "command": "editor.action.wordHighlight.next",
-    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
-  },
-  {
-    "key": "] ]",
     "command": "editor.action.wordHighlight.next",
     "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
   },
@@ -135,11 +136,6 @@
   {
     "key": "alt+p",
     "command": "editor.action.wordHighlight.prev",
-    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
-  },
-  {
-    "key": "[ [",
-    "command": "editor.action.wordHighlight.next",
     "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
   },
   // Format document
