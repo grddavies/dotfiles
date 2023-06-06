@@ -71,26 +71,22 @@
 # FiraCode NF
 ["{{ $fontDir }}/FiraCodeNF"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip"
-    include = [ "Fira*Complete.ttf" ]
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.tar.xz"
 
 # CaskaydiaCove NF
 ["{{ $fontDir }}/CaskaydiaCoveNF"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CascadiaCode.zip"
-    include = [ "*.otf" ]
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.tar.xz"
 
 # Ubuntu NF
 ["{{ $fontDir }}/UbuntuNF"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Ubuntu.zip"
-    include = [ "*Complete.ttf", "*Mono.ttf" ]
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Ubuntu.tar.xz"
 
 # Nerd Font Symbols Only
 ["{{ $fontDir }}/NerdFontGlyphs"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/NerdFontsSymbolsOnly.zip"
-    include = ["*.ttf"]
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/NerdFontsSymbolsOnly.tar.xz"
 
 # FiraCode
 ["{{ $fontDir }}/FiraCode"]
@@ -103,6 +99,7 @@
 ["{{ $fontDir }}/VictorMono"]
     type = "archive"
     url = "https://rubjo.github.io/victor-mono/VictorMonoAll.zip"
+    refreshPeriod = "168h"
     stripComponents = 1
     include = ["*/*.ttf"]
 
