@@ -6,3 +6,7 @@
 .chezmoiscripts/linux/**
 .config/zsh/funcs/setBrightness
 {{ end }}
+
+{{ if not .tidal }}
+.chezmoiscripts/**/*install-tidal*.*
+{{ end }}

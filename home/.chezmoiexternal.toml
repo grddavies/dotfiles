@@ -59,34 +59,53 @@
     type = "file"
     url = "https://raw.githubusercontent.com/samholmes/whiskers/main/whiskers-tokyo.png"
 
+{{ if .tidal -}}
+# Mutable instruments U-gens for tidal
+[".local/share/SuperCollider/Extensions/SC3Plugins"]
+    type = "archive"
+    url = "https://github.com/v7b1/mi-UGens/releases/latest/download/mi-UGens-{{ eq .chezmoi.os "darwin" | ternary "macOS" "Linux" }}.zip"
+    refreshPeriod = "168h"
+[".local/share/SuperCollider/synthdefs/mi-ugens.scd"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/cleary/ansible-tidalcycles-synth-mi-ugens/master/files/mutable-instruments-synthdefs.scd"
+    refreshPeriod = "168h"
+[".local/share/SuperCollider/synthdefs/mi-ugens-params.hs"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/cleary/ansible-tidalcycles-synth-mi-ugens/master/files/mutable-instruments-ugens_parameters.hs"
+    refreshPeriod = "168h"
+{{- end -}}
+
 {{- if .fonts }}
-# Install Fonts to os-specific location
+{{/* Install Fonts to os-specific location */}}
 {{- $fontDir := "" }}
 {{-   if eq .chezmoi.os "darwin" }}
 {{-     $fontDir = "Library/Fonts" }}
 {{-   else if eq .chezmoi.os "linux" }}
 {{-     $fontDir = ".local/share/fonts" }}
 {{-   end }}
-
 # FiraCode NF
 ["{{ $fontDir }}/FiraCodeNF"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.tar.xz"
+    exclude = ["*.md"]
 
 # CaskaydiaCove NF
 ["{{ $fontDir }}/CaskaydiaCoveNF"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.tar.xz"
+    exclude = ["*.md"]
 
 # Ubuntu NF
 ["{{ $fontDir }}/UbuntuNF"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Ubuntu.tar.xz"
+    exclude = ["*.md"]
 
 # Nerd Font Symbols Only
 ["{{ $fontDir }}/NerdFontGlyphs"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/NerdFontsSymbolsOnly.tar.xz"
+    exclude = ["*.md"]
 
 # FiraCode
 ["{{ $fontDir }}/FiraCode"]

@@ -10,6 +10,7 @@
 {{/* boolean feature tags */}}
 {{- $work := promptBool "Is this your work laptop" }}{{/* Use motilent email? */}}
 {{- $fonts := promptBool "Install extra fonts" }}
+{{- $tidal := promptBool "Install tidalcycles extras" }}
 {{- "" -}}
 
 
@@ -18,9 +19,10 @@
 {{- $name := "Gethin Davies" }}
 
 [data]
-    email = "{{ $email }}"
-    name = "{{ $name }}"
+    email = {{ $email | quote }}
+    name = {{ $name | quote }}
     fonts = {{ $fonts }}
+    tidal = {{ $tidal }}
 
 [edit]
     command = "nvim"
