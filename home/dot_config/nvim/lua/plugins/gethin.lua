@@ -7,7 +7,6 @@ return {
       colorscheme = "rose-pine",
     },
   },
-  --
   {
     "tpope/vim-fugitive",
   },
@@ -129,7 +128,6 @@ return {
         "luap",
         "markdown",
         "markdown_inline",
-        "python",
         "query",
         "r",
         "regex",
