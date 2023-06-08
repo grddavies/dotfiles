@@ -1,12 +1,35 @@
 # dotfiles
 
-Selected dotfiles, managed with `chezmoi`
+Selected dotfiles, managed with [chezmoi](https://www.chezmoi.io/)
 
 ## Chezmoi
 
-- Installs packages & software (inc NeoVim & kitty)
+- Manages zsh packages
 - Styles zsh prompt with [powerlevel10k](https://github.com/romkatv/powerlevel10k)
-- Installs Fonts
+- Installs developer tooling for:
+
+  - TypeScript/JavaScript
+  - Python
+  - Rust
+  - Haskell
+
+- Installs [asdf](https://asdf-vm.com/) version manager
+- Installs & configures programming tools:
+
+  - Kitty Terminal
+  - NeoVim
+  - VSCode
+
+- Installs additional software:
+
+  - Notion
+  - Spotify
+
+- Installs Programming Fonts (Optional)
+- Installs and configures [TidalCycles](https://tidalcycles.org/) LiveCoding Environment (Optional - darwin only):
+
+  - Installs and defines [MI-Ugens](https://github.com/v7b1/mi-UGens/)
+  - Adds executable `startdirt` for starting SuperCollider server with custom config
 
 ## NeoVim Config
 

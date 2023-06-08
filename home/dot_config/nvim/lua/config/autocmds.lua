@@ -44,3 +44,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.cmd([[compiler tsc | setlocal makeprg=npm\ exec\ tsc]])
   end,
 })
+
+-- Set .tidal giles to haskell
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup(".tidal_filetype"),
+  pattern = {
+    "*.tidal",
+  },
+  callback = function()
+    vim.api.nvim_buf_set_option(0, "filetype", "haskell")
+  end,
+})

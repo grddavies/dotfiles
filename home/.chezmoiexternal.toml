@@ -69,7 +69,7 @@
     type = "file"
     url = "https://raw.githubusercontent.com/cleary/ansible-tidalcycles-synth-mi-ugens/master/files/mutable-instruments-synthdefs.scd"
     refreshPeriod = "168h"
-[".local/share/SuperCollider/synthdefs/mi-ugens-params.hs"]
+[".config/tidal/hs/mi-ugens-params.hs"]
     type = "file"
     url = "https://raw.githubusercontent.com/cleary/ansible-tidalcycles-synth-mi-ugens/master/files/mutable-instruments-ugens_parameters.hs"
     refreshPeriod = "168h"
