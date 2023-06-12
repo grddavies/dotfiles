@@ -77,6 +77,7 @@ return {
     -- Terminal window
     "akinsho/toggleterm.nvim",
     version = "*",
+    event = "VeryLazy",
     opts = {
       open_mapping = "<C-`>", -- Mimic VSCode keymap
     },

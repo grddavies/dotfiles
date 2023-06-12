@@ -31,7 +31,7 @@ return {
       },
       setup = {
         ruff_lsp = function()
-          require("lazyvim.util").on_attach(function(client, buffer)
+          require("lazyvim.util").on_attach(function(client)
             if client.name == "ruff_lsp" then
               -- Use pyright for hoverProvider
               client.server_capabilities.hoverProvider = false
@@ -41,7 +41,6 @@ return {
       },
     },
   },
-
   -- Setup null-ls with `black`
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -52,5 +51,21 @@ return {
         nls.builtins.formatting.ruff,
       })
     end,
+  },
+  {
+    "Vigemus/iron.nvim",
+    opts = {
+      config = {
+        repl_definition = {
+          python = {
+            -- Can be a table or a function that
+            -- returns a table (see below)
+            -- TODO: Setup matplotlib kitty backend
+            command = { "ipython" },
+          },
+        },
+        optional = true,
+      },
+    },
   },
 }
