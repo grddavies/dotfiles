@@ -62,7 +62,7 @@ return {
             -- returns a table (see below)
             -- TODO: Setup matplotlib kitty backend
             -- Disable autoindent to allow mutliline paste
-            command = { "ipython", "--no-autoindent" },
+            command = { "ipython", "--no-autoindent", "--no-confirm-exit" },
           },
         },
         optional = true,

@@ -6,7 +6,7 @@ return {
     -- Annoying reimplementation of the plugin defaults to override descriptions
     keys = {
       {
-        "<leader>rs",
+        "<leader>rsm",
         function()
           require("iron.core").run_motion("send_motion")
         end,
@@ -20,11 +20,18 @@ return {
         desc = "Send line",
       },
       {
-        "<leader>sb",
+        "<leader>rsb",
         function()
           require("iron.core").send_file()
         end,
         desc = "Send buffer",
+      },
+      {
+        "<leader>rsc",
+        function()
+          require("iron.core").send_until_cursor()
+        end,
+        desc = "Send up to cursor",
       },
       {
         "<S-CR>",
@@ -71,6 +78,7 @@ return {
     opts = {
       defaults = {
         ["<leader>r"] = { name = "+repl" },
+        ["<leader>rs"] = { name = "+repl-send" },
       },
     },
   },
