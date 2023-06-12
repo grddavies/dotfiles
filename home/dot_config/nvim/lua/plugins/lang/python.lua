@@ -61,7 +61,8 @@ return {
             -- Can be a table or a function that
             -- returns a table (see below)
             -- TODO: Setup matplotlib kitty backend
-            command = { "ipython" },
+            -- Disable autoindent to allow mutliline paste
+            command = { "ipython", "--no-autoindent" },
           },
         },
         optional = true,
