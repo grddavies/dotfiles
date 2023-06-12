@@ -6,3 +6,5 @@
 .DS_Store
 # asdf version manager
 .tool-versions
+# Ruff linter
+.ruff.toml
