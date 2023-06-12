@@ -19,6 +19,9 @@ require("lazy").setup({
     -- import/override with your plugins
     { import = "plugins" },
     { import = "plugins.lang.python" },
+    { import = "plugins.lang.haskell" },
+    { import = "plugins.extras.repl" },
+    { import = "plugins.extras.tidalcycles" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
@@ -30,6 +33,7 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
+  dev = { path = "~/code", patterns = { "grddavies" }, fallback = true },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {

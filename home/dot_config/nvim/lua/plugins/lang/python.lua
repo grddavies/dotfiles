@@ -52,6 +52,7 @@ return {
       })
     end,
   },
+  -- IPython REPL integration
   {
     "Vigemus/iron.nvim",
     opts = {

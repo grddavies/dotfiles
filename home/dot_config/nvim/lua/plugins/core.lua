@@ -1,6 +1,7 @@
 return {
   -- Colourscheme
   { "rose-pine/neovim", name = "rose-pine" },
+  { "nyoom-engineering/oxocarbon.nvim", event = "VeryLazy" },
   {
     "LazyVim/LazyVim",
     opts = {
@@ -119,7 +120,6 @@ return {
         "bash",
         "c",
         "css",
-        "haskell",
         "html",
         "javascript",
         "json",
