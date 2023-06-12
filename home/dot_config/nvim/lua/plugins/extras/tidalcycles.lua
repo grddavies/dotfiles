@@ -1,6 +1,7 @@
 return {
   "grddavies/tidal.nvim",
   dependencies = "nvim-treesitter/nvim-treesitter",
+  event = { "BufRead *.tidal", "BufEnter *.tidal" },
   branch = "rewrite",
   opts = {
     boot = {
