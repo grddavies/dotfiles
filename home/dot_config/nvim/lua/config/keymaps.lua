@@ -39,3 +39,7 @@ end
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 -- }}}
+
+-- Fugitive {{{
+vim.keymap.set({ "n" }, "<leader>gf", "<Cmd>G<CR>", { desc = "Fugitive" })
+-- }}}
