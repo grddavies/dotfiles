@@ -9,17 +9,14 @@ vim.keymap.set("n", "<A-S-f>", require("lazyvim.plugins.lsp.format").format, { d
 
 -- Yanks {{{
 -- Yank from cursor to EOL
-vim.keymap.set("n", "Y", "y$", { desc = "Yank from cursor to EOL" })
+vim.keymap.set("n", "Y", "y$", { desc = "Yank to End Of Line" })
 
--- Yank to ctrl-v register
-vim.keymap.set("n", "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
-vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "[Y]ank from cursor to eol into system clipboard" })
-vim.keymap.set("v", "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
-vim.keymap.set("v", "<leader>Y", '"+Y', { desc = "[Y]ank from cursor to eol into system clipboard" })
+-- Yank to system keyboard
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { desc = "[Y]ank to EOL to system clipboard" })
 
--- Put from ctrl-v register
-vim.keymap.set("n", "<leader>p", '"+p', { desc = "[P]ut from system clipboard" })
-vim.keymap.set("v", "<leader>p", '"+p', { desc = "[P]ut from system clipboard" })
+-- Put from system keyboard
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "[P]ut from system clipboard" })
 
 -- When putting in visual mode keep replaced text in "_ register
 vim.keymap.set("v", "p", '"_dP')
