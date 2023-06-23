@@ -9,6 +9,26 @@ return {
     },
   },
   {
+    "folke/edgy.nvim",
+    opts = function(_, opts)
+      vim.list_extend(
+        opts.bottom,
+        {
+          {
+            ft = "fugitive",
+            size = { height = 0.4 },
+            filter = function(_, win)
+              return vim.api.nvim_win_get_config(win).relative == ""
+            end,
+          },
+        }
+      )
+      return vim.tbl_extend("force", opts, {
+        animate = { enabled = false },
+      })
+    end,
+  },
+  {
     "tpope/vim-fugitive",
   },
   {
