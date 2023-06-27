@@ -5,24 +5,21 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      colorscheme = "tokyonight-night",
     },
   },
   {
     "folke/edgy.nvim",
     opts = function(_, opts)
-      vim.list_extend(
-        opts.bottom,
+      vim.list_extend(opts.bottom, {
         {
-          {
-            ft = "fugitive",
-            size = { height = 0.4 },
-            filter = function(_, win)
-              return vim.api.nvim_win_get_config(win).relative == ""
-            end,
-          },
-        }
-      )
+          ft = "fugitive",
+          size = { height = 0.4 },
+          filter = function(_, win)
+            return vim.api.nvim_win_get_config(win).relative == ""
+          end,
+        },
+      })
       return vim.tbl_extend("force", opts, {
         animate = { enabled = false },
       })
@@ -30,6 +27,7 @@ return {
   },
   {
     "tpope/vim-fugitive",
+    event = { "VeryLazy" },
   },
   {
     "mini.comment",
@@ -93,6 +91,7 @@ return {
     config = true,
     branch = "experimental",
     vscode = true,
+    event = { "BufReadPost" },
   },
   {
     -- Terminal window
@@ -172,9 +171,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "nvim-treesitter/playground",
   },
   -- Disable default <tab> and <s-tab> behavior in LuaSnip
   {
