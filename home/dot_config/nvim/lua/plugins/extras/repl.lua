@@ -1,5 +1,4 @@
 return {
-
   {
     -- REPL launcher
     "Vigemus/iron.nvim",
