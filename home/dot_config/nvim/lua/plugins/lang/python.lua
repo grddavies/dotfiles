@@ -1,3 +1,27 @@
+-- https://github.com/neovim/nvim-lspconfig/issues/500#issuecomment-851247107
+local configs = require("lspconfig/configs")
+local util = require("lspconfig/util")
+
+local path = util.path
+
+local function get_python_path(workspace)
+  -- Use activated virtualenv.
+  if vim.env.VIRTUAL_ENV then
+    return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+  end
+
+  -- Find and use virtualenv in workspace directory.
+  for _, pattern in ipairs({ "*", ".*" }) do
+    local match = vim.fn.glob(path.join(workspace, pattern, "pyvenv.cfg"))
+    if match ~= "" then
+      return path.join(path.dirname(match), "bin", "python")
+    end
+  end
+
+  -- Fallback to system Python.
+  return exepath("python3") or exepath("python") or "python"
+end
+
 return {
   -- Install linters & formatters
   {
@@ -26,7 +50,11 @@ return {
     opts = {
       servers = {
         ---@type lspconfig.options.pyright
-        pyright = {},
+        pyright = {
+          on_init = function(client)
+            client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
+          end,
+        },
         ruff_lsp = {},
       },
       setup = {
@@ -69,5 +97,14 @@ return {
         optional = true,
       },
     },
+  },
+  -- Test integration
+  {
+    "nvim-neotest/neotest",
+    dependencies = { "nvim-neotest/neotest-python" },
+    opts = function(_, opts)
+      local adapters = opts.adapters
+      vim.list_extend(adapters, { "neotest-python" })
+    end,
   },
 }
