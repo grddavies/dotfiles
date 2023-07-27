@@ -32,15 +32,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
-
--- Use tsc for :make in typescript projects
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("tsc_quickfix"),
-  pattern = {
-    "typescript",
-    "typescriptreact",
-  },
-  callback = function()
-    vim.cmd([[compiler tsc | setlocal makeprg=npm\ exec\ tsc]])
-  end,
-})

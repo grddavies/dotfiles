@@ -1,5 +1,5 @@
 return {
-  -- Colourscheme
+  -- Colourschemes
   { "rose-pine/neovim", name = "rose-pine" },
   { "nyoom-engineering/oxocarbon.nvim", event = "VeryLazy" },
   {
@@ -114,6 +114,15 @@ return {
   {
     -- Add telescope-fzf-native
     "telescope.nvim",
+    keys = {
+      {
+        "<leader>sy",
+        function()
+          require("telescope.builtin").symbols()
+        end,
+        desc = "Search s[y]mbols",
+      },
+    },
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -123,10 +132,7 @@ return {
         end,
       },
       {
-        "xiyaowong/telescope-emoji.nvim",
-        config = function()
-          require("telescope").load_extension("emoji")
-        end,
+        "nvim-telescope/telescope-symbols.nvim",
       },
     },
   },
