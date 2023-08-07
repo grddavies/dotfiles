@@ -10,8 +10,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 [[ ! -d "$HOME/.local/bin" ]] || PATH="$HOME/.local/bin:$PATH"
 
 # Rust
-[[ ! -f "$HOME/.cargo/env"  ]] || source "$HOME/.cargo/env"
+[[ ! -r "$HOME/.cargo/env"  ]] || source "$HOME/.cargo/env"
 
 # Haskell
-[[ ! -f "$HOME/.ghcup/env"  ]] || source "$HOME/.ghcup/env"
+[[ ! -r "$HOME/.ghcup/env"  ]] || source "$HOME/.ghcup/env"
+
+# Ocaml
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" >/dev/null 2>/dev/null
 
