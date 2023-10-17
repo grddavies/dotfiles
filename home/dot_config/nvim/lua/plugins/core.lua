@@ -22,6 +22,7 @@ return {
       })
       return vim.tbl_extend("force", opts, {
         animate = { enabled = false },
+        options = { left = { size = 40 } },
       })
     end,
   },
@@ -133,13 +134,6 @@ return {
       },
     },
     dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        config = function()
-          require("telescope").load_extension("fzf")
-        end,
-      },
       {
         "nvim-telescope/telescope-symbols.nvim",
       },

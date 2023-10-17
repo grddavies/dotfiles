@@ -1,7 +1,6 @@
 return {
   -- TODO: Use haskell-tools
   -- { "mrcjkb/haskell-tools.nvim" },
-
   -- Install linters & formatters
   {
     "williamboman/mason.nvim",
@@ -21,16 +20,8 @@ return {
       end
     end,
   },
-  -- Set up fourmolu
-  {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources, {
-        nls.builtins.formatting.fourmolu,
-      })
-    end,
-  },
+  -- -- TODO: Set up fourmolu with conform-nvim
+  --
   -- GHCi REPL integration
   {
     "Vigemus/iron.nvim",

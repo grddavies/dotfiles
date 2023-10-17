@@ -4,7 +4,9 @@
 -- Add any additional keymaps here
 
 -- Format buffer {{{
-vim.keymap.set("n", "<A-S-f>", require("lazyvim.plugins.lsp.format").format, { desc = "Format buffer" })
+vim.keymap.set("n", "<A-S-f>", function()
+  require("lazyvim.util").format({ force = true })
+end, { desc = "Format buffer" })
 --}}}
 
 -- Yanks {{{
