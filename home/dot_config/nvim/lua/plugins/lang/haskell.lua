@@ -1,15 +1,16 @@
 return {
-  -- TODO: Use haskell-tools
-  -- { "mrcjkb/haskell-tools.nvim" },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = { hls = { mason = false } },
+    },
+  },
   -- Install linters & formatters
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "fourmolu",
-        "haskell-language-server",
-      })
-    end,
+    opts = {
+      ensure_installed = { "fourmolu" },
+    },
   },
   -- Treesitter syntax highlighting
   {
