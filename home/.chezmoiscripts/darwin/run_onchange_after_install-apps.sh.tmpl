@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -euo pipefail
+
+
+if  ! command -v brew &> /dev/null; then
+    # Requires brew command
+    exit 1
+fi
+
+# Applications
+{{ $casks := list
+     "audacity"
+     "blackhole-16ch"
+     "brave-browser"
+     "dropbox"
+     "inkscape"
+     "kitty"
+     "obsidian"
+     "openvpn-connect"
+     "rekordbox"
+     "signal"
+     "spotify"
+     "the-unarchiver"
+     "transmission"
+     "vcv-rack"
+     "visual-studio-code"
+     "vlc"
+     "whatsapp"
+     "xld" -}}
+
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF

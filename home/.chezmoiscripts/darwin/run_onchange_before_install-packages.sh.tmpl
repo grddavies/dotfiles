@@ -18,6 +18,7 @@ fi
     "git-delta"
     "gnu-sed"
     "jq"
+    "lazygit"
     "less"
     "neofetch"
     "neovim"
@@ -28,32 +29,9 @@ fi
     "zsh"
     -}}
 
-# Applications
-{{ $casks := list
-     "audacity"
-     "blackhole-16ch"
-     "brave-browser"
-     "dropbox"
-     "inkscape"
-     "kitty"
-     "obsidian"
-     "openvpn-connect"
-     "rekordbox"
-     "signal"
-     "spotify"
-     "the-unarchiver"
-     "transmission"
-     "vcv-rack"
-     "visual-studio-code"
-     "vlc"
-     "whatsapp"
-     "xld" -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
-{{ end -}}
-{{ range ($casks | sortAlpha | uniq) -}}
-cask "{{ . }}"
 {{ end -}}
 EOF
