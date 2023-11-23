@@ -29,6 +29,7 @@ return {
     },
   },
   -- Test integration
+  { "nvim-neotest/neotest-python" },
   {
     "nvim-neotest/neotest",
     opts = {
