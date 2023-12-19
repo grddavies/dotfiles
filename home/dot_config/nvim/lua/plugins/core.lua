@@ -88,9 +88,8 @@ return {
   },
   {
     -- Text case change and case-smart query replace
-    "grddavies/text-case.nvim",
+    "johmsalas/text-case.nvim",
     config = true,
-    branch = "experimental",
     vscode = true,
     event = { "BufReadPost" },
   },
