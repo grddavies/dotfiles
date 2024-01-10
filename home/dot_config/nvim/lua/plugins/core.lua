@@ -1,6 +1,6 @@
 return {
   -- Colourschemes
-  { "rose-pine/neovim", name = "rose-pine" },
+  { "rose-pine/neovim", name = "rose-pine", tag = "v1.2.2" },
   { "nyoom-engineering/oxocarbon.nvim", event = "VeryLazy" },
   {
     "LazyVim/LazyVim",
