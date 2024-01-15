@@ -87,13 +87,6 @@ return {
     vscode = true,
   },
   {
-    -- Text case change and case-smart query replace
-    "johmsalas/text-case.nvim",
-    config = true,
-    vscode = true,
-    event = { "BufReadPost" },
-  },
-  {
     -- Terminal window
     "akinsho/toggleterm.nvim",
     version = "*",
