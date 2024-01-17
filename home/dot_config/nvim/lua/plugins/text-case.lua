@@ -35,7 +35,11 @@ return {
           lsp_rename = keymapping_definition.lsp_rename,
         })
       end
-      require("telescope").load_extension("textcase")
+      -- No telescope in vscode
+      local telescope_ok, telescope = pcall(require, "telescope")
+      if telescope_ok then
+        telescope.load_extension("textcase")
+      end
     end,
     event = { "BufReadPost" },
     vscode = true,
