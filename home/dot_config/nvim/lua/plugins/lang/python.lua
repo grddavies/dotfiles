@@ -7,6 +7,7 @@ return {
         "pyright",
         "black",
         "ruff",
+        "ruff-lsp",
       })
     end,
   },
