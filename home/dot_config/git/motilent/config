@@ -1,0 +1,8 @@
+# vi: ft=gitconfig
+[user]
+  email = "gethin.davies@motilent.co.uk"
+
+[core]
+  # We override the identity agent to use our motilent key, even if the ssh-agent
+  # has an entry for the host we are connecting to.
+  sshCommand = "ssh -i ~/.ssh/motilent/id_ed25519 -o IdentityAgent=none"

@@ -1,16 +1,14 @@
 [user]
-# Specify the email address of the author/committer.
-  email = "{{ .email }}"
-# Specify the username of the author/committer.
-  name = "{{ .name }}"
+  email = "grd.davies@gmail.com"
+  name = "Gethin Davies"
 
 [core]
   editor = nvim
   pager = delta
-    excludesfile = ~/.config/git/.gitignore
-  ; Editing the hooksPath masks local hooks!
-  ; hooksPath = ~/.config/git/hooks
+  excludesfile = ~/.config/git/.gitignore
   templateDir = ~/.config/git/template-dir
+  sshCommand = "ssh -i ~/.ssh/id_ed25519"
+
 
 [init]
   defaultBranch = main
@@ -35,4 +33,6 @@
 [diff]
   colorMoved = default
 
-
+# Will override settings above
+[includeIf "gitdir:~/motilent/"]
+  path = ~/.config/git/motilent/config

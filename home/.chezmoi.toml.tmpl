@@ -8,19 +8,10 @@
 # {{- /* This file supports Go's text/template language. */}}
 
 {{/* boolean feature tags */}}
-{{- $work := promptBool "Is this your work laptop" }}{{/* Use motilent email? */}}
 {{- $fonts := promptBool "Install extra fonts" }}
 {{- $tidal := promptBool "Install tidalcycles extras" }}
-{{- "" -}}
-
-
-{{/* init data */}}
-{{- $email := $work | ternary "gethin.davies@motilent.co.uk" "grd.davies@gmail.com" }}
-{{- $name := "Gethin Davies" }}
 
 [data]
-    email = {{ $email | quote }}
-    name = {{ $name | quote }}
     fonts = {{ $fonts }}
     tidal = {{ $tidal }}
 
