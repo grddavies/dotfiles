@@ -17,6 +17,9 @@
   default = simple
   autoSetupRemote = true
 
+[branch]
+  sort = -committerdate
+
 [interactive]
   diffFilter = delta --color-only
   [add.interactive]
