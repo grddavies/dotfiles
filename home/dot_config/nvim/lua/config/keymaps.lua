@@ -25,7 +25,7 @@ vim.keymap.set("v", "p", '"_dP')
 -- }}}
 
 -- Terminal {{{
---
+
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
   vim.keymap.set("t", "<C-Esc>", [[<C-\><C-n>]], opts)

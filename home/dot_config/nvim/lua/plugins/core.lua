@@ -1,11 +1,22 @@
 return {
+  --- UI
   -- Colourschemes
-  { "rose-pine/neovim", name = "rose-pine", tag = "v1.2.2" },
+  { "rose-pine/neovim", name = "rose-pine" },
   { "nyoom-engineering/oxocarbon.nvim", event = "VeryLazy" },
+  -- default theme
   {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "rose-pine",
+    },
+  },
+  -- Layout
+  {
+    "lualine.nvim",
+    opts = {
+      options = {
+        section_separators = { left = "", right = "" },
+      },
     },
   },
   {
@@ -26,6 +37,16 @@ return {
       })
     end,
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = function(_, opts)
+      opts.window.mappings = vim.tbl_extend("force", opts.window.mappings, {
+        ["l"] = "open",
+        ["h"] = "close_node",
+      })
+    end,
+  },
+  --- Coding
   {
     "tpope/vim-fugitive",
     event = { "VeryLazy" },
@@ -78,6 +99,7 @@ return {
       },
     },
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("Comment").setup({
         -- Use treesitter to determine commentstring eg in jsx/tsx files
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
@@ -85,24 +107,6 @@ return {
       })
     end,
     vscode = true,
-  },
-  {
-    -- Terminal window
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    event = "VeryLazy",
-    opts = {
-      open_mapping = "<C-`>", -- Mimic VSCode keymap
-    },
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = function(_, opts)
-      opts.window.mappings = vim.tbl_extend("force", opts.window.mappings, {
-        ["l"] = "open",
-        ["h"] = "close_node",
-      })
-    end,
   },
   {
     -- Add telescope-fzf-native
@@ -160,8 +164,7 @@ return {
         "vimdoc",
         "yaml",
       })
-
-      --  Incremental selection keymaps
+      -- Incremental selection keymaps
       opts.incremental_selection = {
         enable = true,
         keymaps = {
@@ -173,7 +176,7 @@ return {
       }
     end,
   },
-  -- Disable default <tab> and <s-tab> behavior in LuaSnip
+  -- Disable default <Tab> and <S-Tab> behavior in LuaSnip
   {
     "L3MON4D3/LuaSnip",
     vscode = true,
@@ -221,7 +224,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<CR>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
       })
     end,
   },
