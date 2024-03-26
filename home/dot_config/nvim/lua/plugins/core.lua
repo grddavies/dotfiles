@@ -1,9 +1,25 @@
 return {
   --- UI
   -- Colourschemes
-  { "rose-pine/neovim", name = "rose-pine" },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      enable = { legacy_highlights = false },
+      before_highlight = function(group, highlight, palette)
+        if highlight.bold then
+          highlight.bold = false
+        end
+      end,
+      highlight_groups = {
+        DashboardKey = { fg = "gold" },
+        DashboardIcon = { fg = "pine" },
+        ["@tag.tsx"] = { fg = "rose" },
+      },
+    },
+  },
   { "nyoom-engineering/oxocarbon.nvim", event = "VeryLazy" },
-  -- default theme
+  -- Set default colorscheme
   {
     "LazyVim/LazyVim",
     opts = {
