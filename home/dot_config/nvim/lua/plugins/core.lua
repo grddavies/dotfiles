@@ -55,12 +55,19 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    opts = function(_, opts)
-      opts.window.mappings = vim.tbl_extend("force", opts.window.mappings, {
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = true,
+        },
+      },
+      window = { mappings = {
         ["l"] = "open",
         ["h"] = "close_node",
-      })
-    end,
+      } },
+    },
   },
   --- Coding
   {
