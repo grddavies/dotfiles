@@ -5,9 +5,11 @@
 
 -- Format buffer {{{
 vim.keymap.set("n", "<A-S-f>", function()
-  require("lazyvim.util").format({ force = true })
+  LazyVim.format({ force = true })
 end, { desc = "Format buffer" })
 --}}}
+
+vim.keymap.set("n", "<leader>c<space>", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
 
 -- Yanks {{{
 -- Yank from cursor to EOL
