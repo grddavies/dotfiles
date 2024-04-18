@@ -46,6 +46,9 @@ autoload -Uz setBrightness
 {{ end -}}
 # End autoload
 
+# Set up fzf key bindings and fuzzy completion (requires fzf >= 0.48)
+source "$ZDOTDIR/fzf.zsh"
+
 # Powerlevel10k
 source "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 
