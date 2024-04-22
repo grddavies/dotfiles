@@ -33,6 +33,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Cmd Window Keymaps
+vim.api.nvim_create_autocmd({ "CmdwinEnter" }, {
+  group = augroup("cmdwin"),
+  callback = function()
+    vim.keymap.set("n", "<esc>", "<cmd>close<CR>", { buffer = true, silent = true })
+  end,
+})
+
 -- Terminal keymaps
 vim.api.nvim_create_autocmd("TermOpen", {
   group = augroup("terminal"),
