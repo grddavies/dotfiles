@@ -9,8 +9,6 @@ vim.keymap.set("n", "<A-S-f>", function()
 end, { desc = "Format buffer" })
 --}}}
 
-vim.keymap.set("n", "<leader>c<space>", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
-
 -- Yanks {{{
 -- Yank from cursor to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to End Of Line" })

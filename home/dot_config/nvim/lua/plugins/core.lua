@@ -2,6 +2,9 @@ return {
   --- UI
   -- Colourschemes
   {
+    "rebelot/kanagawa.nvim",
+  },
+  {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
@@ -70,6 +73,14 @@ return {
     },
   },
   --- Coding
+  {
+    "neovim/nvim-lspconfig",
+    init = function()
+      -- Modify default LSP keymaps
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "<leader>c<leader>", "<cmd>LspRestart<cr>", desc = "Restart LSP" }
+    end,
+  },
   {
     "tpope/vim-fugitive",
     event = { "VeryLazy" },
