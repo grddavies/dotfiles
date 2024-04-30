@@ -156,15 +156,29 @@
     "when": "neovim.init && neovim.mode != insert && editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   // ### End LSP
-
-  // // Toggle fold
-  // {
-  //   // FIXME: Clashes with 'g z a' surrounds chord in nvim
-  //   "key": "z a",
-  //   "command": "editor.toggleFold",
-  //   "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-  // },
-
+  // ### Git
+  {
+    "key": "space g h r",
+    "command": "git.revertSelectedRanges",
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && !operatinInProgress"
+  },
+  {
+    "key": "space g h s",
+    "command": "git.stageSelectedRanges",
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && !operatinInProgress"
+  },
+  {
+    "key": "space g h u",
+    "command": "git.unstageSelectedRanges",
+    "when": "neovim.init && neovim.mode != insert && editorTextFocus && !operatinInProgress"
+  },
+  // End Git
+  // Toggle fold
+  {
+    "key": "z a",
+    "command": "editor.toggleFold",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
   // ## Override VSCode default settings when using NVim
   // ### Autocomplete/snippet menu navigation with Tab/S-Tab
   {
