@@ -2,6 +2,11 @@
 
 Selected dotfiles, managed with [chezmoi](https://www.chezmoi.io/)
 
+## Supports OSs
+
+* macOS
+* linux
+
 ## Chezmoi
 
 - Manages zsh packages
@@ -20,13 +25,8 @@ Selected dotfiles, managed with [chezmoi](https://www.chezmoi.io/)
   - NeoVim
   - VSCode
 
-- Installs additional software:
-
-  - Notion
-  - Spotify
-
 - Installs Programming Fonts (Optional)
-- Installs and configures [TidalCycles](https://tidalcycles.org/) LiveCoding Environment (Optional - darwin only):
+- Installs and configures [TidalCycles](https://tidalcycles.org/) LiveCoding Environment (Optional):
 
   - Installs and defines [MI-Ugens](https://github.com/v7b1/mi-UGens/)
   - Adds executable `startdirt` for starting SuperCollider server with custom config
@@ -34,8 +34,4 @@ Selected dotfiles, managed with [chezmoi](https://www.chezmoi.io/)
 ## NeoVim Config
 
 - Customised [LazyVim](https://www.lazyvim.org/) config
-- Git integration with [fugitive.vim](https://github.com/tpope/vim-fugitive)
-- Terminal window with [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
-- Smart comment toggling with [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-- Text case toggling with text-case.nvim
-- More...
+- See [here](./home/dot_config/nvim)
