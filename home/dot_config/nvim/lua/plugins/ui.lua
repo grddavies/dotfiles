@@ -14,6 +14,10 @@ return {
         end
       end,
       highlight_groups = {
+        Visual = { bg = "pine", blend = 40 },
+        IlluminatedWordText = { bg = "highlight_med", blend = 20 },
+        IlluminatedWordRead = { bg = "highlight_med", blend = 20 },
+        IlluminatedWordWrite = { bg = "highlight_med", blend = 20 },
         DashboardHeader = { fg = "iris" },
         DashboardKey = { fg = "gold" },
         DashboardIcon = { fg = "pine" },
