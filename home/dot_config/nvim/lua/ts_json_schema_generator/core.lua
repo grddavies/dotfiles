@@ -8,7 +8,8 @@ function M.generate_schema(symbol, opts)
 
   local bufname = vim.api.nvim_buf_get_name(0)
   local cmd = opts.cmd or "ts-json-schema-generator"
-  local args = { "--path", bufname, "--type", symbol }
+  -- TODO: Smarter find tsconfig
+  local args = { "--path", bufname, "--type", symbol, "--tsconfig", "tsconfig.json" }
 
   if not opts.type_check then
     table.insert(args, 5, "--no-type-check")
