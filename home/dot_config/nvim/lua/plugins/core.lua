@@ -14,13 +14,18 @@ return {
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       keys[#keys + 1] = { "<leader>c<leader>", "<cmd>LspRestart<cr>", desc = "Restart LSP" }
     end,
+    opts = {
+      -- Disable inlay hints by default, can be enabled with <leader>uh
+      inlay_hints = { enabled = false },
+    },
   },
   {
     "tpope/vim-fugitive",
     event = { "VeryLazy" },
   },
   {
-    "mini.comment",
+    -- TODO: Update comment system for nvim 10.x
+    "echasnovski/mini.comment",
     keys = {
       {
         "<A-/>",
