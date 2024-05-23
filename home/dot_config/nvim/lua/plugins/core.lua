@@ -8,6 +8,16 @@ return {
   },
   --- Coding
   {
+    "folke/which-key.nvim",
+    opts = {
+      -- Disable in vim ft to prevent crash in cmd window
+      -- See <https://github.com/folke/which-key.nvim/issues/558>
+      disable = {
+        filetypes = { "vim" },
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     init = function()
       -- Modify default LSP keymaps
