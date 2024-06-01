@@ -9,6 +9,12 @@ vim.keymap.set("n", "<A-S-f>", function()
 end, { desc = "Format buffer" })
 --}}}
 
+-- Comment line {{{
+vim.keymap.set({ "i" }, "<A-/>", "<C-o>gcc", { remap = true, desc = "Toggle linewise comment" })
+vim.keymap.set({ "n" }, "<A-/>", "gcc", { remap = true, desc = "Toggle linewise comment" })
+vim.keymap.set({ "v" }, "<A-/>", "gcgv", { remap = true, desc = "Toggle linewise comment" })
+--}}}
+
 -- Yanks {{{
 -- Yank from cursor to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to End Of Line" })

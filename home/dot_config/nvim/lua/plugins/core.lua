@@ -34,31 +34,10 @@ return {
     event = { "VeryLazy" },
   },
   {
-    -- TODO: Update comment system for nvim 10.x
-    "echasnovski/mini.comment",
-    keys = {
-      {
-        "<A-/>",
-        "gcgv",
-        mode = { "v" },
-        remap = true,
-        desc = "Toggle linewise comment",
-      },
-    },
-  },
-  {
     "numToStr/Comment.nvim",
     dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
     keys = {
       -- Normal/insert mode toggle line
-      {
-        "<A-/>",
-        function()
-          require("Comment.api").toggle.linewise.current()
-        end,
-        mode = { "i", "n" },
-        desc = "Toggle linewise comment",
-      },
       {
         "<A-S-/>",
         function()
@@ -70,6 +49,7 @@ return {
       {
         "<A-S-/>",
         function()
+          -- FIXME: This is a bit broken, and not actually that useful
           local api = require("Comment.api")
           local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
           vim.api.nvim_feedkeys(esc, "nx", false)
