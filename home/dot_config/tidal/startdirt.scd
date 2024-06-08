@@ -17,7 +17,9 @@ s.waitForBoot {
     // Load mi-ugens synthdefs
     (Platform.userAppSupportDir +/+ "synthdefs" +/+ "mi-ugens.scd").load;
 
-    ~dirt.loadSoundFiles; // load samples (path containing a wildcard can be passed in)
+    ~dirt.loadSoundFiles;
+    // Load additional samples from ~/Music/Dirt/samples/
+    ~dirt.loadSoundFiles(Platform.userHomeDir +/+ "Music" +/+ "Dirt" +/+ "samples" +/+ "*");
     // for example: ~dirt.loadSoundFiles("/Users/myUserName/Dirt/samples/*");
     // s.sync; // optionally: wait for samples to be read
     ~dirt.start(57120, 0 ! 12); // start listening on port 57120, create two busses each sending audio to channel 0
