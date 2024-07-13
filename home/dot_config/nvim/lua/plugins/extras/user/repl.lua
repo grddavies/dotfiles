@@ -75,9 +75,9 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>r"] = { name = "+repl" },
-        ["<leader>rs"] = { name = "+repl-send" },
+      spec = {
+        { "<leader>r", group = "repl" },
+        { "<leader>rs", group = "repl-send" },
       },
     },
   },

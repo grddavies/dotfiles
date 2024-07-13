@@ -47,8 +47,8 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        [keymap_prefix] = { name = "+change-case" },
+      spec = {
+        { keymap_prefix, group = "change-case" },
       },
     },
   },
