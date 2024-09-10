@@ -4,7 +4,7 @@ export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
 
-_FZF_PREVIEW_DIR="eza --tree --color=always {} | head -200"
+_FZF_PREVIEW_DIR="eza --tree --level 1 --color=always {} | head -200"
 _FZF_PREVIEW_FILE="bat -n --color=always --line-range :500 {}"
 _FZF_PREVIEW_CONDITIONAL="[ -d {} ] && $_FZF_PREVIEW_DIR || $_FZF_PREVIEW_FILE"
 
