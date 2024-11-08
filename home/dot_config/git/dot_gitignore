@@ -1,7 +1,3 @@
-# Editor config
-.vscode/
-!.vscode/settings.json
-!.vscode/extensions.json
 # macOS
 .DS_Store
 # asdf version manager
