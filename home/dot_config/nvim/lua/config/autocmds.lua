@@ -12,10 +12,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = {
     ".eslintrc.json",
     "tsconfig.json",
+    "launch.json",
     "keybindings.json", -- vscode keybindings
   },
   callback = function()
-    vim.api.nvim_buf_set_option(0, "filetype", "jsonc")
+    vim.api.nvim_set_option_value("filetype", "jsonc", { buf = 0 })
   end,
 })
 
@@ -49,5 +50,17 @@ vim.api.nvim_create_autocmd("TermOpen", {
   },
   callback = function(event)
     vim.keymap.set("n", "gf", "<C-w>gf", { buffer = event.buf, silent = true })
+  end,
+})
+
+-- Magrittr pipe in R files with alt+>
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("r"),
+  pattern = {
+    "r",
+    "rnoweb",
+  },
+  callback = function()
+    vim.keymap.set("i", "M->", "%>%", { buffer = true, silent = true })
   end,
 })
