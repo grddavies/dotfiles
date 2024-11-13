@@ -4,12 +4,23 @@ Selected dotfiles, managed with [chezmoi](https://www.chezmoi.io/)
 
 ## Supports OSs
 
-* macOS
-* linux
+- macOS
+- linux
 
 ## Chezmoi
 
-- Manages zsh packages
+Secrets are stored in Bitwarden. Requires
+[bitwarden-cli](https://bitwarden.com/help/cli/) to be installed.
+
+Login to bitwarden and set the session variable with:
+
+```sh
+export BW_SESSION=$(bw login $BITWARDEN_EMAIL --raw)
+```
+
+### Features
+
+- Manages [zsh packages](./home/.chezmoiexternal.toml.tmpl)
 - Styles zsh prompt with [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - Installs developer tooling for:
 
@@ -27,7 +38,6 @@ Selected dotfiles, managed with [chezmoi](https://www.chezmoi.io/)
 
 - Installs Programming Fonts (Optional)
 - Installs and configures [TidalCycles](https://tidalcycles.org/) LiveCoding Environment (Optional):
-
   - Installs and defines [MI-Ugens](https://github.com/v7b1/mi-UGens/)
   - Adds executable `startdirt` for starting SuperCollider server with custom config
 

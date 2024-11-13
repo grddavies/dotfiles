@@ -18,3 +18,5 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Ocaml
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" >/dev/null 2>/dev/null
 
+# JIRA Cli (https://github.com/ankitpokhrel/jira-cli)
+export JIRA_API_TOKEN={{ (bitwardenFields "item" "jira.motilent.io").PAT.value }}
