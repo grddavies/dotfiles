@@ -18,9 +18,9 @@ return {
         IlluminatedWordText = { bg = "highlight_med", blend = 20 },
         IlluminatedWordRead = { bg = "highlight_med", blend = 20 },
         IlluminatedWordWrite = { bg = "highlight_med", blend = 20 },
-        DashboardHeader = { fg = "iris" },
-        DashboardKey = { fg = "gold" },
-        DashboardIcon = { fg = "pine" },
+        SnacksDashboardHeader = { fg = "iris" },
+        SnacksDashboardKey = { fg = "gold" },
+        SnacksDashboardIcon = { fg = "pine" },
         ["@tag.tsx"] = { fg = "rose" },
       },
     },
@@ -28,10 +28,11 @@ return {
   { "nyoom-engineering/oxocarbon.nvim", event = "VeryLazy" },
   -- Layout
   {
-    "nvimdev/dashboard-nvim",
+    "folke/snacks.nvim",
     opts = {
-      config = {
-        header = vim.split(string.rep("\n", 8) .. [[
+      dashboard = {
+        preset = {
+          header = [[
       ___           ___           ___           ___                       ___     
      /\__\         /\  \         /\  \         /\__\          ___        /\__\    
     /::|  |       /::\  \       /::\  \       /:/  /         /\  \      /::|  |   
@@ -43,7 +44,8 @@ return {
      |::/  /     \:\ \/__/     \:\/:/  /     \::::/__/    \:\__\          /:/  /  
      /:/  /       \:\__\        \::/  /       ----         \/__/         /:/  /   
      \/__/         \/__/         \/__/                                   \/__/    
-]] .. "\n\n", "\n"),
+]],
+        },
       },
     },
   },
