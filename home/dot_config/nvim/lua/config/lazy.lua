@@ -14,8 +14,9 @@ require("lazy").setup({
       import = "lazyvim.plugins",
       opts = {
         news = {
-          lazyvim = true,
-          neovim = true,
+          -- No news in vscode
+          lazyvim = vim.g.vscode ~= nil,
+          neovim = vim.g.vscode ~= nil,
         },
       },
     },
