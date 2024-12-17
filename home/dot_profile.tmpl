@@ -19,4 +19,4 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" >/dev/null 2>/dev/null
 
 # JIRA Cli (https://github.com/ankitpokhrel/jira-cli)
-export JIRA_API_TOKEN={{ (bitwardenFields "item" "160344e2-5f39-421d-b12e-aedd00b95861").PAT.value }}
+export JIRA_API_TOKEN={{ (rbwFields "160344e2-5f39-421d-b12e-aedd00b95861").PAT.value }}

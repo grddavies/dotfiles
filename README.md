@@ -9,14 +9,8 @@ Selected dotfiles, managed with [chezmoi](https://www.chezmoi.io/)
 
 ## Chezmoi
 
-Secrets are stored in Bitwarden. Requires
-[bitwarden-cli](https://bitwarden.com/help/cli/) to be installed.
-
-Login to bitwarden and set the session variable with:
-
-```sh
-export BW_SESSION=$(bw login $BITWARDEN_EMAIL --raw)
-```
+Secrets are stored in Bitwarden. Config uses
+[rbw](https://github.com/grddavies/rbw) to read secrets from Bitwarden vault
 
 ### Features
 
