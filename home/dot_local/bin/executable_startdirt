@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-sclang ${XDG_CONFIG_HOME:-HOME/.config}/tidal/startdirt.scd
+sclang "${XDG_CONFIG_HOME:-HOME/.config}"/tidal/startdirt.scd
