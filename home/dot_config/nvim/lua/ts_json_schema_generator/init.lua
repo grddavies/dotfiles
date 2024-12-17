@@ -8,6 +8,7 @@ function M.setup()
     group = augroup,
     pattern = {
       "typescript",
+      "typescriptreact",
     },
     callback = function(event)
       vim.api.nvim_buf_create_user_command(event.buf, "GenerateJsonSchema", function()

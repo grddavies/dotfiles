@@ -38,8 +38,8 @@ function M.generate_schema(symbol, opts)
         vim.api.nvim_set_current_buf(bufnr)
         vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, stdout)
         vim.api.nvim_buf_set_name(bufnr, symbol .. ".schema.json")
-        vim.api.nvim_buf_set_option(bufnr, "filetype", "json")
-        vim.api.nvim_buf_set_option(bufnr, "bufhidden", "hide")
+        vim.api.nvim_set_option_value("filetype", "json", { buf = bufnr })
+        vim.api.nvim_set_option_value("bufhidden", "hide", { buf = bufnr })
         log.info("Generate Schema", {
           msg = "Generated schema for: " .. symbol,
         })
