@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echoerr() { echo "$@" 1>&2; }
+
+# Convert kebab-case to SCREAMING_SNAKE_CASE
+convert_to_screaming_snake() {
+  echo "$1" | tr '-' '_' | tr '[:lower:]' '[:upper:]'
+}
+
+# Function to get the next tag index
+get_next_index() {
+  local tag_prefix="$1"
+  local last_tag
+  last_tag=$(git tag --list "$tag_prefix*" | sort -V | tail -n 1)
+
+  if [[ -z "$last_tag" ]]; then
+    echo "001"
+  else
+    local current_index
+    current_index=$(echo "$last_tag" | grep -oE '[0-9]{3}$')
+    printf "%03d" $((10#$current_index + 1))
+  fi
+}
+
+# Function to extract ticket number from the latest commit title
+extract_ticket_number() {
+  local commit_title
+  local ticket_number
+  commit_title=$(git log -1 --pretty=%s)
+  ticket_number=$(echo "$commit_title" | grep -oE '\[([^]]+)\]' | head -n 1 | tr -d '[]')
+
+  if [[ -z "$ticket_number" ]]; then
+    echoerr "No ticket number found in commit title: '$commit_title' "
+    exit 1
+  fi
+  echo "$ticket_number"
+}
+
+# If no args - print usage
+if [[ $# -lt 1 ]]; then
+  echo "Usage: $0 <x.y.z> [--qa] [--dry-run]"
+  exit 1
+fi
+
+# Parse arguments
+TAG_VERSION="$1"
+IS_QA=false
+
+for arg in "$@"; do
+  case $arg in
+  --qa)
+    IS_QA=true
+    ;;
+  esac
+done
+
+# Get the repository directory name
+REPO_NAME=$(basename "$(git rev-parse --show-toplevel)")
+DIR_NAME=$(convert_to_screaming_snake "$REPO_NAME")
+
+if $IS_QA; then
+  TAG_PREFIX="$TAG_VERSION-QA_${DIR_NAME}."
+  NEXT_INDEX=$(get_next_index "$TAG_PREFIX")
+  NEW_TAG="$TAG_PREFIX$NEXT_INDEX"
+  TICKET_NUMBER=$(extract_ticket_number)
+else
+  NEW_TAG="$TAG_VERSION"
+  read -rp "Enter release ticket number: " TICKET_NUMBER
+fi
+
+COMMENT="https://jira.motilent.io/browse/$TICKET_NUMBER"
+
+# Create the tag
+echo "Creating tag: $NEW_TAG"
+cmd="git tag -a $NEW_TAG -m \"$COMMENT\""
+
+while true; do
+  echo "Script will run the following command:"
+  echo "$cmd"
+  read -rp "Proceed? y/n" yn
+  case $yn in
+  [Yy]*)
+    eval "$cmd"
+    break
+    ;;
+  [Nn]*) exit ;;
+  *) echo "Please answer yes or no." ;;
+  esac
+done
