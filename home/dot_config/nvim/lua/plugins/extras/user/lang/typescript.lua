@@ -8,4 +8,15 @@ return {
       vim.list_extend(adapters, { "neotest-jest" })
     end,
   },
+  -- Debugging
+  {
+    "mason-nvim-dap.nvim",
+    opts = function(_, opts)
+      -- add tsx and treesitter
+      vim.list_extend(opts.ensure_installed, {
+        "js",
+        "chrome",
+      })
+    end,
+  },
 }
