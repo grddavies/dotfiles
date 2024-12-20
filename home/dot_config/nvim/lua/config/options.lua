@@ -5,7 +5,7 @@
 -- Do not sync with system clipboard
 vim.opt.clipboard = ""
 
-vim.opt.completeopt = "menu,preview,menuone,noselect"
+vim.opt.completeopt = "menu,preview,menuone"
 
 -- Do not unload abandoned buffers (see toggleterm setup https://github.com/akinsho/toggleterm.nvim#setup)
 vim.opt.hidden = true
