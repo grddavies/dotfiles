@@ -142,11 +142,12 @@ return {
       completion = {
         trigger = {
           -- Prefer C-space to bring up completion menu while snippet is active
+          -- So that you can tab between snippet placeholders
           show_in_snippet = false,
         },
         list = {
           -- This setting ignores vim.opts.completeopt
-          selection = "preselect",
+          selection = { preselect = true, auto_insert = true },
         },
         documentation = {
           window = {
