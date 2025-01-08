@@ -136,6 +136,8 @@ return {
         preset = "enter",
         ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+        ["<C-Up>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-Down>"] = { "scroll_documentation_down", "fallback" },
       },
       completion = {
         trigger = {
