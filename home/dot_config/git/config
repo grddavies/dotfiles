@@ -20,6 +20,9 @@
 [branch]
   sort = -committerdate
 
+[tag]
+ sort = version:refname
+
 [interactive]
   diffFilter = delta --color-only
   [add.interactive]

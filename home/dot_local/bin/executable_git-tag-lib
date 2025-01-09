@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# Git tag a motilent frontend library
+
+set -euo pipefail
+
+source "$(dirname "$0")/git-common.sh"
+
+assert_git_repo
+assert_default_branch
+
+display_usage() {
+  echo "Usage: $0 [--major | --minor | --patch]"
+  exit 1
+}
+
+# Parse input flags
+if [ $# -ne 1 ]; then
+  display_usage
+fi
+
+# Get the latest tag
+LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null)
+
+if [ -z "$LATEST_TAG" ]; then
+  LATEST_TAG="0.0.0"
+fi
+
+NEW_TAG=$(bump_version "$LATEST_TAG" "$1")
+
+echo "Bumping version: $LATEST_TAG -> $NEW_TAG"
+
+TICKET_NUMBER=$(extract_ticket_number)
+COMMENT="https://jira.motilent.io/browse/$TICKET_NUMBER"
+
+git tag "$NEW_TAG" -m "$COMMENT"

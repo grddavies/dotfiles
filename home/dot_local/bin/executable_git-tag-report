@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
-
+#
+# Git tag a motilent report plugin
 set -euo pipefail
 
-echoerr() { echo "$@" 1>&2; }
+source "$(dirname "$0")/git-common.sh"
 
 # Convert kebab-case to SCREAMING_SNAKE_CASE
 convert_to_screaming_snake() {
   echo "$1" | tr '-' '_' | tr '[:lower:]' '[:upper:]'
 }
 
-# Function to get the next tag index
+# Function to get the next pre-release index for a report version
+# Args:
+# tag_prefix: X.Y.X-QA_REPORT_NAME.
 get_next_index() {
   local tag_prefix="$1"
   local last_tag
@@ -22,20 +25,6 @@ get_next_index() {
     current_index=$(echo "$last_tag" | grep -oE '[0-9]{3}$')
     printf "%03d" $((10#$current_index + 1))
   fi
-}
-
-# Function to extract ticket number from the latest commit title
-extract_ticket_number() {
-  local commit_title
-  local ticket_number
-  commit_title=$(git log -1 --pretty=%s)
-  ticket_number=$(echo "$commit_title" | grep -oE '\[([^]]+)\]' | head -n 1 | tr -d '[]')
-
-  if [[ -z "$ticket_number" ]]; then
-    echoerr "No ticket number found in commit title: '$commit_title' "
-    exit 1
-  fi
-  echo "$ticket_number"
 }
 
 # If no args - print usage
@@ -56,12 +45,15 @@ for arg in "$@"; do
   esac
 done
 
+assert_git_repo
+assert_default_branch
+
 # Get the repository directory name
 REPO_NAME=$(basename "$(git rev-parse --show-toplevel)")
-DIR_NAME=$(convert_to_screaming_snake "$REPO_NAME")
+PRERELEASE_NAME=$(convert_to_screaming_snake "$REPO_NAME")
 
 if $IS_QA; then
-  TAG_PREFIX="$TAG_VERSION-QA_${DIR_NAME}."
+  TAG_PREFIX="$TAG_VERSION-QA_${PRERELEASE_NAME}."
   NEXT_INDEX=$(get_next_index "$TAG_PREFIX")
   NEW_TAG="$TAG_PREFIX$NEXT_INDEX"
   TICKET_NUMBER=$(extract_ticket_number)
