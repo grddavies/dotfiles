@@ -64,3 +64,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("i", "M->", "%>%", { buffer = true, silent = true })
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup("dotenv"),
+  pattern = {
+    ".env",
+  },
+  callback = function()
+    vim.diagnostic.enable(false)
+  end,
+})
