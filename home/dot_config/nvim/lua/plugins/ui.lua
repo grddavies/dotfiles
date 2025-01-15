@@ -1,9 +1,6 @@
 return {
   -- Colourschemes
   {
-    "rebelot/kanagawa.nvim",
-  },
-  {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
@@ -25,7 +22,9 @@ return {
       },
     },
   },
-  { "nyoom-engineering/oxocarbon.nvim", event = "VeryLazy" },
+  { "rebelot/kanagawa.nvim", lazy = true },
+  { "cdmill/neomodern.nvim", lazy = true },
+  { "nyoom-engineering/oxocarbon.nvim", lazy = true },
   -- Layout
   {
     "folke/snacks.nvim",
