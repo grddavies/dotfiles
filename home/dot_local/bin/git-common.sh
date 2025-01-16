@@ -19,6 +19,36 @@ assert_default_branch() {
   fi
 }
 
+assert_no_unpulled_changes() {
+  # Sync remotes with state of remote git servers
+  git remote update >/dev/null 2>&1
+  local local_commit
+  local remote_commit
+  local_commit=$(git rev-parse HEAD)
+
+  if ! remote_commit=$(git rev-parse '@{upstream}' 2>/dev/null); then
+    echoerr "No upstream branch set for current branch"
+    exit 1
+  fi
+
+  if [ "$local_commit." != "$remote_commit" ]; then
+    local behind_count
+    behind_count=$(git rev-list 'HEAD..@{upstream}' --count)
+    if [ "$behind_count" -gt 0 ]; then
+      echoerr "Local branch is behind remote by $behind_count commit(s). Please pull changes first."
+      exit 1
+    fi
+  fi
+}
+
+assert_tag_does_not_exist() {
+  local new_tag=$1
+  if git rev-parse "$new_tag" >/dev/null 2>&1; then
+    echoerr "Tag '$new_tag' already exists"
+    exit 1
+  fi
+}
+
 # Function to extract ticket number from the latest commit title
 extract_ticket_number() {
   local commit_title

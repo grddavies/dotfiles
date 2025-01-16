@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
 #
 # Git tag a motilent report plugin
+#
+# This script:
+# - Validates the git repository state
+# - Creates the QA suffix if --QA flag passed
+# - Creates a new annotated tag with a JIRA ticket reference to
+#   a) the user-inputted release JIRA ticket number if it is a release tag
+#   b) the JIRA ticket number from the last commit if it is a QA tag
+#
+# Requirements:
+# - git
+# - git-common.sh in the same directory
+# - tr
+# - sort
 set -euo pipefail
 
+readonly JIRA_URL="https://jira.motilent.io/browse"
 source "$(dirname "$0")/git-common.sh"
 
 # Convert kebab-case to SCREAMING_SNAKE_CASE
@@ -10,43 +24,72 @@ convert_to_screaming_snake() {
   echo "$1" | tr '-' '_' | tr '[:lower:]' '[:upper:]'
 }
 
-# Function to get the next pre-release index for a report version
+# Validates that a version is in x.y.z format (semver, no pre-release tags)
+validate_version() {
+  local version=$1
+  if ! [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    echoerr "Invalid version format '$version'. Expected x.y.z" >&2
+    exit 1
+  fi
+}
+
+# Get the next pre-release suffix for a report version
 # Args:
 # tag_prefix: X.Y.X-QA_REPORT_NAME.
 get_next_index() {
   local tag_prefix="$1"
-  local last_tag
-  last_tag=$(git tag --list "$tag_prefix*" | sort -V | tail -n 1)
+  local max_index=0
 
-  if [[ -z "$last_tag" ]]; then
-    echo "001"
-  else
-    local current_index
-    current_index=$(echo "$last_tag" | grep -oE '[0-9]{3}$')
-    printf "%03d" $((10#$current_index + 1))
-  fi
+  while read -r tag; do
+    if [[ $tag =~ ([0-9]{3})$ ]]; then
+      index=$((10#${BASH_REMATCH[1]}))
+      ((index > max_index)) && max_index=$index
+    fi
+  done < <(git tag --list "$tag_prefix*" | sort --version-sort)
+
+  printf "%03d" $((max_index + 1))
 }
 
-# If no args - print usage
-if [[ $# -lt 1 ]]; then
-  echo "Usage: $0 <x.y.z> [--qa] [--dry-run]"
+usage() {
+  echo "Usage: $0 <x.y.z> [--qa]"
+  echo "  version        Version number (x.y.z format)"
+  echo "  --qa           Make a QA-prerelease tag"
   exit 1
-fi
+}
 
 # Parse arguments
+# Show usage if no args passed
+[ $# -eq 0 ] && usage
+
+# First argument must be version (without --)
+if [[ "$1" == --* ]]; then
+  echoerr "First argument must be version number"
+  usage
+fi
+
 TAG_VERSION="$1"
+shift
+
+validate_version "$TAG_VERSION"
+
 IS_QA=false
 
-for arg in "$@"; do
-  case $arg in
+while [[ $# -gt 0 ]]; do
+  case "$1" in
   --qa)
     IS_QA=true
+    shift
+    ;;
+  *)
+    echo "Unknown option: '$1'" >&2
+    usage
     ;;
   esac
 done
 
 assert_git_repo
 assert_default_branch
+assert_no_unpulled_changes
 
 # Get the repository directory name
 REPO_NAME=$(basename "$(git rev-parse --show-toplevel)")
@@ -62,19 +105,23 @@ else
   read -rp "Enter release ticket number: " TICKET_NUMBER
 fi
 
-COMMENT="https://jira.motilent.io/browse/$TICKET_NUMBER"
+if [[ -z "$TICKET_NUMBER" ]]; then
+  echoerr "Ticket number cannot be empty"
+  exit 1
+fi
 
-# Create the tag
+COMMENT="$JIRA_URL/$TICKET_NUMBER"
+
+assert_tag_does_not_exist "$NEW_TAG"
 echo "Creating tag: $NEW_TAG"
-cmd="git tag -a $NEW_TAG -m \"$COMMENT\""
 
 while true; do
   echo "Script will run the following command:"
-  echo "$cmd"
+  echo "git tag -a $NEW_TAG -m \"$COMMENT\""
   read -rp "Proceed? y/n" yn
   case $yn in
   [Yy]*)
-    eval "$cmd"
+    git tag -a "$NEW_TAG" -m "$COMMENT"
     break
     ;;
   [Nn]*) exit ;;

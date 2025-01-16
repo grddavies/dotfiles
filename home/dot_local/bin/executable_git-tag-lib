@@ -1,21 +1,48 @@
 #!/usr/bin/env bash
 #
-# Git tag a motilent frontend library
+# Quickly git tag a motilent frontend library following semantic versioning
+#
+# This script:
+# - Validates the git repository state
+# - Finds the latest version tag
+# - Bumps the version according to semver rules
+# - Creates a new annotated tag with a JIRA ticket reference
+#
+# Requirements:
+# - git
+# - git-common.sh in the same directory
 
 set -euo pipefail
 
 source "$(dirname "$0")/git-common.sh"
 
+readonly JIRA_URL="https://jira.motilent.io/browse"
+
 assert_git_repo
 assert_default_branch
+assert_no_unpulled_changes
 
 display_usage() {
-  echo "Usage: $0 [--major | --minor | --patch]"
+  cat >&2 <<EOF
+Usage: $(basename "$0") [--major | --minor | --patch]
+Create an annotated git-tag for the next semantic version of this library.
+
+Options:
+    --major   Increment major version (X.0.0)
+    --minor   Increment minor version (x.Y.0)
+    --patch   Increment patch version (x.y.Z)
+EOF
   exit 1
 }
 
 # Parse input flags
 if [ $# -ne 1 ]; then
+  display_usage
+fi
+
+valid_bump_types=("--major" "--minor" "--patch")
+if [[ ! " ${valid_bump_types[*]} " =~ $1 ]]; then
+  echo "Error: Invalid bump type '$1'" >&2
   display_usage
 fi
 
@@ -28,9 +55,22 @@ fi
 
 NEW_TAG=$(bump_version "$LATEST_TAG" "$1")
 
+assert_tag_does_not_exist "$NEW_TAG"
 echo "Bumping version: $LATEST_TAG -> $NEW_TAG"
 
 TICKET_NUMBER=$(extract_ticket_number)
-COMMENT="https://jira.motilent.io/browse/$TICKET_NUMBER"
+COMMENT="$JIRA_URL/$TICKET_NUMBER"
 
-git tag "$NEW_TAG" -m "$COMMENT"
+while true; do
+  echo "Script will run the following command:"
+  echo "git tag -a $NEW_TAG -m \"$COMMENT\""
+  read -rp "Proceed? y/n" yn
+  case $yn in
+  [Yy]*)
+    git tag -a "$NEW_TAG" -m "$COMMENT"
+    break
+    ;;
+  [Nn]*) exit ;;
+  *) echo "Please answer yes or no." ;;
+  esac
+done
