@@ -62,33 +62,6 @@ return {
     vscode = true,
   },
   {
-    -- Add telescope-fzf-native
-    "telescope.nvim",
-    opts = {
-      defaults = {
-        dynamic_preview_title = true,
-        path_display = function(_, path)
-          local tail = require("telescope.utils").path_tail(path)
-          return string.format("%s (%s)", tail, path)
-        end,
-      },
-    },
-    keys = {
-      {
-        "<leader>sy",
-        function()
-          require("telescope.builtin").symbols()
-        end,
-        desc = "Search s[y]mbols",
-      },
-    },
-    dependencies = {
-      {
-        "nvim-telescope/telescope-symbols.nvim",
-      },
-    },
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
     opts = function(_, opts)

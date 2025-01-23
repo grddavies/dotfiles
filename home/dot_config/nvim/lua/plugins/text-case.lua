@@ -4,7 +4,6 @@ return {
   {
     -- Text case change and case-smart query replace
     "johmsalas/text-case.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("textcase").setup({
         default_keymappings_enabled = false,
@@ -35,13 +34,14 @@ return {
           lsp_rename = keymapping_definition.lsp_rename,
         })
       end
-      -- No telescope in vscode
+      -- Make telescope optional
       local telescope_ok, telescope = pcall(require, "telescope")
       if telescope_ok then
         telescope.load_extension("textcase")
       end
     end,
-    event = { "BufReadPost" },
+    keys = { keymap_prefix },
+    cmd = { "Subs" },
     vscode = true,
   },
   {
