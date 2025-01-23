@@ -140,6 +140,11 @@ return {
         ["<C-Down>"] = { "scroll_documentation_down", "fallback" },
       },
       completion = {
+        accept = {
+          auto_brackets = {
+            enabled = false,
+          },
+        },
         trigger = {
           -- Prefer C-space to bring up completion menu while snippet is active
           -- So that you can tab between snippet placeholders
