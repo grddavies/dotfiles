@@ -99,7 +99,7 @@ if $IS_QA; then
   TAG_PREFIX="$TAG_VERSION-QA_${PRERELEASE_NAME}."
   NEXT_INDEX=$(get_next_index "$TAG_PREFIX")
   NEW_TAG="$TAG_PREFIX$NEXT_INDEX"
-  TICKET_NUMBER=$(extract_ticket_number)
+  read -rp "Enter release ticket number: " TICKET_NUMBER
 else
   NEW_TAG="$TAG_VERSION"
   read -rp "Enter release ticket number: " TICKET_NUMBER
