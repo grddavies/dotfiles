@@ -76,6 +76,7 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    optional = true,
     opts = {
       filesystem = {
         filtered_items = {
@@ -84,10 +85,12 @@ return {
           hide_gitignored = true,
         },
       },
-      window = { mappings = {
-        ["l"] = "open",
-        ["h"] = "close_node",
-      } },
+      window = {
+        mappings = {
+          ["l"] = "open",
+          ["h"] = "close_node",
+        },
+      },
     },
   },
 }
