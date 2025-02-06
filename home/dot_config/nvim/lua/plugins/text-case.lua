@@ -42,6 +42,8 @@ return {
     end,
     keys = { keymap_prefix },
     cmd = { "Subs" },
+    -- Plugin doesn't work when lazy loading on keys and cmd alone
+    event = { "VeryLazy" },
     vscode = true,
   },
   {
