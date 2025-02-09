@@ -23,7 +23,6 @@ Secrets are stored in Bitwarden. Config uses
   - Rust
   - Haskell
 
-- Installs [asdf](https://asdf-vm.com/) version manager
 - Installs & configures programming tools:
 
   - Kitty Terminal

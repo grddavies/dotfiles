@@ -1,0 +1,5 @@
+[env]
+_.path = [
+  # Expose node module binaries
+  "{{config_root}}/node_modules/.bin",
+]

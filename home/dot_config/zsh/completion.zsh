@@ -7,7 +7,6 @@ if [[ `command -v brew` ]]; then
   fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
 
-fpath=(${ASDF_DIR}/completions $fpath)
 fpath=(${ZDOTDIR}/completions $fpath)
 fpath=(${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh-completions/src $fpath)
 

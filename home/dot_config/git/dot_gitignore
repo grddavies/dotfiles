@@ -1,6 +1,5 @@
 # macOS
 .DS_Store
-# asdf version manager
-.tool-versions
-# Ruff linter
-.ruff.toml
+
+# Local mise config
+mise.local.toml
