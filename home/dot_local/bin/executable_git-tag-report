@@ -73,11 +73,16 @@ shift
 validate_version "$TAG_VERSION"
 
 IS_QA=false
+IS_HOTFIX=false
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
   --qa)
     IS_QA=true
+    shift
+    ;;
+  --hotfix)
+    IS_HOTFIX=true
     shift
     ;;
   *)
@@ -88,7 +93,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 assert_git_repo
-assert_default_branch
+$IS_HOTFIX || assert_default_branch
 assert_no_unpulled_changes
 
 # Get the repository directory name
