@@ -30,7 +30,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     "zsh"
     -}}
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
