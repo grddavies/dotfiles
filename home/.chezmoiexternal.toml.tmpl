@@ -67,19 +67,19 @@
 # FiraCode NF
 ["{{ $fontDir }}/FiraCodeNF"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/FiraCode.tar.xz"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.tar.xz"
     exclude = ["*.md"]
 
 # CaskaydiaCove NF
 ["{{ $fontDir }}/CaskaydiaCoveNF"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/CascadiaCode.tar.xz"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.tar.xz"
     exclude = ["*.md"]
 
 # Nerd Font Symbols Only
 ["{{ $fontDir }}/NerdFontGlyphs"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/NerdFontsSymbolsOnly.tar.xz"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/NerdFontsSymbolsOnly.tar.xz"
     exclude = ["*.md"]
 
 # FiraCode
@@ -96,6 +96,13 @@
     refreshPeriod = "168h"
     stripComponents = 1
     include = ["*/*.ttf"]
+
+# IBM Plex
+["{{ $fontDir }}/IBMPlex"]
+    type = "archive"
+    url = "https://github.com/IBM/plex/releases/download/%40ibm%2Fplex-sans%401.1.0/ibm-plex-sans.zip"
+    stripComponents = 4
+    include = ["**/*.ttf"]
 
 {{- end }}
 
