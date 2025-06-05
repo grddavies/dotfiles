@@ -1,4 +1,5 @@
 return {
+
   -- Colourschemes
   {
     "rose-pine/neovim",
@@ -25,6 +26,7 @@ return {
   { "rebelot/kanagawa.nvim", lazy = true },
   { "cdmill/neomodern.nvim", lazy = true },
   { "nyoom-engineering/oxocarbon.nvim", lazy = true },
+
   -- Layout
   {
     "folke/snacks.nvim",
@@ -52,6 +54,7 @@ return {
     "lualine.nvim",
     opts = {
       options = {
+        component_separators = "",
         section_separators = { left = "", right = "" },
       },
     },

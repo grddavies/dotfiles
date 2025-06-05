@@ -20,6 +20,10 @@ return {
     },
   },
   {
+    "akinsho/bufferline.nvim",
+    enabled = false,
+  },
+  {
     "tpope/vim-fugitive",
     event = { "VeryLazy" },
   },
@@ -101,6 +105,11 @@ return {
         },
       }
     end,
+  },
+  {
+    -- Kitty config
+    "fladson/vim-kitty",
+    ft = "kitty",
   },
   {
     "saghen/blink.cmp",
