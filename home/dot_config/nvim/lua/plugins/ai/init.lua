@@ -26,6 +26,23 @@ return {
     "olimorris/codecompanion.nvim",
     cmd = { "CodeCompanion", "CodeCompanionChat" },
     event = "VeryLazy",
+    keys = {
+      {
+        mapping_key_prefix .. "a",
+        function()
+          require("codecompanion").actions({})
+        end,
+        desc = "Actions",
+      },
+      {
+        mapping_key_prefix .. "c",
+        function()
+          require("codecompanion").toggle()
+        end,
+        desc = "Toggle Chat",
+        mode = { "n", "v" },
+      },
+    },
     init = function()
       require("plugins.ai.codecompanion-notify").setup()
     end,
@@ -55,5 +72,13 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
+  },
+  -- prevent neo-tree from opening files in codecompanion chat window
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    optional = true,
+    opts = function(_, opts)
+      table.insert(opts.open_files_do_not_replace_types, "codecompanion")
+    end,
   },
 }
