@@ -11,18 +11,6 @@ return {
     },
   },
   {
-    "folke/edgy.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.right = opts.right or {}
-      table.insert(opts.right, {
-        ft = "codecompanion",
-        title = "Companion Chat",
-        size = { width = 70 },
-      })
-    end,
-  },
-  {
     "olimorris/codecompanion.nvim",
     cmd = { "CodeCompanion", "CodeCompanionChat" },
     event = "VeryLazy",
@@ -46,7 +34,26 @@ return {
     init = function()
       require("plugins.ai.codecompanion-notify").setup()
     end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "ravitemer/codecompanion-history.nvim",
+    },
     opts = {
+      extensions = {
+        history = {
+          enabled = true,
+          opts = {
+            keymap = "gh",
+            save_chat_keymap = "sc",
+            auto_save = true,
+            expiration_days = 0,
+            auto_generate_title = false,
+            dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+            enable_logging = false,
+          },
+        },
+      },
       adapters = {
         anthropic = function()
           return require("codecompanion.adapters").extend("anthropic", {
@@ -68,10 +75,6 @@ return {
         },
       },
     },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
   },
   -- prevent neo-tree from opening files in codecompanion chat window
   {
@@ -79,6 +82,23 @@ return {
     optional = true,
     opts = function(_, opts)
       table.insert(opts.open_files_do_not_replace_types, "codecompanion")
+    end,
+  },
+  {
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.right = opts.right or {}
+      table.insert(opts.right, {
+        filter = function(buf, win)
+          -- Only match codecompanion chat buffers
+          local bufname = vim.api.nvim_buf_get_name(buf)
+          return bufname:match("%[CodeCompanion%] %d+")
+        end,
+        ft = "codecompanion",
+        title = "AI Chat",
+        size = { width = 70 },
+      })
     end,
   },
 }
