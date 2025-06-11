@@ -93,7 +93,7 @@ return {
         filter = function(buf, win)
           -- Only match codecompanion chat buffers
           local bufname = vim.api.nvim_buf_get_name(buf)
-          return bufname:match("%[CodeCompanion%] %d+")
+          return bufname:match("%[CodeCompanion%]")
         end,
         ft = "codecompanion",
         title = "AI Chat",
