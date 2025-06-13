@@ -66,6 +66,13 @@ return {
       strategies = {
         chat = {
           adapter = "anthropic",
+          variables = {
+            ["buffer"] = {
+              opts = {
+                default_params = "watch",
+              },
+            },
+          },
         },
         inline = {
           adapter = "anthropic",
@@ -96,7 +103,7 @@ return {
           return bufname:match("%[CodeCompanion%]")
         end,
         ft = "codecompanion",
-        title = "AI Chat",
+        title = "Chat",
         size = { width = 70 },
       })
     end,
