@@ -6,7 +6,7 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
 
 _FZF_PREVIEW_DIR="eza --tree --level 1 --color=always {} | head -200"
 _FZF_PREVIEW_FILE="bat -n --color=always --line-range :500 {}"
-_FZF_PREVIEW_CONDITIONAL="[ -d {} ] && $_FZF_PREVIEW_DIR || $_FZF_PREVIEW_FILE"
+_FZF_PREVIEW_CONDITIONAL="([ -d {} ] && $_FZF_PREVIEW_DIR) || (head -c 1024 {} | rg -q $'\0' && file -b {}) || ([ -f {} ] && $_FZF_PREVIEW_FILE)"
 
 # Use fd to list path completion candidates
 _fzf_compgen_path() {
@@ -32,6 +32,14 @@ _fzf_comprun() {
     cd)           fzf --preview "$_FZF_PREVIEW_DIR" "$@" ;;
     export|unset) fzf --preview "eval 'echo $'{}" "$@" ;;
     ssh)          fzf --preview 'dig {}' "$@" ;;
+    git)
+      if [[ $LBUFFER == *"git switch"* ]]; then
+        (git branch --format='%(refname:short)' --sort=-committerdate) | \
+          rg -v "^$(git branch --show-current 2>/dev/null)$" | \
+          fzf --preview 'git log --oneline --graph --date=short {}' "$@"
+      fi
+      ;;
     *)            fzf --preview "$_FZF_PREVIEW_CONDITIONAL" "$@" ;;
   esac
 }
+
