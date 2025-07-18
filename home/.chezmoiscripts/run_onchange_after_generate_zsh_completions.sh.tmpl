@@ -1,11 +1,15 @@
 #!/usr/bin/env zsh
-
 # Last run {{ now | date "2006-01" }}
-docker completion zsh > "$ZDOTDIR/completions/_docker"
 
-rustup completions zsh > "$ZDOTDIR/completions/_rustup"
-rustup completions zsh cargo > "$ZDOTDIR/completions/_cargo"
+echo "Writing completion scripts to '$ZDOTDIR/completions'..."
 
-mise completion zsh > "$ZDOTDIR/completions/_mise"
+mkdir -p "$ZDOTDIR/completions"
 
-rbw gen-completions zsh > "$ZDOTDIR/completions/_rbw"
+command -v docker &> /dev/null && docker completion zsh > "$ZDOTDIR/completions/_docker"
+
+command -v rustup &> /dev/null && rustup completions zsh > "$ZDOTDIR/completions/_rustup"
+command -v rustup &> /dev/null && rustup completions zsh cargo > "$ZDOTDIR/completions/_cargo"
+
+command -v mise &> /dev/null && mise completion zsh > "$ZDOTDIR/completions/_mise"
+
+command -v rbw &> /dev/null && rbw gen-completions zsh > "$ZDOTDIR/completions/_rbw"
