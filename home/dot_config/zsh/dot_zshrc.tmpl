@@ -13,10 +13,6 @@ export MISE_ENV_FILE=.env
 # Set zsh options
 setopt AUTO_PUSHD     # Push the old directory onto the stack on cd.
 
-# Fix kitty/ssh see https://wiki.archlinux.org/title/Kitty#Terminal_issues_with_SSH
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-
 {{ if eq .chezmoi.os "darwin" -}}
 # Add pnpm global binaries to PATH
 if [[ `command -v pnpm` ]]; then
@@ -47,6 +43,15 @@ autoload -Uz setBrightness
 # No custom funcs for macOS
 {{ end -}}
 # End autoload
+
+# Fix kitty/ssh see https://wiki.archlinux.org/title/Kitty#Terminal_issues_with_SSH
+if [ "$TERM" = "xterm-kitty" ]; then
+  ssh() {
+    kitty +kitten ssh "$@"
+  }
+  # must come after compinit
+  compdef _ssh ssh
+fi
 
 # Set up fzf key bindings and fuzzy completion (requires fzf >= 0.48)
 source "$ZDOTDIR/fzf.zsh"
