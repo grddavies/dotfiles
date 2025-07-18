@@ -14,8 +14,8 @@
 .chezmoiscripts/*install-haskell*
 .chezmoiscripts/*install-rust*
 # linux apps
-.chezmoiscripts/linux/install-kitty.sh
-.chezmoiscripts/linux/install-snaps.sh.tmpl
-.chezmoiscripts/linux/install-apt-apps.sh
-.chezmoiscripts/linux/install-brew-extras.sh.tmpl
+.chezmoiscripts/linux/*install-kitty.*
+.chezmoiscripts/linux/*install-snaps.*
+.chezmoiscripts/linux/*install-apt-apps.*
+.chezmoiscripts/linux/*install-brew-extras.*
 {{ end }}
