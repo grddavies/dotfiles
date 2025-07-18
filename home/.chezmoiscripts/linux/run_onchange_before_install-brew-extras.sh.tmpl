@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if  ! command -v brew &> /dev/null; then
+echo "Installing brew extras..."
+
+if  ! command -v /home/linuxbrew/.linuxbrew/bin/brew &> /dev/null; then
     # Get Homebrew package manager
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
