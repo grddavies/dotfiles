@@ -3,3 +3,11 @@ _.path = [
   # Expose node module binaries
   "{{config_root}}/node_modules/.bin",
 ]
+
+
+[tools]
+python = "latest"
+node = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
