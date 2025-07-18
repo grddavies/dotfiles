@@ -24,6 +24,20 @@
   fonts    = {{ if $headless }}false{{ else }}{{ promptBool "Install fonts" }}{{ end }}
   tidal    = {{ if $headless }}false{{ else }}{{ promptBool "Install tidal" }}{{ end }}
 
+{{- $brewPath := "" }}
+{{- if eq .chezmoi.os "darwin" }}
+{{-   if eq .chezmoi.arch "arm64" }}
+{{-     $brewPath = "/opt/homebrew/bin:/opt/homebrew/sbin" }}
+{{-   else }}
+{{-     $brewPath = "/usr/local/bin:/usr/local/sbin" }}
+{{-   end }}
+{{- else if eq .chezmoi.os "linux" }}
+{{-   $brewPath = "/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin" }}
+{{- end }}
+
+[env]
+    PATH = "{{ $brewPath }}:{{ .chezmoi.env.PATH }}"
+
 [edit]
     command = "nvim"
 
