@@ -34,11 +34,13 @@
     clone.args = ["--filter=blob:none", "--branch=stable"]
     pull.args = ["origin", "stable", "--quiet"]
 
+{{ if not .headless -}}
 # Kitty logo
 # macOS: May need to run `rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock`
 [".config/kitty/kitty.app.png"]
     type = "file"
     url = "https://raw.githubusercontent.com/samholmes/whiskers/main/whiskers-tokyo.png"
+{{- end -}}
 
 {{ if .tidal -}}
 # Mutable instruments U-gens for tidal

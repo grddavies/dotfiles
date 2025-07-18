@@ -1,19 +1,28 @@
-# Used to customize configuration when doing a `chezmoi init`.
-#
-# This template file will trigger prompts to fill-in machine-specific
-# templateable values. The resulting file is then created at
-# `~/.config/chezmoi/chezmoi.toml`
-# See https://www.chezmoi.io/docs/how-to/
-#
-# {{- /* This file supports Go's text/template language. */}}
-
 {{/* boolean feature tags */}}
-{{- $fonts := promptBool "Install extra fonts" }}
-{{- $tidal := promptBool "Install tidalcycles extras" }}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+
+{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{-   $ephemeral = true -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+{{- if not $ephemeral -}}
+{{-   if stdinIsATTY -}}
+{{-     $headless = promptBoolOnce . "headless" "headless" -}}
+{{-     $ephemeral = promptBoolOnce . "ephemeral" "ephemeral" -}}
+{{-   else -}}
+{{-     $ephemeral = true -}}
+{{-     $headless = true -}}
+{{-   end -}}
+{{- end -}}
 
 [data]
-    fonts = {{ $fonts }}
-    tidal = {{ $tidal }}
+  ephemeral = {{ $ephemeral }}
+  headless = {{ $headless }}
+  fonts    = {{ if $headless }}false{{ else }}{{ promptBool "Install fonts" }}{{ end }}
+  tidal    = {{ if $headless }}false{{ else }}{{ promptBool "Install tidal" }}{{ end }}
 
 [edit]
     command = "nvim"

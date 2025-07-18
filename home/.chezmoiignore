@@ -4,9 +4,18 @@
 
 {{ if ne .chezmoi.os "linux" }}
 .chezmoiscripts/linux/**
-.config/zsh/funcs/setBrightness
 {{ end }}
 
 {{ if not .tidal }}
 .chezmoiscripts/**/*install-tidal*.*
+{{ end }}
+
+{{ if .headless }}
+.chezmoiscripts/*install-haskell*
+.chezmoiscripts/*install-rust*
+# linux apps
+.chezmoiscripts/linux/install-kitty.sh
+.chezmoiscripts/linux/install-snaps.sh.tmpl
+.chezmoiscripts/linux/install-apt-apps.sh
+.chezmoiscripts/linux/install-brew-extras.sh.tmpl
 {{ end }}

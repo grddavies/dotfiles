@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if [[ `command -v kitty` ]]; then
+if [[ $(command -v kitty) ]]; then
   exit 0
 fi
 
@@ -23,4 +23,4 @@ sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/kit
 # Install the kitty desktop file
 sudo desktop-file-install ~/.local/kitty.app/share/applications/kitty.desktop
 # # If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file
-# # sudo desktop-file-install ~/.local/kitty.app/share/applications/kitty-open.desktop 
+# # sudo desktop-file-install ~/.local/kitty.app/share/applications/kitty-open.desktop

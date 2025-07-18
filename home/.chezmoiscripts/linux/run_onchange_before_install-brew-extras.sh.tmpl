@@ -10,18 +10,12 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # install packages
 {{ $brews := list
-    "chezmoi"
-    "eza"
-    "fd"
-    "fzf"
-    "git"
-    "git-delta"
-    "lazydocker"
-    "lazygit"
-    "mise"
-    "neovim"
-    "ripgrep"
-    "zsh"
+    "ast-grep"
+    "bat"
+    "fx"
+    "mkcert"
+    "opam"
+    "typst"
     -}}
 
 brew bundle --file=/dev/stdin <<EOF
