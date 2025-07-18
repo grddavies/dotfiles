@@ -36,7 +36,9 @@
 {{- end }}
 
 [env]
-    PATH = "{{ $brewPath }}:{{ .chezmoi.env.PATH }}"
+{{- if $brewPath }}
+    PATH = "{{ $brewPath }}:{{ env "PATH" }}"
+{{- end }}
 
 [edit]
     command = "nvim"
