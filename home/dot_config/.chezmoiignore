@@ -1,3 +1,10 @@
 {{ if not .tidal }}
 tidal/
 {{ end }}
+
+{{- if .headless -}}
+zsh/funcs/setBrightness
+git/
+kitty/
+vscode/
+{{ end }}

@@ -1,3 +1,8 @@
 {{ if not .tidal }}
 startdirt
 {{ end }}
+
+{{ if .ephemeral }}
+*
+!.keep
+{{ end }}

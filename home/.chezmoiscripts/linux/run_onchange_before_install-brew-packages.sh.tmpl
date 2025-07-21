@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if  ! command -v brew &> /dev/null; then
+echo "Installing brew packages..."
+
+if  ! command -v /home/linuxbrew/.linuxbrew/bin/brew &> /dev/null; then
     # Get Homebrew package manager
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -10,23 +12,17 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # install packages
 {{ $brews := list
-    "ast-grep"
-    "bat"
     "chezmoi"
     "eza"
     "fd"
-    "fx"
     "fzf"
-    "git"
     "git-delta"
     "lazydocker"
     "lazygit"
     "mise"
-    "mkcert"
     "neovim"
-    "opam"
+    "rbw"
     "ripgrep"
-    "typst"
     "zsh"
     -}}
 

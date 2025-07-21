@@ -10,7 +10,7 @@ Selected dotfiles, managed with [chezmoi](https://www.chezmoi.io/)
 ## Chezmoi
 
 Secrets are stored in Bitwarden. Config uses
-[rbw](https://github.com/grddavies/rbw) to read secrets from Bitwarden vault
+[rbw](https://github.com/doy/rbw) to read secrets from Bitwarden vault
 
 ### Features
 
