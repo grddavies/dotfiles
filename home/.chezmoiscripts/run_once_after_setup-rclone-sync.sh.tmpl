@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# Create mount point and cache directory
+mkdir -p "{{ .chezmoi.homeDir }}/{{ .rclone.mountPoint }}"
+mkdir -p "{{ .chezmoi.homeDir }}/{{ .rclone.cachePath }}"
+
+{{ if eq .chezmoi.os "darwin" }}
+# macOS setup
+if command -v brew >/dev/null 2>&1; then
+    # Install rclone if not present
+    if ! command -v rclone >/dev/null 2>&1; then
+        echo "Installing rclone via Homebrew..."
+        brew install rclone
+    fi
+    
+    # Bootstrap and enable the LaunchAgent
+    PLIST_FILE="$HOME/Library/LaunchAgents/homebrew.mxcl.rclone-mount.plist"
+    
+    if [ -f "$PLIST_FILE" ]; then
+        echo "Bootstrapping rclone mount LaunchAgent..."
+        launchctl bootstrap gui/$(id -u) "$PLIST_FILE"
+        launchctl enable gui/$(id -u)/homebrew.mxcl.rclone-mount
+        
+        echo "✅ macOS rclone mount service started"
+        echo "Mount point: {{ .chezmoi.homeDir }}/{{ .rclone.mountPoint }}"
+        
+        # Check if it's running
+        if launchctl print gui/$(id -u)/homebrew.mxcl.rclone-mount >/dev/null 2>&1; then
+            echo "✅ Service is running"
+        else
+            echo "⚠️  Service may be starting up. Check status with: rclone-service status"
+        fi
+    else
+        echo "❌ LaunchAgent plist not found at $PLIST_FILE"
+        echo "Make sure chezmoi has applied the configuration first"
+        exit 1
+    fi
+else
+    echo "❌ Homebrew not found. Please install Homebrew first."
+    exit 1
+fi
+
+{{ else if eq .chezmoi.os "linux" }}
+# Linux setup
+if ! command -v rclone >/dev/null 2>&1; then
+    echo "Installing rclone..."
+    brew install rclone
+fi
+
+mkdir -p ~/.config/systemd/user
+
+echo "Enabling rclone mount user service..."
+systemctl --user daemon-reload
+systemctl --user enable rclone-mount.service
+systemctl --user start rclone-mount.service
+
+echo "✅ Linux rclone mount service started"
+
+if systemctl --user is-active --quiet rclone-mount.service; then
+    echo "✅ Service is running"
+else
+    echo "❌ Service failed to start. Check logs with:"
+    echo "journalctl --user -u rclone-mount.service"
+fi
+{{ end }}
+
+echo ""
+echo "🔧 Next steps:"
+echo "1. Configure rclone with: rclone config"
+echo "2. Set up your {{ .rclone.remote }} remote"
+echo "3. The mount will be available at: ~/{{ .rclone.mountPoint }}"
+echo "4. Use 'rclone-service status' to check service status"

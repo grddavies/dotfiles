@@ -52,3 +52,19 @@
     command = "nvim"
     args = ["-d"]
 
+
+[data.rclone]
+{{ if eq .chezmoi.os "darwin" }}
+  binary = "/usr/local/bin/rclone"
+  logPath = "/tmp"
+  serviceManager = "launchd"
+{{ else if eq .chezmoi.os "linux" }}
+  binary = "/usr/bin/rclone"
+  logPath = "/var/log"
+  serviceManager = "systemd"
+{{ end }}
+  remote = "gdrive"
+  mountPoint = ".local/share/gdrive-sync" # local dir mount
+  folder = "rclone-sync"  # folder on remote
+  cachePath = ".cache/rclone"
+

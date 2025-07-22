@@ -49,7 +49,7 @@ return {
             auto_save = true,
             expiration_days = 0,
             auto_generate_title = false,
-            dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+            dir_to_save = vim.fn.expand("~") .. "/.local/share/gdrive-sync/codecompanion-history",
             enable_logging = false,
           },
         },
@@ -59,6 +59,13 @@ return {
           return require("codecompanion.adapters").extend("anthropic", {
             env = {
               api_key = "cmd:rbw get ANTHROPIC_API_KEY",
+            },
+          })
+        end,
+        tavily = function()
+          return require("codecompanion.adapters").extend("tavily", {
+            env = {
+              api_key = "cmd:rbw get TAVILY_API_KEY",
             },
           })
         end,

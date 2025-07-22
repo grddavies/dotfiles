@@ -1,0 +1,18 @@
+{{ if eq .chezmoi.os "linux" -}}
+[Unit]
+Description=Rclone Mount Service
+After=network.target
+
+[Service]
+Type=notify
+ExecStart={{ .rclone.binary }} mount {{ .rclone.remote }}:{{ .rclone.folder }} %h/{{ .rclone.mountPoint }} \
+    --vfs-cache-mode writes \
+    --vfs-cache-max-age 1h \
+    --log-file {{ .rclone.logPath }}/rclone-mount.log
+ExecStop=/bin/fusermount -u %h/{{ .rclone.mountPoint }}
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target
+{{ end -}}

@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# rclone service management
+
+{{ if eq .chezmoi.os "darwin" -}}
+SERVICE_PLIST="$HOME/Library/LaunchAgents/homebrew.mxcl.rclone-mount.plist"
+{{- end }}
+
+case "$1" in
+start)
+  {{- if eq .chezmoi.os "darwin" }}
+  launchctl bootstrap gui/$(id -u) "$SERVICE_PLIST"
+  launchctl enable gui/$(id -u)/homebrew.mxcl.rclone-mount
+  {{- else if eq .chezmoi.os "linux" }}
+  systemctl --user start rclone-mount.service
+  {{- end }}
+  ;;
+stop)
+  {{- if eq .chezmoi.os "darwin" }}
+  launchctl disable gui/$(id -u)/homebrew.mxcl.rclone-mount
+  launchctl bootout gui/$(id -u) "$SERVICE_PLIST"
+  {{- else if eq .chezmoi.os "linux" }}
+  systemctl --user stop rclone-mount.service
+  {{- end }}
+  ;;
+restart)
+  {{- if eq .chezmoi.os "darwin" }}
+  launchctl disable gui/$(id -u)/homebrew.mxcl.rclone-mount
+  launchctl bootout gui/$(id -u) "$SERVICE_PLIST"
+  sleep 1
+  launchctl bootstrap gui/$(id -u) "$SERVICE_PLIST"
+  launchctl enable gui/$(id -u)/homebrew.mxcl.rclone-mount
+  {{- else if eq .chezmoi.os "linux" }}
+  systemctl --user restart rclone-mount.service
+  {{- end }}
+  ;;
+status)
+  {{- if eq .chezmoi.os "darwin" }}
+  launchctl print gui/$(id -u)/homebrew.mxcl.rclone-mount
+  {{- else if eq .chezmoi.os "linux" }}
+  systemctl --user status rclone-mount.service
+  {{- end }}
+  ;;
+logs)
+  {{- if eq .chezmoi.os "darwin" }}
+  tail -f {{ .rclone.logPath }}/rclone-mount.log
+  {{- else if eq .chezmoi.os "linux" }}
+  journalctl --user -u rclone-mount.service -f
+  {{- end }}
+  ;;
+*)
+  echo "Usage: $0 {start|stop|restart|status|logs}"
+  exit 1
+  ;;
+esac
