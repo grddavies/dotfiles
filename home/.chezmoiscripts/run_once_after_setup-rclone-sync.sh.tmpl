@@ -52,23 +52,18 @@ fi
 mkdir -p ~/.config/systemd/user
 
 echo "Enabling rclone mount user service..."
-systemctl --user daemon-reload
-systemctl --user enable rclone-mount.service
-systemctl --user start rclone-mount.service
 
-echo "✅ Linux rclone mount service started"
+rclone-service connect
+loginctl enable-linger $USER
+systemctl --user daemon-reload
+systemctl --user enable --now rclone-mount.service
 
 if systemctl --user is-active --quiet rclone-mount.service; then
     echo "✅ Service is running"
 else
     echo "❌ Service failed to start. Check logs with:"
+    echo "rclone-service logs"
+    echo "or"
     echo "journalctl --user -u rclone-mount.service"
 fi
 {{ end }}
-
-echo ""
-echo "🔧 Next steps:"
-echo "1. Configure rclone with: rclone config"
-echo "2. Set up your {{ .rclone.remote }} remote"
-echo "3. The mount will be available at: ~/{{ .rclone.mountPoint }}"
-echo "4. Use 'rclone-service status' to check service status"

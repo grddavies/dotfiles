@@ -30,6 +30,7 @@ restart)
   launchctl bootstrap gui/$(id -u) "$SERVICE_PLIST"
   launchctl enable gui/$(id -u)/homebrew.mxcl.rclone-mount
   {{- else if eq .chezmoi.os "linux" }}
+  systemctl --user daemon-reload
   systemctl --user restart rclone-mount.service
   {{- end }}
   ;;
@@ -47,8 +48,11 @@ logs)
   journalctl --user -u rclone-mount.service -f
   {{- end }}
   ;;
+  connect)
+  rclone config reconnect gdrive:
+  ;;
 *)
-  echo "Usage: $0 {start|stop|restart|status|logs}"
+  echo "Usage: $0 {start|stop|restart|status|logs|connect}"
   exit 1
   ;;
 esac

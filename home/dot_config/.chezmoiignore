@@ -8,3 +8,7 @@ git/
 kitty/
 vscode/
 {{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+systemd/
+{{ end }}

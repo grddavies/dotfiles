@@ -59,8 +59,8 @@
   logPath = "/tmp"
   serviceManager = "launchd"
 {{ else if eq .chezmoi.os "linux" }}
-  binary = "/usr/bin/rclone"
-  logPath = "/var/log"
+  binary = "/home/linuxbrew/.linuxbrew/bin/rclone"
+  logPath = "" # uses journalctl
   serviceManager = "systemd"
 {{ end }}
   remote = "gdrive"

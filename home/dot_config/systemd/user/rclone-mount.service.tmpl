@@ -1,18 +1,22 @@
-{{ if eq .chezmoi.os "linux" -}}
 [Unit]
-Description=Rclone Mount Service
-After=network.target
+Description=rclone: Remote FUSE filesystem for cloud storage config
+Documentation=man:rclone(1)
+After=network-online.target
+Wants=network-online.target 
 
 [Service]
 Type=notify
 ExecStart={{ .rclone.binary }} mount {{ .rclone.remote }}:{{ .rclone.folder }} %h/{{ .rclone.mountPoint }} \
+    --config="%E/rclone/rclone.conf" \
+    --cache-dir="%C/rclone" \
     --vfs-cache-mode writes \
     --vfs-cache-max-age 1h \
-    --log-file {{ .rclone.logPath }}/rclone-mount.log
+    --allow-non-empty \
+    --daemon-timeout 60s \
+    --poll-interval 15s
 ExecStop=/bin/fusermount -u %h/{{ .rclone.mountPoint }}
 Restart=on-failure
 RestartSec=30
 
 [Install]
 WantedBy=default.target
-{{ end -}}
