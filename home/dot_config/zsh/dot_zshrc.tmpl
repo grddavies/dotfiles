@@ -1,3 +1,4 @@
+# vi: ft=zsh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of .zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -52,6 +53,11 @@ if [ "$TERM" = "xterm-kitty" ]; then
   # must come after compinit
   compdef _ssh ssh
 fi
+
+# Add Ctrl-X Ctrl-E keymap to edit the current command in $EDITOR
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 # Set up fzf key bindings and fuzzy completion (requires fzf >= 0.48)
 source "$ZDOTDIR/fzf.zsh"
