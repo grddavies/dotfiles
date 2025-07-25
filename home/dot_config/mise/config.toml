@@ -1,13 +1,13 @@
 [env]
 _.path = [
-  # Expose node module binaries
+  # Expose node module binaries without need for npm exec
   "{{config_root}}/node_modules/.bin",
 ]
-
 
 [tools]
 python = "latest"
 node = "latest"
+java = "21"
 
 [settings]
-idiomatic_version_file_enable_tools = ["node"]
+idiomatic_version_file_enable_tools = ["node", "python"]
