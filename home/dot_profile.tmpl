@@ -1,8 +1,8 @@
 # Set PATH, MANPATH, etc., for Homebrew
-{{ if eq .chezmoi.os "linux" -}}
+{{- if eq .chezmoi.os "linux" }}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-{{ end -}}
-{{ if eq .chezmoi.os "darwin" -}}
+{{- end -}}
+{{- if eq .chezmoi.os "darwin" }}
 eval "$(/opt/homebrew/bin/brew shellenv)"
 {{- end }}
 
