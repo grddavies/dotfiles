@@ -7,7 +7,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Activate mise dev-env tool https://mise.jdx.dev/
-eval "$(mise activate zsh)"
+eval "$(mise activate zsh -q)"
 # Auto load .env files
 export MISE_ENV_FILE=.env
 
