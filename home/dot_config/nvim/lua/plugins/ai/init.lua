@@ -62,6 +62,13 @@ return {
             },
           })
         end,
+        tavily = function()
+          return require("codecompanion.adapters").extend("tavily", {
+            env = {
+              api_key = "cmd:rbw get TAVILY_API_KEY",
+            },
+          })
+        end,
       },
       strategies = {
         chat = {
