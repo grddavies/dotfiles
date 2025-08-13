@@ -128,7 +128,10 @@ function M.picker(opts)
       return item.name
     end,
   }, function(choice)
-    M.generate_schema(choice)
+    if choice == nil then
+      error("missing choice", vim.log.levels.ERROR)
+    end
+    M.generate_schema(choice.name)
   end)
 end
 
