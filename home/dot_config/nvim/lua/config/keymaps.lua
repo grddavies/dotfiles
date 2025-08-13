@@ -3,6 +3,8 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+require("config.vscode")
+
 -- Format buffer {{{
 vim.keymap.set("n", "<A-S-f>", function()
   LazyVim.format({ force = true })

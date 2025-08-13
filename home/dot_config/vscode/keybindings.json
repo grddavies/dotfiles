@@ -1,3 +1,4 @@
+// vi:ft=jsonc
 // Setting sync is per platform
 // Move this file to the appropriate folder to be used by VSCode
 [
@@ -21,52 +22,22 @@
   {
     // Move lines up k
     "key": "alt+k",
-    "command": "vscode-neovim.send",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-    "args": "<A-k>"
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly && neovim.init && neovim.mode != insert"
   },
   {
     // Move lines down j
     "key": "alt+j",
-    "command": "vscode-neovim.send",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-    "args": "<A-j>"
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly && neovim.init && neovim.mode != insert"
   },
+  // ### Layout
   {
     // Toggle sidebar with space + e when using vscode-neovim
+    // The complementary keymap to open the sidebar is set in nvim
     "key": "space e",
     "command": "workbench.action.toggleSidebarVisibility",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-  },
-  {
-    // Yank to "+ register with space + y
-    "key": "space y",
-    "command": "vscode-neovim.send",
-    "args": "<Space>y",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-  },
-  {
-    // Paste/put from "+ register with space + p
-    "key": "space p",
-    "command": "vscode-neovim.send",
-    "args": "<Space>p",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-  },
-  // ### Telescope Maps
-  {
-    "key": "space space",
-    "command": "workbench.action.quickOpen",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert "
-  },
-  {
-    "key": "space /",
-    "command": "workbench.action.findInFiles",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert "
-  },
-  {
-    "key": "space s s",
-    "command": "workbench.action.gotoSymbol",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert "
+    "when": "filesExplorerFocus && neovim.init && neovim.mode != insert"
   },
   // ### TreeSitter incremental selection
   {
@@ -83,55 +54,6 @@
     "args": "<C-BS>",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
-  // ### LSP
-  {
-    // Show hover help
-    "key": "shift-k",
-    "command": "editor.action.showHover",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
-  },
-  {
-    // Show signature help
-    "key": "ctrl-k",
-    "command": "editor.action.triggerParameterHints",
-    "when": "editorTextFocus && neovim.init && editorHasSignatureHelpProvider"
-  },
-  {
-    // Toggle signature help
-    "key": "ctrl-k",
-    "command": "closeParameterHints",
-    "when": "editorTextFocus && neovim.init && editorHasSignatureHelpProvider && parameterHintsVisible"
-  },
-  {
-    // Rename symbol
-    "key": "space c r",
-    "command": "editor.action.rename",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasRenameProvider && !editorReadonly"
-  },
-  {
-    // Go to Definition
-    "key": "space g d",
-    "command": "editor.action.revealDefinition",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
-  },
-  {
-    // Go to References
-    "key": "space g r",
-    "command": "editor.action.goToReferences",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
-  },
-  {
-    // Go to Type Definition
-    "key": "space g y",
-    "command": "editor.action.goToTypeDefinition",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
-  },
-  // ### Move cursor to next word
-  {
-    "key": "alt+n",
-    "command": "editor.action.wordHighlight.next",
-    "when": "neovim.init && neovim.mode != insert && editorTextFocus && hasWordHighlights"
-  },
   // ### Move cursor to prev word
   {
     "key": "alt+p",
@@ -143,41 +65,6 @@
     "key": "shift+alt+f",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-  },
-  {
-    "key": "space c f",
-    "command": "editor.action.formatDocument",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert && editorHasDocumentFormattingProvider && !editorReadonly && !inCompositeEditor"
-  },
-  // Quickfix menu
-  {
-    "key": "space c a",
-    "command": "editor.action.quickFix",
-    "when": "neovim.init && neovim.mode != insert && editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-  },
-  // ### End LSP
-  // ### Git
-  {
-    "key": "space g h r",
-    "command": "git.revertSelectedRanges",
-    "when": "neovim.init && neovim.mode != insert && editorTextFocus && !operatinInProgress"
-  },
-  {
-    "key": "space g h s",
-    "command": "git.stageSelectedRanges",
-    "when": "neovim.init && neovim.mode != insert && editorTextFocus && !operatinInProgress"
-  },
-  {
-    "key": "space g h u",
-    "command": "git.unstageSelectedRanges",
-    "when": "neovim.init && neovim.mode != insert && editorTextFocus && !operatinInProgress"
-  },
-  // End Git
-  // Toggle fold
-  {
-    "key": "z a",
-    "command": "editor.toggleFold",
-    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   // ## Override VSCode default settings when using NVim
   // ### Autocomplete/snippet menu navigation with Tab/S-Tab
@@ -210,5 +97,10 @@
     "key": "shift+tab",
     "command": "selectPrevSuggestion",
     "when": "neovim.init && neovim.mode == insert && editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
   }
 ]

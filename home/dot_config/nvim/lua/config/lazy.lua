@@ -12,13 +12,13 @@ require("lazy").setup({
     {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
-      opts = {
-        news = {
-          -- No news in vscode
-          lazyvim = vim.g.vscode ~= nil,
-          neovim = vim.g.vscode ~= nil,
-        },
-      },
+      -- opts = {
+      --   news = {
+      --     -- No news in vscode
+      --     lazyvim = vim.g.vscode ~= nil,
+      --     neovim = vim.g.vscode ~= nil,
+      --   },
+      -- },
     },
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.ui.edgy" },
