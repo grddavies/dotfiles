@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# vi: ft=sh
 
 # ==============================================================================
 # Script to set up Kanata with a dedicated user and hardened systemd service
@@ -11,12 +12,14 @@
 # E.g., if your config is at ~/somewhere/my-kanata.kbd, use "somewhere/my-kanata.kbd".
 KANATA_CONFIG_REL_PATH=".config/kanata/kanata.kbd"
 
+# kanata.kbd hash: {{ include "dot_config/kanata/kanata.kbd" | sha256sum }}
+
 # System location where the kanata config file will be placed
 # (DO NOT EDIT)
 SYSTEM_KANATA_CONFIG_DST="/etc/kanata/kanata-config.kbd"
 
 # Kanata version to download
-KANATA_VERSION="v1.7.0"
+KANATA_VERSION="1.7.0"
 
 # Dedicated user/group names
 KANATA_USER="kanata"
@@ -122,28 +125,34 @@ echo "KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"$UINPUT_GROUP\", OPTIONS+=\"sta
 #========================
 # STEP 5: Download and Install Kanata
 #========================
-KANATA_URL="https://github.com/jtroo/kanata/releases/download/${KANATA_VERSION}/kanata"
+KANATA_URL="https://github.com/jtroo/kanata/releases/download/v${KANATA_VERSION}/kanata"
 KANATA_BIN_PATH="/usr/local/bin/kanata"
 
 echoinfo "Stopping kanata.service (if running) before download..."
 systemctl stop kanata.service >/dev/null 2>&1 || true # Stop the service, ignore errors
 
-echoinfo "Downloading Kanata ${KANATA_VERSION} from ${KANATA_URL}..."
-# Use curl with -fSL to follow redirects, show errors, and fail silently on HTTP errors
-
-if ! curl -fSL -o "$KANATA_BIN_PATH" "$KANATA_URL"; then
-  echoerror "Failed to download Kanata. Check URL or network connection."
-  exit 1
+if [ -f "$KANATA_BIN_PATH" ]; then
+  CURRENT_VERSION=$("$KANATA_BIN_PATH" --version | grep -o '[0-9.]*' || echo "unknown")
+else
+  CURRENT_VERSION=""
 fi
 
-echoinfo "Setting permissions on ${KANATA_BIN_PATH}..."
-chown root:"$KANATA_USER" "$KANATA_BIN_PATH"
-chmod 754 "$KANATA_BIN_PATH"
+if [ ! -f $KANATA_BIN_PATH ] || [ "$CURRENT_VERSION" != "$KANATA_VERSION" ]; then
+  echoinfo "Downloading Kanata ${KANATA_VERSION} from ${KANATA_URL}..."
+  # Use curl with -fSL to follow redirects, show errors, and fail silently on HTTP errors
+  if ! curl -fSL -o "$KANATA_BIN_PATH" "$KANATA_URL"; then
+    echoerror "Failed to download Kanata. Check URL or network connection."
+    exit 1
+  fi
+  echoinfo "Setting permissions on ${KANATA_BIN_PATH}..."
+  chown root:"$KANATA_USER" "$KANATA_BIN_PATH"
+  chmod 755 "$KANATA_BIN_PATH"
+fi
 
 #========================
 # STEP 6: Create Systemd Service Unit
 #========================
-echoinfo "Creating systemd service file /etc/systemd/system/kanata.service..."
+echoinfo "Writing systemd service file /etc/systemd/system/kanata.service..."
 # Use cat with EOF for cleaner multi-line definition
 cat <<EOF >/etc/systemd/system/kanata.service
 [Unit]
