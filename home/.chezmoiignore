@@ -19,4 +19,5 @@
 .chezmoiscripts/linux/*install-apt-apps.*
 .chezmoiscripts/linux/*install-brew-extras.*
 .chezmoiscripts/linux/*install-vscode.*
+.chezmoiscripts/linux/*setup-kanata.*
 {{ end }}

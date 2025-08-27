@@ -7,4 +7,9 @@ zsh/funcs/setBrightness
 git/
 kitty/
 vscode/
+kanata/
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+systemd/
 {{ end }}
