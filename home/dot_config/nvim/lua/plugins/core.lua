@@ -94,17 +94,26 @@ return {
         "vimdoc",
         "yaml",
       })
-      -- Incremental selection keymaps
-      opts.incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = "<C-enter>",
-          node_decremental = "<C-bs>",
-        },
-      }
     end,
+  },
+  {
+    "folke/flash.nvim",
+    keys = {
+      -- Simulate nvim-treesitter incremental selection
+      {
+        "<c-space>",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter({
+            actions = {
+              ["<C-Space>"] = "next",
+              ["<C-BS>"] = "prev",
+            },
+          })
+        end,
+        desc = "Treesitter Incremental Selection",
+      },
+    },
   },
   {
     -- Kitty config
