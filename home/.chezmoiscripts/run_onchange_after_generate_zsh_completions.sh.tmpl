@@ -13,3 +13,5 @@ command -v rustup &> /dev/null && rustup completions zsh cargo > "$ZDOTDIR/compl
 command -v mise &> /dev/null && mise completion zsh > "$ZDOTDIR/completions/_mise"
 
 command -v rbw &> /dev/null && rbw gen-completions zsh > "$ZDOTDIR/completions/_rbw"
+
+command -v vectorcode &> /dev/null && vectorcode -s zsh > "$ZDOTDIR/completions/_vectorcode"
