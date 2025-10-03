@@ -1,5 +1,4 @@
 return {
-
   -- Colourschemes
   {
     "rose-pine/neovim",
@@ -93,6 +92,14 @@ return {
           ["l"] = "open",
           ["h"] = "close_node",
         },
+      },
+    },
+  },
+  {
+    "folke/noice.nvim",
+    opts = {
+      presets = {
+        lsp_doc_border = true, -- add a border to hover docs and signature help
       },
     },
   },
