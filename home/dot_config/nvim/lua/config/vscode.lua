@@ -26,6 +26,10 @@ map("n", "<leader>fn", action("workbench.action.files.newUntitledFile"), { desc 
 map("n", "<leader>ff", action("workbench.action.quickOpen"), { desc = "Find Files" })
 map("n", "<leader>fr", action("workbench.action.openRecent"), { desc = "Recent Files" })
 map("n", "<leader>fb", action("workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"), { desc = "Find Buffer" })
+map("n", "gx", function()
+  local query = vim.fn.expand("<cfile>")
+  require("vscode").action("vscode.open", { args = { query } })
+end, { desc = "Open with system app" })
 
 -- Search and navigation
 map("n", "<leader><space>", action("workbench.action.quickOpen"), { desc = "Find Files" })
