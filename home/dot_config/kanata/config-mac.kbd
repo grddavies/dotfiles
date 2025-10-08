@@ -1,0 +1,37 @@
+;; Remap home-row with mod keys
+
+;; Config for 12" MacBook with physical f keys. This config allows for brightness etc to still work.
+(defsrc
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  IntlBackslash  1    2    3    4    5       6    7    8    9    0       -    =    bspc
+  tab            q    w    e    r    t       y    u    i    o    p       [    ]    ret 
+  caps           a    s    d    f    g       h    j    k    l    ;       '    \ 
+  lsft   `       z    x    c    v    b       n    m    ,    .    /       rsft
+  lctl           lalt lmet          spc            rmet ralt
+)
+
+(defvar
+  tap-time 150
+  hold-time 150
+  hold-slow 210
+)
+
+(defalias
+  a (tap-hold $tap-time $hold-slow a lmet)
+  s (tap-hold $tap-time $hold-time s lalt)
+  d (tap-hold $tap-time $hold-time d lctl)
+  f (tap-hold $tap-time $hold-time f lsft)
+  j (tap-hold $tap-time $hold-time j rsft)
+  k (tap-hold $tap-time $hold-time k rctl)
+  l (tap-hold $tap-time $hold-time l ralt)
+  ; (tap-hold $tap-time $hold-slow ; rmet)
+)
+
+(deflayer base
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  IntlBackslash  1    2    3    4    5       6    7    8    9    0       -    =    bspc
+  tab            q    w    e    r    t       y    u    i    o    p       [    ]    ret
+  caps          @a   @s   @d   @f    g       h   @j   @k   @l   @;       '    \
+  lsft   `       z    x    c    v    b       n    m    ,    .    /       rsft
+  lctl           lalt lmet          spc            rmet ralt
+)
