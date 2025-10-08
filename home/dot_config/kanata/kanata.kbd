@@ -26,4 +26,4 @@
   @esccaps @a @s @d @f @j @k @l @;
 )
 
-(defcfg process-unmapped-keys yes)
+(defcfg process-unmapped-keys no)
