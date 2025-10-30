@@ -9,14 +9,16 @@ return {
   --- Coding
   {
     "neovim/nvim-lspconfig",
-    init = function()
-      -- Modify default LSP keymaps
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "<leader>c<leader>", "<cmd>LspRestart<cr>", desc = "Restart LSP" }
-    end,
     opts = {
       -- Disable inlay hints by default, can be enabled with <leader>uh
       inlay_hints = { enabled = false },
+      servers = {
+        ["*"] = {
+          keys = {
+            { "<leader>c<leader>", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
+          },
+        },
+      },
     },
   },
   {
