@@ -12,6 +12,7 @@ return {
   },
   {
     "olimorris/codecompanion.nvim",
+    version = "^17",
     cmd = { "CodeCompanion", "CodeCompanionChat" },
     event = "VeryLazy",
     keys = {
