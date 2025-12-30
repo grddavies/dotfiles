@@ -12,12 +12,11 @@ return {
   },
   {
     "olimorris/codecompanion.nvim",
-    version = "^17",
     cmd = { "CodeCompanion", "CodeCompanionChat" },
     event = "VeryLazy",
     keys = {
       {
-        mapping_key_prefix .. "a",
+        mapping_key_prefix .. "f",
         function()
           require("codecompanion").actions({})
         end,
@@ -26,9 +25,19 @@ return {
       {
         mapping_key_prefix .. "c",
         function()
+          require("codecompanion").chat()
+        end,
+        desc = "Chat (New)",
+        mode = { "n", "v" },
+      },
+      {
+        mapping_key_prefix .. "<space>",
+        function()
+          -- FIXME: Toggling a panel closed causes segfault - depends on to edgy integration
+          -- Use C-q (edgy shortcut) instead
           require("codecompanion").toggle()
         end,
-        desc = "Toggle Chat",
+        desc = "Toggle",
         mode = { "n", "v" },
       },
     },
@@ -49,27 +58,29 @@ return {
             save_chat_keymap = "sc",
             auto_save = true,
             expiration_days = 0,
-            auto_generate_title = false,
+            auto_generate_title = true,
             dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
             enable_logging = false,
           },
         },
       },
       adapters = {
-        anthropic = function()
-          return require("codecompanion.adapters").extend("anthropic", {
-            env = {
-              api_key = "cmd:rbw get ANTHROPIC_API_KEY",
-            },
-          })
-        end,
-        tavily = function()
-          return require("codecompanion.adapters").extend("tavily", {
-            env = {
-              api_key = "cmd:rbw get TAVILY_API_KEY",
-            },
-          })
-        end,
+        http = {
+          anthropic = function()
+            return require("codecompanion.adapters").extend("anthropic", {
+              env = {
+                api_key = "cmd:rbw get ANTHROPIC_API_KEY",
+              },
+            })
+          end,
+          tavily = function()
+            return require("codecompanion.adapters").extend("tavily", {
+              env = {
+                api_key = "cmd:rbw get TAVILY_API_KEY",
+              },
+            })
+          end,
+        },
       },
       strategies = {
         chat = {
@@ -77,7 +88,7 @@ return {
           variables = {
             ["buffer"] = {
               opts = {
-                default_params = "watch",
+                default_params = "diff",
               },
             },
           },
