@@ -1,0 +1,20 @@
+#!/bin/bash
+set -euo pipefail
+
+if  ! command -v brew &> /dev/null; then
+    # Get Homebrew package manager
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Packages
+{{ $brews := list
+    "awscli"
+    "make"
+    -}}
+
+
+brew bundle --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+EOF
