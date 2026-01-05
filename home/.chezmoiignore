@@ -11,7 +11,9 @@
 {{ end }}
 
 {{ if .work }}
-.chezmoiscripts/**/*install-apps-extras*.*
+.chezmoiscripts/**/*install-apps-home*.*
+{{ else }}
+.chezmoiscripts/**/*install-apps-work*.*
 {{ end }}
 
 {{ if .headless }}
