@@ -10,6 +10,10 @@
 .chezmoiscripts/**/*install-tidal*.*
 {{ end }}
 
+{{ if .work }}
+.chezmoiscripts/**/*install-apps-extras*.*
+{{ end }}
+
 {{ if .headless }}
 .chezmoiscripts/*install-haskell*
 .chezmoiscripts/*install-rust*
