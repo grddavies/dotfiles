@@ -10,4 +10,4 @@ node = "latest"
 java = "21"
 
 [settings]
-idiomatic_version_file_enable_tools = ["node", "python"]
+idiomatic_version_file_enable_tools = ["node", "python", "terraform"]
