@@ -8,6 +8,7 @@ _.path = [
 python = "latest"
 node = "latest"
 java = "21"
+kubectl = "1.30"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node", "python", "terraform"]
