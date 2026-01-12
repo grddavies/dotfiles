@@ -46,6 +46,6 @@
   mnemonicPrefix = true
   renames = true
 
-# Will override settings above
-[includeIf "gitdir:~/motilent/"]
-  path = ~/.config/git/motilent/config
+# Overrides for work
+[includeIf "gitdir:~/ra/"]
+  path = ~/.config/git/ra/config
