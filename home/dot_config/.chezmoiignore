@@ -12,6 +12,7 @@ kanata/
 
 {{ if ne .chezmoi.os "darwin" }}
 empty_dot_hushlogin
+karabiner/
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
