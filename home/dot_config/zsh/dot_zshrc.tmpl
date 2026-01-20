@@ -66,3 +66,10 @@ source "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/powerlevel10k/powerlevel10k.zsh
 # Load p10k theme
 [[ ! -f ${ZDOTDIR}/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
 
+{{ if eq .chezmoi.os "darwin" -}}
+# Path to Android SDK
+if [[ -d "/Users/$USER/Library/Android/sdk" ]]; then
+  export ANDROID_HOME="/Users/$USER/Library/Android/sdk"
+fi
+{{ end -}}
+
