@@ -33,8 +33,6 @@ return {
       {
         mapping_key_prefix .. "<space>",
         function()
-          -- FIXME: Toggling a panel closed causes segfault - depends on to edgy integration
-          -- Use C-q (edgy shortcut) instead
           require("codecompanion").toggle()
         end,
         desc = "Toggle",
@@ -84,7 +82,7 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "anthropic",
+          adapter = "copilot",
           variables = {
             ["buffer"] = {
               opts = {
@@ -94,10 +92,10 @@ return {
           },
         },
         inline = {
-          adapter = "anthropic",
+          adapter = "copilot",
         },
         cmd = {
-          adapter = "anthropic",
+          adapter = "copilot",
         },
       },
     },
