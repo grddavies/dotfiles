@@ -69,7 +69,30 @@ return {
         },
       },
       adapters = {
+        acp = {
+          opts = {
+            show_presets = false,
+          },
+          claude_code = function()
+            return require("codecompanion.adapters").extend("claude_code", {
+              env = {
+                CLAUDE_CODE_OAUTH_TOKEN = "cmd:rbw get 'RA Claude Code Token'",
+              },
+            })
+          end,
+          -- NOOP so it is included in the adapter list
+          opencode = function()
+            return require("codecompanion.adapters").extend("opencode", {})
+          end,
+        },
         http = {
+          opts = {
+            show_presets = false,
+          },
+          copilot = function()
+            -- NOOP so it is included in the adapter list
+            return require("codecompanion.adapters").extend("copilot", {})
+          end,
           anthropic = function()
             return require("codecompanion.adapters").extend("anthropic", {
               env = {
