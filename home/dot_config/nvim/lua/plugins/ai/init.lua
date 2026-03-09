@@ -16,7 +16,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     opts = {
-      copilot_node_command = vim.trim(vim.fn.system("mise x node@latest -- which node")),
+      copilot_node_command = vim.trim(vim.fn.system("mise -q x node@latest -- which node")),
     },
   },
   {
