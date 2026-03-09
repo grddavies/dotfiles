@@ -1,5 +1,8 @@
-local mapping_key_prefix = vim.g.ai_prefix_key or "<leader>a"
+if vim.g.basic_mode then
+  return {}
+end
 
+local mapping_key_prefix = vim.g.ai_prefix_key or "<leader>a"
 return {
   {
     "folke/which-key.nvim",

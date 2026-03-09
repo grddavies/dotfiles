@@ -31,7 +31,7 @@ require("lazy").setup({
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
   dev = { path = "~/code", patterns = { "grddavies" }, fallback = true },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = { enabled = not vim.g.basic_mode }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins

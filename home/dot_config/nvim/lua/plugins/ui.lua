@@ -31,6 +31,7 @@ return {
     "folke/snacks.nvim",
     opts = {
       dashboard = {
+        enabled = not vim.g.basic_mode,
         preset = {
           header = [[
       ___           ___           ___           ___                       ___     
@@ -51,6 +52,7 @@ return {
   },
   {
     "lualine.nvim",
+    enabled = not vim.g.basic_mode,
     opts = {
       options = {
         component_separators = "",
@@ -60,6 +62,7 @@ return {
   },
   {
     "folke/edgy.nvim",
+    enabled = not vim.g.basic_mode,
     opts = function(_, opts)
       vim.list_extend(opts.bottom, {
         {
@@ -78,7 +81,6 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    optional = true,
     opts = {
       filesystem = {
         filtered_items = {
@@ -97,6 +99,7 @@ return {
   },
   {
     "folke/noice.nvim",
+    enabled = not vim.g.basic_mode,
     opts = {
       presets = {
         lsp_doc_border = true, -- add a border to hover docs and signature help
