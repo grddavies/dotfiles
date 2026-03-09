@@ -20,6 +20,9 @@
 {{ if .headless }}
 .chezmoiscripts/*install-haskell*
 .chezmoiscripts/*install-rust*
+# macbook automation
+.sleep
+.wakeup
 # linux apps
 .chezmoiscripts/linux/*install-kitty.*
 .chezmoiscripts/linux/*install-snaps.*

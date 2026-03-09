@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+STATEDIR=~/.local/state/sleepwatcher
+STATEFILE="$STATEDIR/bluetooth_state"
+
+rm -f "$STATEFILE"
+
+if blueutil --power | grep -q "^1$"; then
+  mkdir -p "$STATEDIR"
+  blueutil --connected --format json | jq -r '.[].address' >"$STATEFILE"
+  blueutil --power 0
+fi

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+STATEFILE=~/.local/state/sleepwatcher/bluetooth_state
+
+if [ -f "$STATEFILE" ]; then
+  trap 'rm "$STATEFILE"' EXIT
+  blueutil --power 1
+  while IFS= read -r address; do
+    [ -n "$address" ] && blueutil --connect "$address" --wait-connect 5 &
+  done <"$STATEFILE"
+  wait
+fi
