@@ -24,3 +24,20 @@ brew bundle --file=/dev/stdin <<EOF
 cask "{{ . }}"
 {{ end -}}
 EOF
+
+# Packages
+{{ $brews := list
+    "blueutil"
+    "sleepwatcher"
+    -}}
+
+
+brew bundle --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+EOF
+
+echo "Starting brew services..."
+brew services start sleepwatcher
+
