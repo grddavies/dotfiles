@@ -1,4 +1,5 @@
 alias ls="eza"
-alias vim='nvim --cmd "let g:basic_mode=v:true"'
+# Use nvim completions for my local vim alias
+compdef vim=nvim
 alias lzd="lazydocker"
 alias astg='ast-grep'

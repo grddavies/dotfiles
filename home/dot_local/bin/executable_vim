@@ -1,0 +1,2 @@
+#!/bin/sh
+exec nvim --cmd "let g:basic_mode=v:true" "$@"
