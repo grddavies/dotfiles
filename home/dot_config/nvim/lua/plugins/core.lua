@@ -30,8 +30,12 @@ return {
     event = { "VeryLazy" },
   },
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    "esmuellert/codediff.nvim",
+    cmd = { "CodeDiff" },
+    keys = {
+      { "<leader>gH", "<cmd>CodeDiff history %<cr>", desc = "Git File History (codediff)" },
+      { "<leader>gv", "<cmd>CodeDiff origin/HEAD...HEAD<cr>", desc = "View diff with default branch (codedif)" },
+    },
   },
   {
     "numToStr/Comment.nvim",
