@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+
 STATEDIR=~/.local/state/sleepwatcher
 STATEFILE="$STATEDIR/bluetooth_state"
 

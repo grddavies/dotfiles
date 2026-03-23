@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+
 STATEFILE=~/.local/state/sleepwatcher/bluetooth_state
 
 if [ -f "$STATEFILE" ]; then
