@@ -14,12 +14,6 @@ return {
     },
   },
   {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      copilot_node_command = vim.trim(vim.fn.system("mise -q x node@latest -- which node")),
-    },
-  },
-  {
     "olimorris/codecompanion.nvim",
     cmd = { "CodeCompanion", "CodeCompanionChat" },
     event = "VeryLazy",
