@@ -10,7 +10,6 @@ node = "latest"
 java = "21"
 kubectl = "1.30"
 "npm:@zed-industries/claude-agent-acp" = "latest"
-"@github/copilot-language-server" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node", "python", "terraform"]
