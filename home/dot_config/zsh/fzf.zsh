@@ -1,8 +1,6 @@
 eval "$(fzf --zsh)"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude Library"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git --exclude Library"
 
 _FZF_PREVIEW_DIR="eza --tree --level 1 --color=always {} | head -200"
 _FZF_PREVIEW_FILE="bat -n --color=always --line-range :500 {}"
@@ -19,7 +17,17 @@ _fzf_compgen_dir() {
 }
 
 export FZF_CTRL_T_OPTS="--preview '$_FZF_PREVIEW_CONDITIONAL'"
-export FZF_ALT_C_OPTS="--preview '$_FZF_PREVIEW_DIR'"
+
+# cd with alt+c
+# Needs export for use in transform subshell script below
+export _FD_DIR_BASE_CMD="fd --type d --follow --exclude Library"
+export FZF_ALT_C_COMMAND="$_FD_DIR_BASE_CMD"
+export FZF_ALT_C_OPTS="
+  --preview '$_FZF_PREVIEW_DIR'
+  --header 'alt-h: toggle hidden | alt-i: toggle ignored'
+  --bind 'alt-h:transform:zsh ${ZDOTDIR}/funcs/_fzf_alt_c_transform hidden'
+  --bind 'alt-i:transform:zsh ${ZDOTDIR}/funcs/_fzf_alt_c_transform ignored'
+"
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -33,12 +41,12 @@ _fzf_comprun() {
     export|unset) fzf --preview "eval 'echo $'{}" "$@" ;;
     ssh)          fzf --preview 'dig {}' "$@" ;;
     git)
-      if [[ $LBUFFER == *"git switch"* ]]; then
-        (git branch --format='%(refname:short)' --sort=-committerdate) | \
-          rg -v "^$(git branch --show-current 2>/dev/null)$" | \
-          fzf --preview 'git log --oneline --graph --date=short {}' "$@"
-      fi
-      ;;
+                  if [[ $LBUFFER == *"git switch"* ]]; then
+                    (git branch --format='%(refname:short)' --sort=-committerdate) | \
+                      rg -v "^$(git branch --show-current 2>/dev/null)$" | \
+                      fzf --preview 'git log --oneline --graph --date=short {}' "$@"
+                  fi
+                  ;;
     *)            fzf --preview "$_FZF_PREVIEW_CONDITIONAL" "$@" ;;
   esac
 }

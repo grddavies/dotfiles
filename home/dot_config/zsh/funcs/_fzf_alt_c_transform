@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+toggle=$1
+cmd="$_FD_DIR_BASE_CMD"
+prompt=""
+
+hidden=0
+ignored=0
+[[ $FZF_PROMPT == *h* ]] && hidden=1
+[[ $FZF_PROMPT == *i* ]] && ignored=1
+
+[[ $toggle == hidden ]]  && hidden=$((1 - hidden))
+[[ $toggle == ignored ]] && ignored=$((1 - ignored))
+
+[[ $hidden  == 1 ]] && { cmd="$cmd --hidden --exclude .git"; prompt+="h "; }
+[[ $ignored == 1 ]] && { cmd="$cmd --no-ignore";             prompt+="i "; }
+
+echo "change-prompt(${prompt}> )+reload($cmd)"
+
+
