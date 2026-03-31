@@ -1,9 +1,19 @@
+local defaults = {
+  {
+    "zbirenbaum/copilot.lua",
+    optional = true,
+    opts = {
+      copilot_node_command = vim.trim(vim.fn.system("mise -q x node@latest -- which node")),
+    },
+  },
+}
+
 if vim.g.basic_mode then
-  return {}
+  return defaults
 end
 
 local mapping_key_prefix = vim.g.ai_prefix_key or "<leader>a"
-return {
+return vim.list_extend(defaults, {
   {
     "folke/which-key.nvim",
     optional = true,
@@ -11,12 +21,6 @@ return {
       spec = {
         { mapping_key_prefix, group = "AI Code Companion", mode = { "n", "v" } },
       },
-    },
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      copilot_node_command = vim.trim(vim.fn.system("mise -q x node@latest -- which node")),
     },
   },
   {
@@ -157,4 +161,4 @@ return {
       })
     end,
   },
-}
+})
