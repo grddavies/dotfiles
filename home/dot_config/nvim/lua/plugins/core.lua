@@ -35,6 +35,18 @@ return {
     keys = {
       { "<leader>gH", "<cmd>CodeDiff history %<cr>", desc = "Git File History (codediff)" },
       { "<leader>gv", "<cmd>CodeDiff origin/HEAD...HEAD<cr>", desc = "View diff with default branch (codedif)" },
+      {
+        "<leader>gV",
+        function()
+          local branches = vim.fn.systemlist("git branch --format='%(refname:short)'")
+          vim.ui.select(branches, { prompt = "Select branch to diff against:" }, function(branch)
+            if branch then
+              vim.cmd("CodeDiff " .. branch .. "...HEAD")
+            end
+          end)
+        end,
+        desc = "View diff with branch (codediff)",
+      },
     },
   },
   {
