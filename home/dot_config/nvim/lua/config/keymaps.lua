@@ -23,7 +23,7 @@ vim.keymap.set("n", "Y", "y$", { desc = "Yank to End Of Line" })
 
 -- Yank to system keyboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { desc = "[Y]ank to EOL to system clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { desc = "[Y]ank to EOL to system clipboard", remap = true })
 
 -- Put from system keyboard
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "[P]ut from system clipboard" })
