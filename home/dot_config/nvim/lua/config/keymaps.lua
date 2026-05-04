@@ -30,6 +30,21 @@ vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "[P]ut from system cli
 
 -- When putting in visual mode keep replaced text in "_ register
 vim.keymap.set("v", "p", '"_dP')
+
+-- File yanks
+-- Yank file path to system clipboard
+vim.keymap.set("n", "<leader>fy", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO, { title = "Yanked path" })
+end, { desc = "[Y]ank relative path" })
+
+vim.keymap.set("n", "<leader>fY", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO, { title = "Yanked path" })
+end, { desc = "[Y]ank absolute path" })
+
 -- }}}
 
 -- Terminal {{{
