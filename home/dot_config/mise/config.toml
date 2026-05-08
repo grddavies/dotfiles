@@ -7,9 +7,10 @@ _.path = [
 [tools]
 python = "latest"
 node = "latest"
+terraform = "latest"
 java = "21"
 kubectl = "1.30"
 "npm:@zed-industries/claude-agent-acp" = "latest"
 
 [settings]
-idiomatic_version_file_enable_tools = ["node", "python", "terraform"]
+idiomatic_version_file_enable_tools = ["node", "python", "terraform", "dotnet"]
