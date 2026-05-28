@@ -8,20 +8,21 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
     {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
-      -- opts = {
-      --   news = {
-      --     -- No news in vscode
-      --     lazyvim = vim.g.vscode ~= nil,
-      --     neovim = vim.g.vscode ~= nil,
-      --   },
-      -- },
+      opts = {
+        news = {
+          -- No news in vscode or 'vim'
+          lazyvim = vim.g.vscode == nil and not vim.g.basic_mode,
+          neovim = vim.g.vscode == nil and not vim.g.basic_mode,
+        },
+      },
     },
     { import = "plugins" },
   },
+  -- Plugin update checker
+  checker = { enabled = true, notify = false },
   defaults = {
     lazy = true,
     -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
@@ -31,7 +32,6 @@ require("lazy").setup({
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
   dev = { path = "~/code", patterns = { "grddavies" }, fallback = true },
-  checker = { enabled = not vim.g.basic_mode }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins
