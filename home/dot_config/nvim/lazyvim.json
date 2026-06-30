@@ -30,6 +30,7 @@
     "lazyvim.plugins.extras.util.mini-hipatterns",
     "lazyvim.plugins.extras.vscode",
     "plugins.extras.user.harper",
+    "plugins.extras.user.lang.dotnet",
     "plugins.extras.user.lang.rust",
     "plugins.extras.user.lang.typst",
     "plugins.extras.user.repl"
@@ -37,7 +38,7 @@
   "install_version": 7,
   "news": {
     "NEWS.md": "11866",
-    "doc/news.txt": "25127"
+    "doc/news.txt": "25567"
   },
   "version": 8
 }
