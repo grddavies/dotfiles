@@ -34,6 +34,30 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Disable codelens in the blamed buffer while fugitive blame is open
+-- Codelens virt_lines only exist in the source window, which breaks scrollbind alignment
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("blame_codelens"),
+  pattern = "fugitiveblame",
+  callback = function(event)
+    local src = vim.fn.FugitiveResult(event.buf).origin_bufnr
+    if not src or not vim.api.nvim_buf_is_valid(src) then
+      return
+    end
+    local was_enabled = vim.lsp.codelens.is_enabled({ bufnr = src })
+    vim.lsp.codelens.enable(false, { bufnr = src })
+    vim.api.nvim_create_autocmd("BufWinLeave", {
+      buffer = event.buf,
+      once = true,
+      callback = function()
+        if was_enabled and vim.api.nvim_buf_is_valid(src) then
+          vim.lsp.codelens.enable(true, { bufnr = src })
+        end
+      end,
+    })
+  end,
+})
+
 -- Cmd Window Keymaps
 vim.api.nvim_create_autocmd({ "CmdwinEnter" }, {
   group = augroup("cmdwin"),
