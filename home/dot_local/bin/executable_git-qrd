@@ -1,0 +1,121 @@
+#!/usr/bin/env bash
+# git qrd - query release date
+# Show when a PR or commit reached a target branch (default: main).
+set -euo pipefail
+
+usage() {
+  cat <<USAGE
+usage: git qrd [-b <branch>] [-n] [-t] <pr-number | ref>
+
+  <pr-number>   PR number (123 or #123), resolved via gh
+  <ref>         any commit-ish: SHA, tag, branch
+  -b <branch>   target branch (default: main)
+  -n            nofetch - skip 'git fetch'
+  -t            machine output: one line, tab-separated:
+                <date>  <landing-sha>  <label>  <title>
+USAGE
+  exit "${1:-0}"
+}
+
+target=main fetch=1 tsv=0
+while getopts "b:nth" o; do
+  case $o in
+  b) target=$OPTARG ;;
+  n) fetch=0 ;;
+  t) tsv=1 ;;
+  h) usage 0 ;;
+  *) usage 1 >&2 ;;
+  esac
+done
+shift $((OPTIND - 1))
+[[ $# -eq 1 ]] || usage 1 >&2
+arg=$1
+
+spin_pid=
+spin_start() {
+  # spinner on stderr; only for interactive, non-machine output
+  [[ $tsv -eq 0 && -t 2 ]] || return 0
+  local msg=$1
+  printf '\033[?25l' >&2
+  (
+    frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+    while :; do
+      for f in "${frames[@]}"; do
+        printf '\r\033[2K%s %s' "$f" "$msg" >&2
+        sleep 0.08
+      done
+    done
+  ) &
+  spin_pid=$!
+}
+spin_stop() {
+  [[ -n $spin_pid ]] || return 0
+  kill "$spin_pid" 2>/dev/null || true
+  wait "$spin_pid" 2>/dev/null || true
+  spin_pid=
+  printf '\r\033[2K\033[?25h' >&2
+}
+trap spin_stop EXIT
+trap 'exit 130' INT TERM
+
+die() {
+  spin_stop
+  echo "git qrd: $*" >&2
+  exit 1
+}
+
+spin_start "Finding when $arg reached ${target}…"
+
+git rev-parse --git-dir >/dev/null 2>&1 || die "not in a git repo"
+[[ $fetch -eq 1 ]] && git fetch -q origin 2>/dev/null || true
+
+# prefer remote-tracking branch: local main may be stale
+if git rev-parse -q --verify "refs/remotes/origin/$target" >/dev/null; then
+  tref=origin/$target
+elif git rev-parse -q --verify "$target" >/dev/null; then
+  tref=$target
+else
+  die "target branch '$target' not found"
+fi
+
+# resolve arg -> commit
+if [[ $arg =~ ^#?([0-9]+)$ ]]; then
+  pr=${BASH_REMATCH[1]}
+  IFS=$'\t' read -r state sha title < <(gh pr view "$pr" --json state,mergeCommit,title \
+    --jq '[.state, (.mergeCommit.oid // "-"), (.title | gsub("\\s"; " "))] | @tsv') ||
+    die "gh could not read PR #$pr"
+  [[ $state == MERGED && $sha != "-" ]] || die "PR #$pr not merged (state: $state)"
+  # mergeCommit may be missing locally if fetch skipped/failed
+  git cat-file -e "$sha^{commit}" 2>/dev/null || git fetch -q origin "$sha" 2>/dev/null ||
+    die "commit $sha for PR #$pr not available locally"
+  label="PR #$pr"
+else
+  sha=$(git rev-parse -q --verify "$arg^{commit}") || die "cannot resolve '$arg'"
+  label=$arg
+  title=$(git show -s --format=%s "$sha")
+fi
+
+git merge-base --is-ancestor "$sha" "$tref" ||
+  die "$label ($(git rev-parse --short "$sha")) is not in $tref yet"
+
+# first commit on target's first-parent line that contains $sha:
+# oldest descendant of $sha (or $sha itself) that sits on the mainline.
+# (--first-parent + --ancestry-path is unreliable, so filter instead)
+mainline=$(git rev-list --first-parent "$tref")
+landed=$({
+  echo "$sha"
+  git rev-list --topo-order --reverse --ancestry-path "$sha..$tref"
+} |
+  grep -Fxf <(echo "$mainline") | sed -n 1p)
+[[ -n $landed ]] || die "could not locate landing commit for $label"
+
+spin_stop
+IFS=$'\t' read -r date short subj < <(git show -s --format='%cI%x09%h%x09%s' "$landed")
+
+if [[ $tsv -eq 1 ]]; then
+  printf '%s\t%s\t%s\t%s\n' "$date" "$short" "$label" "$title"
+else
+  printf '%s: %s\n' "$label" "$title"
+  printf '  reached %s on %s\n' "$tref" "$date"
+  [[ $landed == "$sha" ]] || printf '  via %s %s\n' "$short" "$subj"
+fi
