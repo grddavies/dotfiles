@@ -34,14 +34,8 @@ ZSH_AUTOSUGGEST_HISTORY_IGNORE=" *|git clone *|git commit -m *|git push --force*
 # Add user functions to fpath
 fpath=(${ZDOTDIR}/funcs $fpath )
 
-# Tag user functions for autoload
-{{ if eq .chezmoi.os "linux" -}}
-autoload -Uz setBrightness
-{{ end -}}
-{{ if eq .chezmoi.os "darwin" -}}
-# No custom funcs for macOS
-{{ end -}}
-# End autoload
+# Autoload every user function (skip _* helper scripts run by path)
+autoload -Uz ${ZDOTDIR}/funcs/[^_]*(N.:t)
 
 # Fix kitty/ssh see https://wiki.archlinux.org/title/Kitty#Terminal_issues_with_SSH
 if [ "$TERM" = "xterm-kitty" ]; then
