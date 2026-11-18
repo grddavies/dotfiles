@@ -4,6 +4,7 @@
 
 {{ if ne .chezmoi.os "linux" }}
 .chezmoiscripts/linux/**
+.config/zsh/funcs/setBrightness
 {{ end }}
 
 {{ if not .tidal }}
@@ -14,6 +15,7 @@
 .chezmoiscripts/**/*install-apps-home*.*
 {{ else }}
 .chezmoiscripts/**/*install-apps-work*.*
+.config/zsh/funcs/start-ssm
 .chezmoiscripts/**/*install-packages-work*.*
 {{ end }}
 
